@@ -1,0 +1,85 @@
+generated: '2026-08-12'
+method: derived
+source: openapi/_original/optimyzee-openapi.json
+docs: null
+docs_note: >-
+  Optimyzee publishes no authentication documentation - there is no developer portal, API reference or
+  help center to upgrade this profile from. Everything below is read out of the harvested contract or
+  observed on a live anonymous request to https://api.optimyzee.com.
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+  oauth2: false
+  openid_connect: false
+  mutual_tls: false
+  user_issuable_api_key: false
+schemes:
+- name: token
+  type: apiKey
+  in: header
+  parameter: authorization
+  description: Bearer token authorization
+  sources:
+  - openapi/optimyzee-openapi.yml
+  note: >-
+    Declared as an OpenAPI `apiKey` scheme rather than `http`/`bearer`, but the scheme's own
+    description says "Bearer token authorization". Applied to 108 of 184 operations.
+coverage:
+  operations_total: 184
+  operations_with_security: 108
+  operations_without_security: 76
+  root_level_security_default: null
+  note: >-
+    The document declares no root-level `security`, so the 76 operations with no `security` block are
+    unconstrained by the contract. Some are legitimately anonymous (sign-in, signup, password reset),
+    but 23 of them are on the internal /operations/* back-office surface, including
+    POST /operations/user/{userId}/impersonate. The contract does not say whether those are genuinely
+    open or simply under-declared.
+token_lifecycle:
+  mint:
+  - {operation: appAuthGatewayEmail, http: 'POST /app/auth/gateway/email'}
+  - {operation: appAuthGatewayEmailSignup, http: 'POST /app/auth/gateway/emailSignup'}
+  - {operation: appAuthGatewayGoogle, http: 'POST /app/auth/gateway/google'}
+  - {operation: appAuthGatewayGoogleSignup, http: 'POST /app/auth/gateway/googleSignup'}
+  - {operation: appAuthGatewayFacebook, http: 'POST /app/auth/gateway/facebook'}
+  - {operation: appAuthGatewayFacebookSignup, http: 'POST /app/auth/gateway/facebookSignup'}
+  refresh:
+  - {operation: appAuthGatewayRefresh, http: 'POST /app/auth/gateway/refresh'}
+  revoke:
+  - {operation: appAuthGatewayRevoke, http: 'POST /app/auth/gateway/revoke'}
+  schema: AppAuthGatewayTokenSchema
+  staff_equivalent:
+  - {operation: operationsAuthGateway, http: 'POST /operations/auth/gateway'}
+account_security_surface:
+  two_factor:
+  - 'POST /app/auth/tfa/issue'
+  - 'POST /app/auth/tfa/enable'
+  - 'POST /app/auth/tfa/disable'
+  trusted_devices:
+  - 'GET,POST /app/auth/trustedDevice'
+  - 'POST /app/auth/trustedDevice/current'
+  - 'GET,DELETE /app/auth/trustedDevice/{trustedDeviceId}'
+  email_verification:
+  - 'POST /app/auth/email'
+  - 'POST /app/auth/email/verify'
+  - 'POST /app/auth/email/resend'
+  password:
+  - 'POST /app/auth/password/sendResetLink'
+  - 'POST /app/auth/password/reset'
+  note: >-
+    TOTP two-factor and trusted-device management are first-class in the contract - a stronger account
+    security posture than the absence of any published security documentation would suggest.
+delegated_authorization:
+  note: >-
+    Optimyzee is an OAuth *client*, not an OAuth server. It consumes Google Ads, Meta and Yelp
+    authorizations on the user's behalf via /app/linking/g, /app/linking/meta and /app/yelp/connection
+    (authorization-code exchange with `code` + `redirectUri`), but exposes no authorization server,
+    no scopes and no consent surface of its own. /.well-known/oauth-authorization-server and
+    /.well-known/openid-configuration both returned 404 on optimyzee.com and api.optimyzee.com.
+transport:
+  https_only: true
+  observed_tls: TLSv1.3
+  hsts_on_api_host: false
+  cors_allow_origin: '*'

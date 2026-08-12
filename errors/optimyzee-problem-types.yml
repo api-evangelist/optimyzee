@@ -1,0 +1,78 @@
+generated: '2026-08-12'
+method: derived
+source: openapi/_original/optimyzee-openapi.json
+format: vendor-json
+format_note: Not RFC 9457 - no application/problem+json media type appears anywhere in the spec; every error is application/json
+  with a vendor envelope.
+envelopes:
+- name: ErrorSchema
+  shape: '{ error: string, message: string|null }'
+  note: 'Single-error envelope. Observed live on 2026-08-12: GET https://api.optimyzee.com/ returned HTTP 404 {"error":"not_found","message":null};
+    GET https://api.optimyzee.com/app/campaign returned HTTP 401 with the same envelope.'
+- name: ErrorBagSchema
+  shape: '{ errors: { <field>: [string, ...] } }'
+  note: Field-keyed validation bag returned on 422 Validation Error.
+- name: ErrorListSchema
+  shape: '{ errors: [ErrorSchema, ...] }'
+  note: Multi-error list envelope.
+problems:
+- status: 400
+  title: Authentication error
+  schema:
+  - ErrorListSchema
+  - ErrorSchema
+  operation_count: 13
+  example_operations:
+  - appAnalyzeGoogleAdsReportingEditor
+  - appAnalyzeGoogleAdsReportingQuerier
+  - appAuthGatewayEmail
+  - appAuthGatewayEmailSignup
+  - appAuthGatewayFacebook
+  other_titles:
+  - Bad Request
+  - Error
+  - Failed
+- status: 401
+  title: Unauthenticated
+  schema:
+  - ErrorSchema
+  operation_count: 119
+  example_operations:
+  - appAnalyzeGoogleAdsAuditQueue
+  - appAnalyzeGoogleAdsAuditView
+  - appAnalyzeGoogleAdsHealthAnalyze
+  - appAnalyzeGoogleAdsReportingEditor
+  - appAnalyzeGoogleAdsReportingQuerier
+- status: 403
+  title: Forbidden
+  schema:
+  - ErrorSchema
+  operation_count: 90
+  example_operations:
+  - appAnalyzeGoogleAdsAuditQueue
+  - appAnalyzeGoogleAdsAuditView
+  - appAnalyzeGoogleAdsHealthAnalyze
+  - appAnalyzeGoogleAdsOptimizationPMaxCenterStart
+  - appAnalyzeGoogleAdsReportingEditor
+  other_titles:
+  - Monthly action limit reached / unauthorized
+  - Unauthorized
+- status: 422
+  title: Validation Error
+  schema:
+  - ErrorBagSchema
+  - ErrorSchema
+  operation_count: 60
+  example_operations:
+  - appAnalyzeGoogleAdsReportingEditor
+  - appAnalyzeGoogleAdsReportingQuerier
+  - appAuthEmailUpdate
+  - appAuthEmailVerify
+  - appAuthGatewayEmail
+  other_titles:
+  - Validation error
+notes:
+- No 429 and no 5xx response is declared anywhere in the 184 operations; the spec documents only 400, 401, 403 and 422.
+- No error-code registry, error reference page, or remediation guidance is published - Optimyzee operates no developer documentation
+  site.
+- Titles are the spec's own response descriptions verbatim; nothing was invented.

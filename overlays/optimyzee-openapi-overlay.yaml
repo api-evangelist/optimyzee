@@ -1,0 +1,71 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Optimyzee Application API
+  version: 1.0.0
+extends: openapi/_original/optimyzee-openapi.json
+x-generated: '2026-08-12'
+x-method: generated
+x-source: >-
+  Enhancements applied by the API Evangelist enrichment pipeline over the document harvested verbatim
+  from https://api.optimyzee.com/docs on 2026-08-12. The original is never mutated; openapi/optimyzee-openapi.yml
+  is this overlay already applied.
+actions:
+- target: $.info
+  description: >-
+    The published document's info block is a placeholder - title "API", no description, no contact, no
+    license, no termsOfService. Name it and record where it came from.
+  update:
+    title: Optimyzee Application API
+    x-original-title: API
+    x-apievangelist-source: https://api.optimyzee.com/docs
+    x-apievangelist-harvested: '2026-08-12'
+    x-apievangelist-note: >-
+      Served publicly and anonymously at https://api.optimyzee.com/docs. Optimyzee publishes no
+      developer portal, API reference, SDK, or public API program around this contract; it is the
+      backend of the app.optimyzee.com single-page application.
+- target: $
+  description: >-
+    The published document declares no servers[]. api.optimyzee.com is the host that serves the document
+    and answers the operations live (GET /app/campaign returns 401 Unauthenticated from that host).
+  update:
+    servers:
+    - url: https://api.optimyzee.com
+      description: Production (host serving this document at /docs)
+- target: $.components.securitySchemes.token
+  description: >-
+    Record what the apiKey scheme actually is - a bearer token in the `authorization` header, minted by
+    the /app/auth/gateway/* operations, with no OAuth server and no user-issuable API key.
+  update:
+    x-token-source: /app/auth/gateway/{email,emailSignup,google,googleSignup,facebook,facebookSignup}
+    x-token-refresh: /app/auth/gateway/refresh
+    x-token-revoke: /app/auth/gateway/revoke
+    x-user-issuable-key: false
+x-findings:
+  description: >-
+    Contract-quality observations recorded for a provider conversation. These are NOT written into the
+    spec - the pipeline never pads a provider's document to move a score.
+  operations: 184
+  paths: 151
+  schemas: 73
+  with_operation_id: 184
+  with_tags: 184
+  with_summary: 39
+  with_description: 0
+  gaps:
+  - No `description` on any of the 184 operations.
+  - Only 39 of 184 operations carry a `summary`.
+  - >-
+    39 operations use 32-character hex operationIds (e.g. 8a4d6eaf33c6a8399451f759169cfa31) instead of
+    names - 31 of them on the Yelp surface, plus automations, recommendations and signals.
+  - No `examples` anywhere in the document.
+  - No 429 and no 5xx responses declared; only 400/401/403/422.
+  - >-
+    The x-pagination-next/previous/per-page/last/total response headers the API genuinely returns are
+    not declared in the spec, so a spec-only client cannot learn to page.
+  - >-
+    76 of 184 operations declare no `security` and the document declares no root-level `security`
+    default. 53 of those are under /app (the sign-in and password-reset operations legitimately, but
+    also the automations, recommendations and signals operations), and 23 are under the /operations/*
+    back-office surface - including POST /operations/user/{userId}/impersonate, which carries no
+    security requirement in the document at all. A reader cannot tell from the contract whether those
+    operations are genuinely unauthenticated or simply omit their requirement.

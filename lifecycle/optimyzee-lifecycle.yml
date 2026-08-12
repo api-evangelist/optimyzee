@@ -1,0 +1,50 @@
+generated: '2026-08-12'
+method: probed
+source: >-
+  openapi/_original/optimyzee-openapi.json + probes of optimyzee.com/changelog, /status, /roadmap and
+  status.optimyzee.com on 2026-08-12
+versioning:
+  scheme: document-version-only
+  current: 4.1.0
+  in_path: false
+  in_header: false
+  policy_url: null
+  note: >-
+    info.version is 4.1.0 in the harvested OpenAPI. No version segment appears in any of the 151 paths,
+    no version header or versioned media type is declared, and no versioning policy is published.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  deprecated_operations: []
+  evidence: >-
+    Zero operations carry `deprecated: true`, and the strings "deprecat" and "sunset" do not occur
+    anywhere in the OpenAPI document. No RFC 8594 Sunset/Deprecation header support is advertised.
+sla:
+  url: null
+  uptime_target: null
+status_page:
+  url: null
+  probes:
+  - url: https://status.optimyzee.com/
+    status: 0
+    note: NXDOMAIN - host does not resolve
+  - url: https://www.optimyzee.com/status
+    status: 404
+changelog:
+  url: null
+  probes:
+  - url: https://www.optimyzee.com/changelog
+    status: 404
+  note: >-
+    Product news is written up as long-form blog posts at https://www.optimyzee.com/blog, but there is no
+    dated release/changelog surface for the API or the application, so no changelog/ artifact was written.
+roadmap:
+  url: null
+  probes:
+  - url: https://www.optimyzee.com/roadmap
+    status: 404
+summary: >-
+  Optimyzee publishes no operational-transparency surface at all - no status page, no SLA, no changelog,
+  no deprecation policy, no roadmap. The only lifecycle signal that exists is the 4.1.0 document version
+  inside a spec the company does not advertise. No StatusPage or Deprecation pointer is emitted, because
+  neither surface exists.

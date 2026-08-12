@@ -1,0 +1,29 @@
+generated: '2026-08-12'
+method: probed
+source: >-
+  live response headers from https://api.optimyzee.com (GET /docs 200, GET /app/campaign 401) and
+  openapi/_original/optimyzee-openapi.json, both 2026-08-12
+limit_count: 0
+limits: []
+response_headers: []
+status_on_exhaustion: null
+evidence:
+- >-
+  Live responses from api.optimyzee.com expose only pagination headers -
+  `access-control-expose-headers: x-pagination-next, x-pagination-previous, x-pagination-per-page,
+  x-pagination-last, x-pagination-total`. No RateLimit-*, X-RateLimit-* or Retry-After header is
+  present or exposed.
+- >-
+  No 429 response is declared on any of the 184 operations in the harvested OpenAPI; the only declared
+  error statuses are 400, 401, 403 and 422.
+- >-
+  Optimyzee publishes no developer documentation, so there is no documented limit to record either.
+notes:
+- >-
+  Quota exists as a product concept rather than an HTTP contract - the plans carry monthly ad-spend
+  caps ($1,000 free / $2,500 Startup / higher on Business) and the contract exposes
+  `GET /app/campaign/free-limit-check` plus an `App/FreeLimit` tag, but exhaustion is surfaced in the
+  application, not as a rate-limit response an agent could react to.
+- >-
+  No RateLimits pointer is emitted in apis.yml. An honest zero is the finding; asserting a rate-limit
+  surface that the provider does not signal would be fabrication.

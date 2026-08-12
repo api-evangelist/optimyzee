@@ -1,0 +1,71 @@
+# Optimyzee
+
+> AI-powered Google Ads management. Optimyzee analyzes a website and its keywords, generates an
+> optimized search-campaign structure, keyword plans and responsive search ad copy, and validates ads
+> against Google Ads standards in real time. It also audits and health-scores connected accounts,
+> cleans wasted search terms, builds Performance Max, RSA and sitelink assets, links Meta Ads, Yelp Ads
+> and Google Merchant Center, and automates recurring optimization tasks. Backed by 500 Global and
+> Triple S Ventures.
+
+## Important for agents
+
+- Optimyzee has **no public API program**: no developer portal, no API reference, no SDK, no CLI, no
+  MCP server, no API keys you can issue yourself, and no published rate limits.
+- A machine-readable contract nevertheless exists and is served publicly and anonymously:
+  **OpenAPI 3.0.0 at https://api.optimyzee.com/docs** — 151 paths, 184 operations, 73 schemas.
+  It is the backend of the app.optimyzee.com web application, not a product.
+- Authentication is a bearer token in an `authorization` header, minted by the
+  `/app/auth/gateway/*` sign-in operations. There is no OAuth authorization server and no scopes.
+- Errors are a vendor `{ "error": ..., "message": ... }` envelope (422 uses a field-keyed
+  `{ "errors": { field: [msg] } }` bag). Not RFC 9457.
+- Pagination is cursor-based: `cursor` + `perPage` query parameters, with
+  `x-pagination-next|previous|per-page|last|total` response headers (exposed via CORS but NOT declared
+  in the spec).
+- There is no idempotency key, no webhook or event surface, no status page, no changelog, and no
+  deprecation policy.
+
+## APIs
+
+- [Optimyzee Application API](https://api.optimyzee.com): REST backend for Google Ads campaign
+  creation, audits, optimization, account linking, reporting, automations, Yelp Ads, and billing.
+
+## Specs
+
+- [OpenAPI 3.0.0 (as published, verbatim)](https://api.optimyzee.com/docs)
+- [OpenAPI (API Evangelist copy, YAML, with servers[] added)](openapi/optimyzee-openapi.yml)
+- [OpenAPI Overlay of our enhancements](overlays/optimyzee-openapi-overlay.yaml)
+
+## Artifacts
+
+- [Authentication profile](authentication/optimyzee-authentication.yml)
+- [API conventions](conventions/optimyzee-conventions.yml)
+- [Error catalog](errors/optimyzee-problem-types.yml)
+- [Data model](data-model/optimyzee-data-model.yml)
+- [Lifecycle](lifecycle/optimyzee-lifecycle.yml)
+- [Conformance](conformance/optimyzee-conformance.yml)
+- [Plans and pricing](plans/optimyzee-plans-pricing.yml)
+- [Rate limits (none published)](rate-limits/optimyzee-rate-limits.yml)
+- [Packages (none published)](packages/optimyzee-packages.yml)
+- [Well-known probe (all 404)](well-known/optimyzee-well-known.yml)
+- [Candidate MCP tool surface (derived, not operated by Optimyzee)](mcp/optimyzee-mcp.yml)
+- [Agent Skills](skills/_index.yml)
+
+## Product
+
+- [Website](https://www.optimyzee.com/)
+- [Pricing](https://www.optimyzee.com/pricing) — Free $0, Startup $29/mo, Business $99/mo
+- [Blog](https://www.optimyzee.com/blog)
+- [Search Terms Cleaner](https://www.optimyzee.com/search-terms-cleaner)
+- [Sign up](https://app.optimyzee.com/auth/register)
+- [Log in](https://app.optimyzee.com/auth)
+- [Contact / support](https://www.optimyzee.com/contact-us)
+- [Terms of service](https://www.optimyzee.com/terms-of-service)
+- [Privacy policy](https://www.optimyzee.com/policy)
+- [Agency agreement](https://www.optimyzee.com/agency-agreement)
+- [GitHub organization](https://github.com/optimyzee) — exists, zero public repositories
+
+<!--
+generated: 2026-08-12
+method: generated
+source: apis.yml + repo artifacts; https://optimyzee.com/llms.txt returned 404 on 2026-08-12
+-->

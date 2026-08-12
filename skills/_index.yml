@@ -1,0 +1,40 @@
+generated: '2026-08-12'
+method: generated
+source: >-
+  openapi/_original/optimyzee-openapi.json (harvested verbatim from https://api.optimyzee.com/docs on
+  2026-08-12) plus conventions/optimyzee-conventions.yml and errors/optimyzee-problem-types.yml.
+  Optimyzee publishes no skills, no AGENTS.md and no developer documentation; these are API Evangelist
+  generated skills, and every operationId in them was read out of the harvested spec - none invented.
+skill_count: 3
+skills:
+- name: optimyzee-link-google-ads-account
+  file: optimyzee-link-google-ads-account.md
+  description: >-
+    Connect a Google Ads account and confirm the link is healthy, so every other flow has a linkingId.
+  operations: 7
+- name: optimyzee-build-ai-search-campaign
+  file: optimyzee-build-ai-search-campaign.md
+  description: >-
+    Build a Google Ads search campaign from a website URL through the AI pipeline (keyword plan, STAG
+    structure, RSA copy) and publish it to the linked account.
+  operations: 10
+  writes_to_production: true
+- name: optimyzee-audit-and-optimize-account
+  file: optimyzee-audit-and-optimize-account.md
+  description: >-
+    Audit a linked account, score its health, clean wasted search terms, and apply the resulting
+    optimization tasks.
+  operations: 15
+  writes_to_production: true
+notes:
+- >-
+  All three skills carry the same two hard cautions, because they are properties of the contract, not
+  of the skill - there is no idempotency key anywhere on this API, and several steps spend real
+  advertising money in a connected Google Ads account.
+- >-
+  No skill was written over the /operations/* back-office surface (32 operations, including
+  POST /operations/user/{userId}/impersonate). It is staff tooling and must not be packaged as agent
+  capability.
+- >-
+  No skill was written over the Yelp surface: 31 of its 33 operations carry 32-character hex
+  operationIds rather than names, so grounding steps in them would mean guessing intent.

@@ -1,0 +1,22 @@
+generated: '2026-08-12'
+method: searched
+source: >-
+  registry.npmjs.org, npm search API, pypi.org, rubygems.org, crates.io, api.github.com orgs/repos,
+  and the optimyzee.com site - all queried 2026-08-12
+package_count: 0
+packages: []
+registries_checked:
+- {registry: npm, query: 'optimyzee', result: 404 on registry.npmjs.org/optimyzee; npm search text=optimyzee returned 0 objects}
+- {registry: pypi, query: 'optimyzee', result: 404}
+- {registry: rubygems, query: 'optimyzee', result: 404}
+- {registry: crates.io, query: 'optimyzee', result: 403 - crates.io data-access policy blocked the query, not evidence of a package}
+- {registry: github, query: 'orgs/optimyzee', result: '200 - the org "Optimyzee Marketing Solutions" exists (created 2021-03-05, blog https://www.optimyzee.com/, email service@optimyzee.com) but publishes 0 public repositories'}
+- {registry: github-search, query: 'optimyzee', result: '1 repository, which is this API Evangelist profile repo - no first-party code'}
+notes:
+- >-
+  Optimyzee ships no client library in any language. The Optimyzee Application API is the private
+  backend of the app.optimyzee.com single-page application - the SPA is its only client, and it is
+  bundled, not distributed through a registry.
+- >-
+  No `SDKs` and no `Packages` pointer is emitted in apis.yml, because there is nothing to point at.
+  A recorded zero is the finding.

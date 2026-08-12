@@ -5,30 +5,36 @@ description: Optimyzee is an AI-powered ad management platform that structures a
   a website and its keywords to generate an optimized campaign structure, keyword plans,
   and responsive search ad copy, then validates ads against Google Ads standards in real
   time to improve click-through rate, conversion rate, and Quality Score while lowering
-  cost-per-click. It targets business owners, marketing agencies, and individual marketers.
-  Backed by 500 Global and Triple S Ventures, it is a consumer-facing SaaS product with
-  no public developer API surface at this time.
+  cost-per-click. Beyond Google Ads it links Meta and Yelp Ads accounts and Google Merchant
+  Center, runs account audits and health scoring, cleans wasted search terms, builds
+  Performance Max, RSA and sitelink assets, and automates recurring optimization tasks.
+  It targets business owners, marketing agencies, and individual marketers, and is backed
+  by 500 Global and Triple S Ventures. The web application is driven by a REST API at
+  api.optimyzee.com whose OpenAPI 3.0 description is served publicly and anonymously at
+  /docs (184 operations across 151 paths), though Optimyzee publishes no developer portal,
+  API reference, SDK, or public API program around it.
 url: https://raw.githubusercontent.com/api-evangelist/optimyzee/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - 500-global
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: enriched
+x-tier-reason: openapi-harvested
 accessModel:
-  pricing: unknown
-  onboarding: unknown
-  trial: false
-  try_now: false
+  pricing: freemium
+  onboarding: self-serve
+  trial: true
+  try_now: true
   public: false
-  label: Unknown
-  confidence: low
-  source: []
-  generated: '2026-07-22'
-  method: derived
+  label: Self-serve signup, free tier
+  confidence: medium
+  source:
+  - https://www.optimyzee.com/pricing
+  generated: '2026-08-12'
+  method: searched
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-20'
+modified: '2026-08-12'
 image: https://optimyzee.com/og-image.png
 tags:
 - Company
@@ -39,7 +45,50 @@ tags:
 - Automation
 - Artificial Intelligence
 - SaaS
-apis: []
+- Campaign Management
+- Search Advertising
+- Yelp Ads
+- Meta Ads
+- Keyword Research
+- Reporting
+apis:
+- name: Optimyzee Application API
+  description: >-
+    The REST API behind the Optimyzee web application. Covers Google Ads campaign creation
+    (search creation, AI search creation, keyword planner, RSA builder, sitelink builder),
+    analysis (account audit, account health, search-terms optimization, Performance Max
+    optimization and the P-Max center, reporting editor/querier), account linking (Google
+    Ads, Meta, Merchant Center), lookups (campaigns, geo target constants, language
+    constants), campaign lifecycle and activity, recommendations and signals, automations,
+    Yelp Ads (autoresponders, leads, businesses, programs, reporting, sync), billing
+    subscriptions, authentication (email, social gateway, password, TFA, trusted devices),
+    plus an internal /operations administrative surface. The OpenAPI 3.0.0 document is
+    served publicly and anonymously; there is no developer portal, human API reference,
+    or published API program around it.
+  humanURL: https://www.optimyzee.com/
+  baseURL: https://api.optimyzee.com
+  tags:
+  - Google Ads
+  - PPC
+  - Campaign Management
+  - Search Advertising
+  - Yelp Ads
+  - Meta Ads
+  - Advertising
+  - Automation
+  properties:
+  - type: OpenAPI
+    url: openapi/optimyzee-openapi.yml
+  - type: Authentication
+    url: authentication/optimyzee-authentication.yml
+  - type: Conventions
+    url: conventions/optimyzee-conventions.yml
+  - type: ErrorCatalog
+    url: errors/optimyzee-problem-types.yml
+  - type: DataModel
+    url: data-model/optimyzee-data-model.yml
+  - type: Overlay
+    url: overlays/optimyzee-openapi-overlay.yaml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -51,21 +100,45 @@ common:
 - type: Website
   url: https://optimyzee.com
 - type: Pricing
-  url: https://optimyzee.com/pricing
+  url: https://www.optimyzee.com/pricing
 - type: Blog
-  url: https://optimyzee.com/blog
+  url: https://www.optimyzee.com/blog
 - type: SignUp
   url: https://app.optimyzee.com/auth/register
 - type: Login
   url: https://app.optimyzee.com/auth
 - type: Support
-  url: https://optimyzee.com/contact-us
+  url: https://www.optimyzee.com/contact-us
 - type: TermsOfService
-  url: https://optimyzee.com/terms-of-service
+  url: https://www.optimyzee.com/terms-of-service
 - type: PrivacyPolicy
-  url: https://optimyzee.com/policy
+  url: https://www.optimyzee.com/policy
+- type: GitHubOrganization
+  url: https://github.com/optimyzee
+- type: OpenAPI
+  url: openapi/optimyzee-openapi.yml
+- type: Authentication
+  url: authentication/optimyzee-authentication.yml
+- type: Conventions
+  url: conventions/optimyzee-conventions.yml
+- type: ErrorCatalog
+  url: errors/optimyzee-problem-types.yml
+- type: DataModel
+  url: data-model/optimyzee-data-model.yml
+- type: Lifecycle
+  url: lifecycle/optimyzee-lifecycle.yml
+- type: Conformance
+  url: conformance/optimyzee-conformance.yml
+- type: Overlay
+  url: overlays/optimyzee-openapi-overlay.yaml
+- type: LLMsTxt
+  url: llms/optimyzee-llms.txt
+- type: Plans
+  url: plans/optimyzee-plans-pricing.yml
+- type: AgentSkill
+  url: skills/_index.yml
 x-enrichment:
-  date: '2026-07-20'
-  status: minimal
-  artifacts_added: 1
+  date: '2026-08-12'
+  status: enriched
+  artifacts_added: 20
   pass: local-v1

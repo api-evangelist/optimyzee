@@ -1,0 +1,71 @@
+generated: '2026-08-12'
+method: searched
+source: https://www.optimyzee.com/pricing
+fetched: '2026-08-12'
+http_status: 200
+currency: USD
+billing_period: monthly
+plan_count: 3
+plans:
+- name: Free
+  price: 0
+  currency: USD
+  billing_period: perpetual
+  quota:
+    ad_spend: Up to $1,000/mo ad spend
+    connected_accounts: 1 Google Ads account
+  included:
+  - Account Audit
+  - Performance Score
+  - AI Recommendations
+  - Smart Traffic Cleaner
+  - AI Ad Creation Tools (limited)
+  - Email Support
+  overage: null
+  note: No credit card required.
+- name: Startup
+  price: 29
+  currency: USD
+  billing_period: monthly
+  quota:
+    ad_spend: Up to $2,500/mo ad spend per account
+    platforms: Google Ads
+  included:
+  - AI-powered audit
+  - Campaign creation
+  - Search terms optimization
+  - Traffic quality analysis
+  - One-click optimization
+  - Performance monitoring
+  - Activity tracking
+  - AI ad creation
+  - Email support
+  overage: Additional accounts at $29 per account/month
+- name: Business
+  price: 99
+  currency: USD
+  billing_period: monthly
+  quota:
+    ad_spend: Higher ad spend limits (not numerically stated on the pricing page)
+    platforms: Google Ads + Yelp Ads
+  included:
+  - Everything in Startup
+  - Multi-account management
+  - Advanced campaign optimization
+  - Cross-account monitoring
+  - Agency dashboard
+  - Advanced reporting
+  - Priority support
+  - New platform integrations
+  overage: Additional accounts at $99 per account/month
+trial:
+  free_tier: true
+  credit_card_required: false
+  cancel_anytime: true
+notes:
+- >-
+  These are product plans for the Optimyzee web application. There is no API-specific pricing, no API
+  quota tier, and no developer plan - the Optimyzee Application API is not sold as a product.
+- >-
+  The plan surface is also visible in the contract - /app/billing/subscription (create, cancel, charge,
+  session, skip) and /app/campaign/free-limit-check back the tier and quota logic.

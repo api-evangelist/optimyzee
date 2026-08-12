@@ -42,6 +42,8 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Optimyzee is a company surfaced as a portfolio company of 500-global and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+Optimyzee is an AI-powered Google Ads management platform, surfaced as a portfolio company of 500 Global and profiled by the API Evangelist enrichment pipeline.
+
+Optimyzee runs **no public API program** — no developer portal, no API reference, no SDK, no CLI, no MCP server, no status page, no changelog. It does, however, serve a complete **OpenAPI 3.0.0 description publicly and anonymously at `https://api.optimyzee.com/docs`** (151 paths, 184 operations, 73 schemas): the backend contract of the `app.optimyzee.com` web application. That document was harvested verbatim to `openapi/_original/` on 2026-08-12, and every artifact in this repo is derived from it or from a live probe.
 
 Backed by: 500-global — https://optimyzee.com

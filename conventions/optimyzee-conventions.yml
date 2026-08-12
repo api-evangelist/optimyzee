@@ -1,0 +1,119 @@
+generated: '2026-08-12'
+method: derived
+source: openapi/_original/optimyzee-openapi.json + live response headers observed on https://api.optimyzee.com
+note: >-
+  Optimyzee publishes no developer documentation, so every convention below is read either from the
+  harvested OpenAPI document or from headers observed on a live anonymous request. Nothing is inferred
+  from a docs page, because there is no docs page.
+
+authentication:
+  style: bearer-token-in-authorization-header
+  scheme_name: token
+  scheme_type: apiKey
+  in: header
+  parameter: authorization
+  description: Bearer token authorization
+  applied_to_operations: 108
+  unauthenticated_operations: 76
+  note: >-
+    Declared as an OpenAPI apiKey scheme in the `authorization` header rather than as
+    `http`/`bearer`, but the scheme description says "Bearer token authorization". Tokens are minted by
+    the /app/auth/gateway/* operations (email, emailSignup, google, googleSignup, facebook,
+    facebookSignup) and rotated via appAuthGatewayRefresh / appAuthGatewayRevoke. There is no OAuth 2.0
+    authorization server, no scope surface, and no user-facing API key issuance.
+  see: authentication/optimyzee-authentication.yml
+
+idempotency:
+  supported: false
+  header: null
+  evidence: >-
+    No Idempotency-Key header, no idempotency parameter and no occurrence of the string "idempoten"
+    anywhere in the 552KB OpenAPI document. Retry-safety of the POST operations is undocumented.
+
+pagination:
+  style: cursor
+  request_parameters:
+  - name: perPage
+    in: query
+    type: integer
+    nullable: true
+    operations: 11
+  - name: cursor
+    in: query
+    type: string
+    nullable: true
+    operations: 11
+  response_headers:
+  - x-pagination-next
+  - x-pagination-previous
+  - x-pagination-per-page
+  - x-pagination-last
+  - x-pagination-total
+  header_evidence: >-
+    Observed live 2026-08-12 - every response from https://api.optimyzee.com carries
+    `access-control-expose-headers: x-pagination-next, x-pagination-previous, x-pagination-per-page,
+    x-pagination-last, x-pagination-total`, which is how a browser client is granted read access to the
+    pagination cursors. The headers themselves are NOT declared in the OpenAPI document, so an agent
+    reading only the spec would never learn how to page.
+  note: >-
+    A separate non-cursor `limit` query parameter appears on 4 lookup operations
+    (appLookupGoogleAds*), so pagination is not uniform across the surface.
+
+filtering_and_search:
+  free_text_parameter: q
+  operations_with_q: 8
+  status_filter: status (query, 9 operations); statuses (1 operation)
+  date_range: from / to (3 operations)
+
+metadata_and_tracing:
+  request_id_header: null
+  correlation_header: null
+  evidence: >-
+    No request-id, trace-id or correlation header is declared in the spec or exposed via
+    access-control-expose-headers. The only observable request identifier is Cloudflare's `cf-ray`,
+    which is edge infrastructure, not an Optimyzee contract.
+
+versioning:
+  scheme: document-version-only
+  current: 4.1.0
+  in_path: false
+  in_header: false
+  note: >-
+    `info.version` is 4.1.0 but no version appears in the URL path, in a header, or in a media type.
+    There is no published versioning policy. See lifecycle/optimyzee-lifecycle.yml.
+
+error_envelope:
+  format: vendor-json
+  rfc9457: false
+  shapes:
+  - '{ error: string, message: string|null }'
+  - '{ errors: { <field>: [string, ...] } }   # 422 validation'
+  - '{ errors: [ {error, message}, ... ] }'
+  declared_statuses: [400, 401, 403, 422]
+  see: errors/optimyzee-problem-types.yml
+
+rate_limiting:
+  signalled: false
+  headers: []
+  status_on_exhaustion: null
+  evidence: >-
+    No RateLimit-*, X-RateLimit-* or Retry-After header appears in access-control-expose-headers on a
+    live response, and no 429 response is declared on any of the 184 operations. Quota does exist as a
+    product concept (the /app/campaign/free-limit-check operation and the tiered ad-spend caps on the
+    pricing page) but it is not surfaced as an HTTP rate-limit contract.
+  see: rate-limits/optimyzee-rate-limits.yml
+
+media_types:
+  request: application/json
+  response: application/json
+
+cors:
+  access_control_allow_origin: '*'
+  note: Observed live on api.optimyzee.com; the API is called directly from the browser SPA at app.optimyzee.com.
+
+cross_links:
+  errors: errors/optimyzee-problem-types.yml
+  lifecycle: lifecycle/optimyzee-lifecycle.yml
+  authentication: authentication/optimyzee-authentication.yml
+  rate_limits: rate-limits/optimyzee-rate-limits.yml
+  data_model: data-model/optimyzee-data-model.yml

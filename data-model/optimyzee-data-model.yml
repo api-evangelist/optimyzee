@@ -1,0 +1,1274 @@
+generated: '2026-08-12'
+method: derived
+source: openapi/_original/optimyzee-openapi.json
+note: Entity graph derived mechanically from components.schemas $ref edges and *Id reference fields. Optimyzee publishes no
+  object reference, so there are no documented id prefixes or entity descriptions to enrich this with.
+entity_count: 73
+relationship_count: 79
+entities:
+- name: AppAnalyzeGoogleAdsAuditResultSchema
+  property_count: 9
+  required:
+  - id
+  - status
+  - title
+  - description
+  - scoreValue
+  - scoreMaxValue
+  - category
+  - details
+- name: AppAnalyzeGoogleAdsAuditSchema
+  property_count: 10
+  required:
+  - id
+  - name
+  - linkingId
+  - linkingCustomerId
+  - linkingName
+  - campaignId
+  - status
+  - auditedAt
+  - results
+  relationships:
+  - type: has_many
+    target: AppAnalyzeGoogleAdsAuditResultSchema
+    via: $ref
+  - type: belongs_to
+    target: null
+    via: linkingId
+    note: id reference field; target entity not modelled as a schema in this spec
+  - type: belongs_to
+    target: null
+    via: linkingCustomerId
+    note: id reference field; target entity not modelled as a schema in this spec
+  - type: belongs_to
+    target: null
+    via: campaignId
+    note: id reference field; target entity not modelled as a schema in this spec
+  returned_by:
+  - appAnalyzeGoogleAdsAuditView
+- name: AppAnalyzeGoogleAdsHealthAccountSchema
+  property_count: 3
+  required:
+  - campaignCount
+  - hasConversionValue
+  - totals
+  relationships:
+  - type: has_one
+    target: AppAnalyzeGoogleAdsHealthMetricsSchema
+    via: $ref
+- name: AppAnalyzeGoogleAdsHealthCampaignSchema
+  property_count: 11
+  required:
+  - campaignId
+  - campaignName
+  - goalType
+  - status
+  - trend
+  - score
+  - topIssue
+  - current
+  - previous
+  - deltas
+  - flags
+  relationships:
+  - type: has_one
+    target: AppAnalyzeGoogleAdsHealthDeltasSchema
+    via: $ref
+  - type: has_many
+    target: AppAnalyzeGoogleAdsHealthFlagSchema
+    via: $ref
+  - type: has_one
+    target: AppAnalyzeGoogleAdsHealthMetricsSchema
+    via: $ref
+  - type: belongs_to
+    target: null
+    via: campaignId
+    note: id reference field; target entity not modelled as a schema in this spec
+- name: AppAnalyzeGoogleAdsHealthDeltasSchema
+  property_count: 8
+  required:
+  - cost
+  - conversions
+  - conversionValue
+  - cpa
+  - roas
+  - convRate
+  - ctr
+  - cpc
+- name: AppAnalyzeGoogleAdsHealthFlagSchema
+  property_count: 3
+  required:
+  - level
+  - area
+  - message
+- name: AppAnalyzeGoogleAdsHealthMetricsSchema
+  property_count: 10
+  required:
+  - cost
+  - clicks
+  - impressions
+  - conversions
+  - conversionValue
+  - cpa
+  - roas
+  - ctr
+  - cpc
+  - convRate
+- name: AppAnalyzeGoogleAdsHealthReportSchema
+  property_count: 6
+  required:
+  - linkingId
+  - linkingCustomerId
+  - linkingName
+  - periodDays
+  - account
+  - campaigns
+  relationships:
+  - type: has_one
+    target: AppAnalyzeGoogleAdsHealthAccountSchema
+    via: $ref
+  - type: has_many
+    target: AppAnalyzeGoogleAdsHealthCampaignSchema
+    via: $ref
+  - type: belongs_to
+    target: null
+    via: linkingId
+    note: id reference field; target entity not modelled as a schema in this spec
+  - type: belongs_to
+    target: null
+    via: linkingCustomerId
+    note: id reference field; target entity not modelled as a schema in this spec
+  returned_by:
+  - appAnalyzeGoogleAdsHealthAnalyze
+- name: AppAnalyzeGoogleAdsReportingEditorResponseSchema
+  property_count: 3
+  required:
+  - delete
+  - update
+  - create
+  returned_by:
+  - appAnalyzeGoogleAdsReportingEditor
+- name: AppAnalyzeGoogleAdsReportingRowSchema
+  property_count: 0
+  returned_by:
+  - appAnalyzeGoogleAdsReportingQuerier
+- name: AppAuthGatewayTokenSchema
+  property_count: 2
+  required:
+  - userId
+  - accessToken
+  relationships:
+  - type: belongs_to
+    target: null
+    via: userId
+    note: id reference field; target entity not modelled as a schema in this spec
+  returned_by:
+  - appAuthGatewayEmail
+  - appAuthGatewayEmailSignup
+  - appAuthGatewayFacebook
+  - appAuthGatewayFacebookSignup
+  - appAuthGatewayGoogle
+  - appAuthGatewayGoogleSignup
+- name: AppAuthProfileSchema
+  property_count: 18
+  required:
+  - id
+  - hasPassword
+  - hasGoogle
+  - hasFacebook
+  - hasStripeCustomer
+  - hasStripeSubscription
+  - tfaEnabled
+  - email
+  - emailVerified
+  - name
+  - position
+  - spend
+  - goal
+  - subscriptionPlan
+  - subscriptionStatus
+  - subscriptionExpiresAt
+  - subscriptionAnnual
+  - subscriptionSkipped
+  returned_by:
+  - appAuthProfile
+- name: AppAuthTfaCredentialsSchema
+  property_count: 3
+  required:
+  - qr
+  - secretKey
+  - recoveryCodes
+  returned_by:
+  - appAuthTfaIssue
+- name: AppAuthTrustedDeviceSchema
+  property_count: 5
+  required:
+  - id
+  - userId
+  - userAgent
+  - validTo
+  - ip
+  relationships:
+  - type: belongs_to
+    target: null
+    via: userId
+    note: id reference field; target entity not modelled as a schema in this spec
+  returned_by:
+  - appAuthTrustedDeviceCurrent
+  - appAuthTrustedDeviceQuery
+  - appAuthTrustedDeviceView
+- name: AppAutomationConfigFieldSchema
+  property_count: 3
+  required:
+  - label
+  - value
+  - filledByAi
+- name: AppAutomationRunSchema
+  property_count: 14
+  required:
+  - id
+  - automationId
+  - businessId
+  - automationTitle
+  - status
+  - signal
+  - signalStatus
+  - signalLabel
+  - locationLabel
+  - recommendationId
+  - recommendationCount
+  - skipReason
+  - startedAt
+  - finishedAt
+  relationships:
+  - type: belongs_to
+    target: null
+    via: automationId
+    note: id reference field; target entity not modelled as a schema in this spec
+  - type: belongs_to
+    target: null
+    via: businessId
+    note: id reference field; target entity not modelled as a schema in this spec
+  - type: belongs_to
+    target: null
+    via: recommendationId
+    note: id reference field; target entity not modelled as a schema in this spec
+  returned_by:
+  - aeeca8c46e345b931240e55f10d4fd26
+- name: AppAutomationSchema
+  property_count: 15
+  required:
+  - id
+  - businessId
+  - title
+  - summary
+  - signal
+  - trigger
+  - direction
+  - deltaPct
+  - target
+  - scope
+  - channels
+  - guardrails
+  - confidence
+  - status
+  - createdAt
+  relationships:
+  - type: belongs_to
+    target: null
+    via: businessId
+    note: id reference field; target entity not modelled as a schema in this spec
+  returned_by:
+  - ca27bcedfbe5f11307e47810b1b2a0b9
+  - ea27e985d6ee2548d8dcc475dddcc4db
+- name: AppAutomationSpecSchema
+  property_count: 15
+  required:
+  - id
+  - intentText
+  - title
+  - summary
+  - signal
+  - signalLabel
+  - trigger
+  - direction
+  - deltaPct
+  - target
+  - scope
+  - channels
+  - guardrails
+  - requiredConfig
+  - confidence
+  relationships:
+  - type: has_many
+    target: AppAutomationConfigFieldSchema
+    via: $ref
+  returned_by:
+  - 9cee8dd5e43b406f87a6d7785d79c22f
+- name: AppBillingSubscriptionCheckoutSchema
+  property_count: 1
+  required:
+  - uri
+  returned_by:
+  - appBillingSubscriptionSubscribe
+- name: AppBillingSubscriptionSchema
+  property_count: 9
+  required:
+  - id
+  - plan
+  - description
+  - features
+  - featured
+  - amount
+  - annual
+  - trial
+  - sales
+  returned_by:
+  - appBillingSubscriptionQuery
+- name: AppBillingSubscriptionSessionSchema
+  property_count: 1
+  required:
+  - uri
+  returned_by:
+  - appBillingSubscriptionSession
+- name: AppCampaignActivityLogSchema
+  property_count: 3
+  required:
+  - id
+  - message
+  - createdAt
+- name: AppCampaignActivitySubtaskSchema
+  property_count: 7
+  required:
+  - id
+  - title
+  - description
+  - status
+  - startedAt
+  - finishedAt
+  - logs
+  relationships:
+  - type: has_many
+    target: AppCampaignActivityLogSchema
+    via: $ref
+- name: AppCampaignActivityTaskSchema
+  property_count: 8
+  required:
+  - id
+  - campaignId
+  - parentId
+  - title
+  - description
+  - status
+  - startedAt
+  - finishedAt
+  - logs
+  - subtasks
+  relationships:
+  - type: has_many
+    target: AppCampaignActivityLogSchema
+    via: $ref
+  - type: has_many
+    target: AppCampaignActivitySubtaskSchema
+    via: $ref
+  returned_by:
+  - appCampaignActivityQuery
+- name: AppCampaignGoogleAdsMetricsReportSchema
+  property_count: 4
+  required:
+  - unit
+  - currencyCode
+  - metrics
+  - summary
+  relationships:
+  - type: has_many
+    target: AppCampaignGoogleAdsMetricsSchema
+    via: $ref
+  - type: has_one
+    target: AppCampaignGoogleAdsMetricsSummarySchema
+    via: $ref
+  returned_by:
+  - appCampaignGoogleAdsMetrics
+- name: AppCampaignGoogleAdsMetricsSchema
+  property_count: 5
+  required:
+  - date
+  - costMicros
+  - clicks
+  - conversions
+  - costPerConversion
+- name: AppCampaignGoogleAdsMetricsSummarySchema
+  property_count: 4
+  required:
+  - costMicros
+  - clicks
+  - conversions
+  - costPerConversion
+- name: AppCampaignSchema
+  property_count: 5
+  required:
+  - id
+  - name
+  - channel
+  - status
+  - analyzing
+  returned_by:
+  - appCampaignQuery
+  - appCampaignView
+- name: AppCreateGoogleAdsKeywordPlannerKeywordSchema
+  property_count: 8
+  required:
+  - id
+  - text
+  - lowTopOfPageBid
+  - highTopOfPageBid
+  - competition
+  - avgMonthlySearches
+  - score
+  - selected
+  relationships:
+  - type: belongs_to
+    target: null
+    via: lowTopOfPageBid
+    note: id reference field; target entity not modelled as a schema in this spec
+  - type: belongs_to
+    target: null
+    via: highTopOfPageBid
+    note: id reference field; target entity not modelled as a schema in this spec
+- name: AppCreateGoogleAdsKeywordPlannerSchema
+  property_count: 8
+  required:
+  - id
+  - url
+  - language
+  - locations
+  - keywordSeed
+  - prompt
+  - status
+  - keywords
+  relationships:
+  - type: has_many
+    target: AppCreateGoogleAdsKeywordPlannerKeywordSchema
+    via: $ref
+  returned_by:
+  - appCreateGoogleAdsKeywordPlannerView
+- name: AppCreateGoogleAdsRsaBuilderSchema
+  property_count: 6
+  required:
+  - id
+  - url
+  - prompt
+  - status
+  - headlines
+  - descriptions
+  returned_by:
+  - appCreateGoogleAdsRsaBuilderView
+- name: AppCreateGoogleAdsSearchCreationDraftKeywordSchema
+  property_count: 8
+  required:
+  - id
+  - text
+  - lowTopOfPageBid
+  - highTopOfPageBid
+  - competition
+  - avgMonthlySearches
+  - score
+  - selected
+  relationships:
+  - type: belongs_to
+    target: null
+    via: lowTopOfPageBid
+    note: id reference field; target entity not modelled as a schema in this spec
+  - type: belongs_to
+    target: null
+    via: highTopOfPageBid
+    note: id reference field; target entity not modelled as a schema in this spec
+- name: AppCreateGoogleAdsSearchCreationDraftSchema
+  property_count: 16
+  required:
+  - id
+  - linkingId
+  - linkingName
+  - linkingCurrencyCode
+  - campaignId
+  - status
+  - url
+  - prompt
+  - languages
+  - locations
+  - headlines
+  - descriptions
+  - headlineSuggestions
+  - descriptionSuggestions
+  - keywords
+  - budgetAmount
+  relationships:
+  - type: has_many
+    target: AppCreateGoogleAdsSearchCreationDraftKeywordSchema
+    via: $ref
+  - type: belongs_to
+    target: null
+    via: linkingId
+    note: id reference field; target entity not modelled as a schema in this spec
+  - type: belongs_to
+    target: null
+    via: campaignId
+    note: id reference field; target entity not modelled as a schema in this spec
+  returned_by:
+  - appCreateGoogleAdsSearchCreationView
+- name: AppCreateGoogleAdsSearchCreationStatusSchema
+  property_count: 1
+  required:
+  - status
+  returned_by:
+  - appCreateGoogleAdsSearchCreationStatus
+- name: AppCreateGoogleAdsSitelinkBuilderSchema
+  property_count: 4
+  required:
+  - id
+  - url
+  - status
+  - sitelinks
+  relationships:
+  - type: has_many
+    target: AppCreateGoogleAdsSitelinkBuilderSitelinkSchema
+    via: $ref
+  returned_by:
+  - appCreateGoogleAdsSitelinkBuilderView
+- name: AppCreateGoogleAdsSitelinkBuilderSitelinkSchema
+  property_count: 5
+  required:
+  - id
+  - finalUrl
+  - linkText
+  - description1
+  - description2
+- name: AppLinkingGoogleAdsHierarchySchema
+  property_count: 9
+  required:
+  - id
+  - name
+  - customerId
+  - readableCustomerId
+  - loginCustomerId
+  - currencyCode
+  - descriptiveName
+  - isManager
+  - children
+  relationships:
+  - type: belongs_to
+    target: null
+    via: customerId
+    note: id reference field; target entity not modelled as a schema in this spec
+  - type: belongs_to
+    target: null
+    via: readableCustomerId
+    note: id reference field; target entity not modelled as a schema in this spec
+  - type: belongs_to
+    target: null
+    via: loginCustomerId
+    note: id reference field; target entity not modelled as a schema in this spec
+  returned_by:
+  - appLinkingGoogleAdsHierarchy
+- name: AppLinkingGoogleAdsSchema
+  property_count: 8
+  required:
+  - id
+  - name
+  - customerId
+  - readableCustomerId
+  - loginCustomerId
+  - currencyCode
+  - descriptiveName
+  - isManager
+  relationships:
+  - type: belongs_to
+    target: null
+    via: customerId
+    note: id reference field; target entity not modelled as a schema in this spec
+  - type: belongs_to
+    target: null
+    via: readableCustomerId
+    note: id reference field; target entity not modelled as a schema in this spec
+  - type: belongs_to
+    target: null
+    via: loginCustomerId
+    note: id reference field; target entity not modelled as a schema in this spec
+  returned_by:
+  - appLinkingGoogleAdsQuery
+  - appLinkingGoogleAdsView
+- name: AppLinkingMerchantCenterSchema
+  property_count: 5
+  required:
+  - id
+  - merchantCenterId
+  - aggregatorId
+  - name
+  - websiteUrl
+  relationships:
+  - type: belongs_to
+    target: null
+    via: merchantCenterId
+    note: id reference field; target entity not modelled as a schema in this spec
+  - type: belongs_to
+    target: null
+    via: aggregatorId
+    note: id reference field; target entity not modelled as a schema in this spec
+- name: AppLinkingMetaAccountSchema
+  property_count: 8
+  required:
+  - id
+  - externalId
+  - accountId
+  - name
+  - currency
+  - timezoneName
+  - accountStatus
+  - selected
+  relationships:
+  - type: belongs_to
+    target: null
+    via: externalId
+    note: id reference field; target entity not modelled as a schema in this spec
+  - type: belongs_to
+    target: null
+    via: accountId
+    note: id reference field; target entity not modelled as a schema in this spec
+  returned_by:
+  - appLinkingMetaAccounts
+  - appLinkingMetaSelectAccount
+- name: AppLinkingMetaSchema
+  property_count: 7
+  required:
+  - id
+  - externalUserId
+  - name
+  - status
+  - scopes
+  - accountsCount
+  - selectedAccount
+  relationships:
+  - type: has_one
+    target: AppLinkingMetaAccountSchema
+    via: $ref
+  - type: belongs_to
+    target: null
+    via: externalUserId
+    note: id reference field; target entity not modelled as a schema in this spec
+  returned_by:
+  - appLinkingMetaQuery
+  - appLinkingMetaView
+- name: AppLookupGoogleAdsCampaignSchema
+  property_count: 3
+  required:
+  - id
+  - name
+  - status
+  returned_by:
+  - appLookupGoogleAdsCampaignQuery
+- name: AppLookupGoogleAdsGeoTargetConstantSchema
+  property_count: 6
+  required:
+  - id
+  - resourceName
+  - name
+  - canonicalName
+  - countryCode
+  - targetType
+  returned_by:
+  - appLookupGoogleAdsGeoTargetConstantQuery
+- name: AppLookupGoogleAdsLanguageConstantSchema
+  property_count: 3
+  required:
+  - id
+  - code
+  - name
+  returned_by:
+  - appLookupGoogleAdsLanguageConstantQuery
+- name: AppRecommendationSchema
+  property_count: 22
+  required:
+  - id
+  - businessId
+  - businessName
+  - domain
+  - title
+  - rationale
+  - direction
+  - deltaPct
+  - service
+  - confidence
+  - status
+  - source
+  - createdAt
+  - acceptedAt
+  - dismissedAt
+  - outcomeCheckedAt
+  - outcomeWindowDays
+  - outcomeMetrics
+  - yelpAdsJobId
+  - yelpAdsJobStatus
+  - yelpAdsJobProgramRef
+  - yelpAdsJobMessage
+  relationships:
+  - type: belongs_to
+    target: null
+    via: businessId
+    note: id reference field; target entity not modelled as a schema in this spec
+  - type: belongs_to
+    target: null
+    via: yelpAdsJobId
+    note: id reference field; target entity not modelled as a schema in this spec
+  returned_by:
+  - 02b67b9bb321e6ea93f11dd324815378
+  - a0beb9202425004a1461d531cc8378af
+- name: AppSignalReadingSchema
+  property_count: 7
+  required:
+  - connectorId
+  - label
+  - value
+  - status
+  - cost
+  - detail
+  - error
+  relationships:
+  - type: belongs_to
+    target: null
+    via: connectorId
+    note: id reference field; target entity not modelled as a schema in this spec
+  returned_by:
+  - cf53c6cd627e8de50d4805cf385fe540
+- name: AppYelpAdsJobSchema
+  property_count: 20
+  required:
+  - id
+  - recommendationId
+  - recommendationTitle
+  - businessId
+  - businessName
+  - programRef
+  - action
+  - status
+  - requestedDirection
+  - requestedDeltaPct
+  - currentBudgetCents
+  - targetBudgetCents
+  - guardrailsPassed
+  - partnerWriteEnabled
+  - blockReason
+  - message
+  - submittedAt
+  - checkedAt
+  - completedAt
+  - createdAt
+  relationships:
+  - type: belongs_to
+    target: null
+    via: recommendationId
+    note: id reference field; target entity not modelled as a schema in this spec
+  - type: belongs_to
+    target: null
+    via: businessId
+    note: id reference field; target entity not modelled as a schema in this spec
+  returned_by:
+  - 87a8e2fc068a01b14ca946663945073f
+  - 93361097964ed54685cf6995e1f8693f
+- name: AppYelpAutoresponderMessageSchema
+  property_count: 13
+  required:
+  - id
+  - autoresponderId
+  - businessId
+  - flow
+  - position
+  - delaySeconds
+  - body
+  - enabled
+  - onlyIfNoReply
+  - reviewRequired
+  - businessHoursOnly
+  - createdAt
+  - updatedAt
+  relationships:
+  - type: belongs_to
+    target: null
+    via: autoresponderId
+    note: id reference field; target entity not modelled as a schema in this spec
+  - type: belongs_to
+    target: null
+    via: businessId
+    note: id reference field; target entity not modelled as a schema in this spec
+  returned_by:
+  - 5a02874e694cb5ec2ce2cb6faccea1f5
+  - 9a4691d8ca51168cfd3c2b186b0d1528
+  - e72aba2c38e7af3d587a2a41932c561c
+- name: AppYelpAutoresponderRunSchema
+  property_count: 22
+  required:
+  - id
+  - autoresponderId
+  - leadId
+  - businessId
+  - businessName
+  - consumer
+  - leadStatus
+  - status
+  - skipReason
+  - message
+  - sendEnabled
+  - replyDraftId
+  - replyDraftStatus
+  - replyDraftBody
+  - replyDraftMessage
+  - eligibleAt
+  - delayMinutes
+  - waitingSeconds
+  - queuedAt
+  - approvedAt
+  - rejectedAt
+  - sentAt
+  relationships:
+  - type: belongs_to
+    target: null
+    via: autoresponderId
+    note: id reference field; target entity not modelled as a schema in this spec
+  - type: belongs_to
+    target: null
+    via: leadId
+    note: id reference field; target entity not modelled as a schema in this spec
+  - type: belongs_to
+    target: null
+    via: businessId
+    note: id reference field; target entity not modelled as a schema in this spec
+  - type: belongs_to
+    target: null
+    via: replyDraftId
+    note: id reference field; target entity not modelled as a schema in this spec
+  returned_by:
+  - 3940ff7c46484278c47889d3cf6a67dd
+  - 49aca5f15c0b1d22c9b48246d2792540
+  - 552a77744799ac6cae012edcb03f1183
+  - ccee741c8bbc30958794d6eb13ccf59f
+- name: AppYelpAutoresponderSchema
+  property_count: 22
+  required:
+  - id
+  - businessId
+  - businessName
+  - status
+  - connectionStatus
+  - sendEnabled
+  - tone
+  - firstMessageBody
+  - sequenceMessages
+  - sequenceSize
+  - stopwords
+  - notifyNewLead
+  - notifyDraftReady
+  - notificationEmail
+  - offHoursEnabled
+  - timezone
+  - businessHours
+  - conversationsCount
+  - message
+  - activatedAt
+  - deactivatedAt
+  - lastCheckedAt
+  relationships:
+  - type: belongs_to
+    target: null
+    via: businessId
+    note: id reference field; target entity not modelled as a schema in this spec
+  returned_by:
+  - 9cdfe4982af3c6a7e9d45c3f013663e3
+  - aa2c0af5abf4c029443b22adcfb56d96
+  - e934e579f8bfe2a64b031d9ef810835f
+  - ebf1b7b3e8851d51d81c766dca7cfb48
+- name: AppYelpBusinessSchema
+  property_count: 29
+  required:
+  - id
+  - yelpBusinessId
+  - partnerBusinessId
+  - name
+  - city
+  - state
+  - rating
+  - reviewCount
+  - status
+  - activePrograms
+  - spendMtdCents
+  - leadsMtd
+  - lastSyncedAt
+  - serviceTags
+  - categories
+  - addressLines
+  - phone
+  - yelpUrl
+  - imageUrl
+  - vertical
+  - verticalLabel
+  - verticalSource
+  - aiProfileSummary
+  - aiServiceFocus
+  - aiDemandTriggers
+  - aiRecommendedSignals
+  - aiCustomerIntentNotes
+  - aiProfileSource
+  - aiProfileGeneratedAt
+  relationships:
+  - type: belongs_to
+    target: null
+    via: yelpBusinessId
+    note: id reference field; target entity not modelled as a schema in this spec
+  - type: belongs_to
+    target: null
+    via: partnerBusinessId
+    note: id reference field; target entity not modelled as a schema in this spec
+  returned_by:
+  - 2b56d5bce97b82d148ba1be79d3b2410
+  - a84c16ea96c1b0cc81b900e360d5c4e0
+  - d18ce74a465956e45c007b8981ee6629
+- name: AppYelpBusinessSignalSettingSchema
+  property_count: 3
+  required:
+  - signal
+  - enabled
+  - updatedAt
+  returned_by:
+  - 4d8b164d24c20e418c08fbbdd235f5d5
+  - eaa5519d341275e6aad70f99e4bc1095
+- name: AppYelpConnectionSchema
+  property_count: 10
+  required:
+  - id
+  - label
+  - connected
+  - hasReportingApiKey
+  - pauseResumeAutoPilot
+  - healthStatus
+  - healthMessage
+  - lastCheckedAt
+  - createdAt
+  - updatedAt
+  returned_by:
+  - fea28f05944c841001d6611b02043301
+- name: AppYelpLeadSchema
+  property_count: 18
+  required:
+  - id
+  - businessId
+  - businessName
+  - conversationId
+  - consumer
+  - type
+  - excerpt
+  - status
+  - responseMinutes
+  - createdAt
+  - lastEventAt
+  - conversationMessages
+  - timelineEvents
+  - replyDraftId
+  - replyDraftStatus
+  - replyDraftBody
+  - replyDraftMessage
+  - replyDraftGeneratedAt
+  relationships:
+  - type: belongs_to
+    target: null
+    via: businessId
+    note: id reference field; target entity not modelled as a schema in this spec
+  - type: belongs_to
+    target: null
+    via: conversationId
+    note: id reference field; target entity not modelled as a schema in this spec
+  - type: belongs_to
+    target: null
+    via: replyDraftId
+    note: id reference field; target entity not modelled as a schema in this spec
+  returned_by:
+  - 7172e519476825ed8f04e76993d08d14
+  - bfebb54edfd97bd47c0aef794c9307d3
+- name: AppYelpProgramSchema
+  property_count: 18
+  required:
+  - id
+  - businessId
+  - businessName
+  - type
+  - status
+  - pauseStatus
+  - startDate
+  - endDate
+  - budgetCents
+  - spendMtdCents
+  - billedClicks
+  - billedImpressions
+  - avgCpcCents
+  - feePeriod
+  - autoPilot
+  - features
+  - rejectionReason
+  - lastSyncedAt
+  relationships:
+  - type: belongs_to
+    target: null
+    via: businessId
+    note: id reference field; target entity not modelled as a schema in this spec
+  returned_by:
+  - 1a7c641667c9959a035781d6bf708ba7
+- name: AppYelpReportingDailyPointSchema
+  property_count: 9
+- name: AppYelpReportingKpiSchema
+  property_count: 11
+- name: AppYelpReportingLeadBreakdownSliceSchema
+  property_count: 2
+- name: AppYelpReportingSchema
+  property_count: 3
+  required:
+  - kpis
+  - leadBreakdown
+  - daily
+  relationships:
+  - type: has_many
+    target: AppYelpReportingDailyPointSchema
+    via: $ref
+  - type: has_one
+    target: AppYelpReportingKpiSchema
+    via: $ref
+  - type: has_many
+    target: AppYelpReportingLeadBreakdownSliceSchema
+    via: $ref
+  returned_by:
+  - c69aa2a2d91077e38abba5dde0fd5e89
+- name: AppYelpSyncRunSchema
+  property_count: 10
+  required:
+  - id
+  - type
+  - source
+  - status
+  - startedAt
+  - finishedAt
+  - importedCount
+  - failedCount
+  - errorMessage
+  - createdAt
+  returned_by:
+  - 3ebada6ee2d7944c984d3868d728448a
+  - fe2e1cadf35748e63a49477cbef7f6fd
+- name: ErrorBagSchema
+  property_count: 1
+  required:
+  - errors
+  returned_by:
+  - appAnalyzeGoogleAdsReportingEditor
+  - appAnalyzeGoogleAdsReportingQuerier
+  - appAuthEmailUpdate
+  - appAuthEmailVerify
+  - appAuthGatewayEmail
+  - appAuthGatewayEmailSignup
+- name: ErrorListSchema
+  property_count: 1
+  required:
+  - errors
+  relationships:
+  - type: has_many
+    target: ErrorSchema
+    via: $ref
+  returned_by:
+  - appAnalyzeGoogleAdsReportingEditor
+  - appAnalyzeGoogleAdsReportingQuerier
+  - appLinkingGoogleAdsPing
+- name: ErrorSchema
+  property_count: 2
+  required:
+  - errors
+  returned_by:
+  - appAnalyzeGoogleAdsAuditQueue
+  - appAnalyzeGoogleAdsAuditView
+  - appAnalyzeGoogleAdsHealthAnalyze
+  - appAnalyzeGoogleAdsOptimizationPMaxCenterStart
+  - appAnalyzeGoogleAdsReportingEditor
+  - appAnalyzeGoogleAdsReportingQuerier
+- name: IdSchema
+  property_count: 1
+  required:
+  - id
+  returned_by:
+  - appAnalyzeGoogleAdsAuditQueue
+  - appAnalyzeGoogleAdsOptimizationAnalyze
+  - appAnalyzeGoogleAdsOptimizationPMaxAnalyze
+  - appCampaignGoogleAdsCreate
+  - appCreateGoogleAdsKeywordPlannerQueue
+  - appCreateGoogleAdsRsaBuilderQueue
+- name: OperationsAdminSchema
+  property_count: 4
+  required:
+  - id
+  - email
+  - name
+  - permissions
+  returned_by:
+  - operationsAdminQuery
+  - operationsAdminView
+- name: OperationsAuthGatewayTokenSchema
+  property_count: 2
+  required:
+  - adminId
+  - accessToken
+  relationships:
+  - type: belongs_to
+    target: null
+    via: adminId
+    note: id reference field; target entity not modelled as a schema in this spec
+  returned_by:
+  - operationsAuthGateway
+  - operationsAuthGatewayRefresh
+- name: OperationsAuthProfileSchema
+  property_count: 4
+  required:
+  - id
+  - email
+  - name
+  - permissions
+  returned_by:
+  - operationsAuthProfile
+- name: OperationsBillingSubscriptionSchema
+  property_count: 11
+  required:
+  - id
+  - plan
+  - description
+  - features
+  - featured
+  - stripePriceId
+  - amount
+  - annual
+  - trial
+  - sales
+  - legacy
+  relationships:
+  - type: belongs_to
+    target: null
+    via: stripePriceId
+    note: id reference field; target entity not modelled as a schema in this spec
+  returned_by:
+  - operationsBillingSubscriptionQuery
+  - operationsBillingSubscriptionView
+- name: OperationsCampaignLogSchema
+  property_count: 4
+  required:
+  - id
+  - taskId
+  - message
+  - createdAt
+  relationships:
+  - type: belongs_to
+    target: null
+    via: taskId
+    note: id reference field; target entity not modelled as a schema in this spec
+  returned_by:
+  - operationsCampaignLogQuery
+  - operationsCampaignLogView
+- name: OperationsCampaignSchema
+  property_count: 17
+  required:
+  - id
+  - adminId
+  - adminName
+  - adminEmail
+  - userId
+  - userEmail
+  - userSubscriptionPlan
+  - userSubscriptionStatus
+  - name
+  - status
+  - analyzing
+  - googleAdsLinkingId
+  - googleAdsLinkingCustomerId
+  - googleAdsLinkingName
+  - googleAdsCampaignId
+  - lastManagedAt
+  - createdAt
+  relationships:
+  - type: belongs_to
+    target: null
+    via: adminId
+    note: id reference field; target entity not modelled as a schema in this spec
+  - type: belongs_to
+    target: null
+    via: userId
+    note: id reference field; target entity not modelled as a schema in this spec
+  - type: belongs_to
+    target: null
+    via: googleAdsLinkingId
+    note: id reference field; target entity not modelled as a schema in this spec
+  - type: belongs_to
+    target: null
+    via: googleAdsLinkingCustomerId
+    note: id reference field; target entity not modelled as a schema in this spec
+  - type: belongs_to
+    target: null
+    via: googleAdsCampaignId
+    note: id reference field; target entity not modelled as a schema in this spec
+  returned_by:
+  - operationsCampaignQuery
+  - operationsCampaignView
+- name: OperationsCampaignTaskSchema
+  property_count: 10
+  required:
+  - id
+  - campaignId
+  - parentId
+  - title
+  - description
+  - status
+  - startedAt
+  - finishedAt
+  - order
+  - childrenCount
+  relationships:
+  - type: belongs_to
+    target: null
+    via: campaignId
+    note: id reference field; target entity not modelled as a schema in this spec
+  - type: belongs_to
+    target: null
+    via: parentId
+    note: id reference field; target entity not modelled as a schema in this spec
+  returned_by:
+  - operationsCampaignTaskQuery
+  - operationsCampaignTaskView
+- name: OperationsUserSchema
+  property_count: 11
+  required:
+  - id
+  - email
+  - name
+  - position
+  - spend
+  - goal
+  - subscriptionPlan
+  - subscriptionStatus
+  - subscriptionExpiresAt
+  - subscriptionAnnual
+  - subscriptionSkipped
+  returned_by:
+  - operationsUserQuery
+  - operationsUserView
+- name: OperationsUserTokenSchema
+  property_count: 2
+  required:
+  - userId
+  - accessToken
+  relationships:
+  - type: belongs_to
+    target: null
+    via: userId
+    note: id reference field; target entity not modelled as a schema in this spec
+  returned_by:
+  - operationsUserImpersonate

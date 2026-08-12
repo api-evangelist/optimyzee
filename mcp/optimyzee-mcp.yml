@@ -1,0 +1,388 @@
+generated: '2026-08-12'
+method: derived
+status: candidate
+source: openapi/_original/optimyzee-openapi.json
+published_server: null
+search_note: Optimyzee publishes no MCP server. Searched the site, sitemap, npm (registry.npmjs.org returned 0 results for
+  "optimyzee"), the GitHub org (0 public repos) and the web on 2026-08-12; /.well-known/oauth-protected-resource returned
+  404 on optimyzee.com and api.optimyzee.com. No MCPServer pointer is emitted in apis.yml - this file is a derived candidate
+  surface only, and must not be read as a server Optimyzee operates.
+server:
+  name: optimyzee
+  transport: http
+  url: null
+  auth: Bearer token in the `authorization` header, minted by the /app/auth/gateway/* operations. There is no user-issuable
+    API key, which is the practical blocker to an MCP server over this API.
+tool_count: 90
+tools:
+- name: app_analyze_google_ads_audit_queue
+  category: App/Analyze/GoogleAds/Audit
+  source_operation: openapi/optimyzee-openapi.yml#appAnalyzeGoogleAdsAuditQueue
+  http: POST /app/analyze/g/audit
+- name: app_analyze_google_ads_audit_view
+  category: App/Analyze/GoogleAds/Audit
+  source_operation: openapi/optimyzee-openapi.yml#appAnalyzeGoogleAdsAuditView
+  http: GET /app/analyze/g/audit/{auditId}
+- name: app_analyze_google_ads_health_analyze
+  category: App/Analyze/GoogleAds/Health
+  source_operation: openapi/optimyzee-openapi.yml#appAnalyzeGoogleAdsHealthAnalyze
+  http: POST /app/analyze/g/health
+- name: app_analyze_google_ads_optimization_history
+  category: App/Analyze/GoogleAds/Optimization
+  source_operation: openapi/optimyzee-openapi.yml#appAnalyzeGoogleAdsOptimizationHistory
+  http: GET /app/analyze/g/optimization/optimized-history
+- name: app_analyze_google_ads_optimization_p_max_analyze
+  category: App/Analyze/GoogleAds/Optimization
+  source_operation: openapi/optimyzee-openapi.yml#appAnalyzeGoogleAdsOptimizationPMaxAnalyze
+  http: POST /app/analyze/g/optimization/p-max
+- name: app_analyze_google_ads_optimization_p_max_mark_result
+  category: App/Analyze/GoogleAds/Optimization
+  source_operation: openapi/optimyzee-openapi.yml#appAnalyzeGoogleAdsOptimizationPMaxMarkResult
+  http: POST /app/analyze/g/optimization/p-max/results/mark
+- name: app_analyze_google_ads_optimization_p_max_view
+  category: App/Analyze/GoogleAds/Optimization
+  source_operation: openapi/optimyzee-openapi.yml#appAnalyzeGoogleAdsOptimizationPMaxView
+  http: GET /app/analyze/g/optimization/p-max/{id}
+- name: app_analyze_google_ads_optimization_p_max_center_deep_audit
+  category: App/Analyze/GoogleAds/Optimization
+  source_operation: openapi/optimyzee-openapi.yml#appAnalyzeGoogleAdsOptimizationPMaxCenterDeepAudit
+  http: POST /app/analyze/g/optimization/pmax-center/deep-audit
+- name: app_analyze_google_ads_optimization_p_max_center_view
+  category: App/Analyze/GoogleAds/Optimization
+  source_operation: openapi/optimyzee-openapi.yml#appAnalyzeGoogleAdsOptimizationPMaxCenterView
+  http: GET /app/analyze/g/optimization/pmax-center/{optimizationId}
+- name: app_analyze_google_ads_optimization_p_max_center_asset_draft
+  category: App/Analyze/GoogleAds/Optimization
+  source_operation: openapi/optimyzee-openapi.yml#appAnalyzeGoogleAdsOptimizationPMaxCenterAssetDraft
+  http: POST /app/analyze/g/optimization/pmax-center/{optimizationId}/asset-draft
+- name: app_analyze_google_ads_optimization_p_max_center_promotion_draft_latest
+  category: App/Analyze/GoogleAds/Optimization
+  source_operation: openapi/optimyzee-openapi.yml#appAnalyzeGoogleAdsOptimizationPMaxCenterPromotionDraftLatest
+  http: GET /app/analyze/g/optimization/pmax-center/{optimizationId}/promotion-draft
+- name: app_analyze_google_ads_optimization_p_max_center_promotion_draft
+  category: App/Analyze/GoogleAds/Optimization
+  source_operation: openapi/optimyzee-openapi.yml#appAnalyzeGoogleAdsOptimizationPMaxCenterPromotionDraft
+  http: POST /app/analyze/g/optimization/pmax-center/{optimizationId}/promotion-draft
+- name: app_analyze_google_ads_optimization_p_max_center_search_theme_suggestions
+  category: App/Analyze/GoogleAds/Optimization
+  source_operation: openapi/optimyzee-openapi.yml#appAnalyzeGoogleAdsOptimizationPMaxCenterSearchThemeSuggestions
+  http: POST /app/analyze/g/optimization/pmax-center/{optimizationId}/search-theme-suggestions
+- name: app_analyze_google_ads_optimization_p_max_center_start
+  category: App/Analyze/GoogleAds/Optimization
+  source_operation: openapi/optimyzee-openapi.yml#appAnalyzeGoogleAdsOptimizationPMaxCenterStart
+  http: POST /app/analyze/g/optimization/pmax-center/{optimizationId}/start
+- name: app_analyze_google_ads_optimization_recommendations
+  category: App/Analyze/GoogleAds/Optimization
+  source_operation: openapi/optimyzee-openapi.yml#appAnalyzeGoogleAdsOptimizationRecommendations
+  http: GET /app/analyze/g/optimization/recommendations
+- name: app_analyze_google_ads_optimization_analyze
+  category: App/Analyze/GoogleAds/Optimization
+  source_operation: openapi/optimyzee-openapi.yml#appAnalyzeGoogleAdsOptimizationAnalyze
+  http: POST /app/analyze/g/optimization/search-terms
+- name: app_analyze_google_ads_optimization_mark_result
+  category: App/Analyze/GoogleAds/Optimization
+  source_operation: openapi/optimyzee-openapi.yml#appAnalyzeGoogleAdsOptimizationMarkResult
+  http: POST /app/analyze/g/optimization/search-terms/results/mark
+- name: app_analyze_google_ads_optimization_view
+  category: App/Analyze/GoogleAds/Optimization
+  source_operation: openapi/optimyzee-openapi.yml#appAnalyzeGoogleAdsOptimizationView
+  http: GET /app/analyze/g/optimization/search-terms/{id}
+- name: app_analyze_google_ads_reporting_editor
+  category: App/Analyze/GoogleAds/Reporting
+  source_operation: openapi/optimyzee-openapi.yml#appAnalyzeGoogleAdsReportingEditor
+  http: POST /app/analyze/g/reporting/editor
+- name: app_analyze_google_ads_reporting_querier
+  category: App/Analyze/GoogleAds/Reporting
+  source_operation: openapi/optimyzee-openapi.yml#appAnalyzeGoogleAdsReportingQuerier
+  http: POST /app/analyze/g/reporting/querier
+- name: app_billing_subscription_query
+  category: App/Billing/Subscription
+  source_operation: openapi/optimyzee-openapi.yml#appBillingSubscriptionQuery
+  http: GET /app/billing/subscription
+- name: app_billing_subscription_subscribe
+  category: App/Billing/Subscription
+  source_operation: openapi/optimyzee-openapi.yml#appBillingSubscriptionSubscribe
+  http: POST /app/billing/subscription
+- name: app_billing_subscription_cancel
+  category: App/Billing/Subscription
+  source_operation: openapi/optimyzee-openapi.yml#appBillingSubscriptionCancel
+  http: POST /app/billing/subscription/cancel
+- name: app_billing_subscription_charge
+  category: App/Billing/Subscription
+  source_operation: openapi/optimyzee-openapi.yml#appBillingSubscriptionCharge
+  http: POST /app/billing/subscription/charge
+- name: app_billing_subscription_session
+  category: App/Billing/Subscription
+  source_operation: openapi/optimyzee-openapi.yml#appBillingSubscriptionSession
+  http: POST /app/billing/subscription/session
+- name: app_billing_subscription_skip
+  category: App/Billing/Subscription
+  source_operation: openapi/optimyzee-openapi.yml#appBillingSubscriptionSkip
+  http: POST /app/billing/subscription/skip
+- name: app_campaign_query
+  category: App/Campaign
+  source_operation: openapi/optimyzee-openapi.yml#appCampaignQuery
+  http: GET /app/campaign
+- name: app_campaign_view
+  category: App/Campaign
+  source_operation: openapi/optimyzee-openapi.yml#appCampaignView
+  http: GET /app/campaign/{campaignId}
+- name: app_campaign_delete
+  category: App/Campaign
+  source_operation: openapi/optimyzee-openapi.yml#appCampaignDelete
+  http: DELETE /app/campaign/{campaignId}
+- name: app_campaign_activate
+  category: App/Campaign
+  source_operation: openapi/optimyzee-openapi.yml#appCampaignActivate
+  http: POST /app/campaign/{campaignId}/activate
+- name: app_campaign_optimization
+  category: App/Campaign
+  source_operation: openapi/optimyzee-openapi.yml#appCampaignOptimization
+  http: POST /app/campaign/{campaignId}/optimization
+- name: app_campaign_pause
+  category: App/Campaign
+  source_operation: openapi/optimyzee-openapi.yml#appCampaignPause
+  http: POST /app/campaign/{campaignId}/pause
+- name: app_campaign_activity_apply
+  category: App/Campaign/Activity
+  source_operation: openapi/optimyzee-openapi.yml#appCampaignActivityApply
+  http: POST /app/campaign/activity/apply/{taskId}
+- name: app_campaign_activity_dismiss
+  category: App/Campaign/Activity
+  source_operation: openapi/optimyzee-openapi.yml#appCampaignActivityDismiss
+  http: POST /app/campaign/activity/dismiss/{taskId}
+- name: app_campaign_activity_query
+  category: App/Campaign/Activity
+  source_operation: openapi/optimyzee-openapi.yml#appCampaignActivityQuery
+  http: GET /app/campaign/activity/{campaignId}
+- name: app_campaign_google_ads_create
+  category: App/Campaign/GoogleAds
+  source_operation: openapi/optimyzee-openapi.yml#appCampaignGoogleAdsCreate
+  http: POST /app/campaign/googleAds
+- name: app_campaign_google_ads_access
+  category: App/Campaign/GoogleAds
+  source_operation: openapi/optimyzee-openapi.yml#appCampaignGoogleAdsAccess
+  http: POST /app/campaign/googleAds/{campaignId}/access
+- name: app_campaign_google_ads_metrics
+  category: App/Campaign/GoogleAds
+  source_operation: openapi/optimyzee-openapi.yml#appCampaignGoogleAdsMetrics
+  http: GET /app/campaign/googleAds/{campaignId}/metrics
+- name: app_campaign_google_ads_refresh
+  category: App/Campaign/GoogleAds
+  source_operation: openapi/optimyzee-openapi.yml#appCampaignGoogleAdsRefresh
+  http: POST /app/campaign/googleAds/{campaignId}/refresh
+- name: app_create_google_ads_keyword_planner_queue
+  category: App/Create/GoogleAds/KeywordPlanner
+  source_operation: openapi/optimyzee-openapi.yml#appCreateGoogleAdsKeywordPlannerQueue
+  http: POST /app/create/g/keywordPlanner
+- name: app_create_google_ads_keyword_planner_view
+  category: App/Create/GoogleAds/KeywordPlanner
+  source_operation: openapi/optimyzee-openapi.yml#appCreateGoogleAdsKeywordPlannerView
+  http: GET /app/create/g/keywordPlanner/{plannerId}
+- name: app_create_google_ads_keyword_planner_update
+  category: App/Create/GoogleAds/KeywordPlanner
+  source_operation: openapi/optimyzee-openapi.yml#appCreateGoogleAdsKeywordPlannerUpdate
+  http: PUT /app/create/g/keywordPlanner/{plannerId}
+- name: app_create_google_ads_keyword_planner_export
+  category: App/Create/GoogleAds/KeywordPlanner
+  source_operation: openapi/optimyzee-openapi.yml#appCreateGoogleAdsKeywordPlannerExport
+  http: GET /app/create/g/keywordPlanner/{plannerId}/export
+- name: app_create_google_ads_keyword_planner_reprocess
+  category: App/Create/GoogleAds/KeywordPlanner
+  source_operation: openapi/optimyzee-openapi.yml#appCreateGoogleAdsKeywordPlannerReprocess
+  http: POST /app/create/g/keywordPlanner/{plannerId}/reprocess
+- name: app_create_google_ads_rsa_builder_queue
+  category: App/Create/GoogleAds/RsaBuilder
+  source_operation: openapi/optimyzee-openapi.yml#appCreateGoogleAdsRsaBuilderQueue
+  http: POST /app/create/g/rsaBuilder
+- name: app_create_google_ads_rsa_builder_view
+  category: App/Create/GoogleAds/RsaBuilder
+  source_operation: openapi/optimyzee-openapi.yml#appCreateGoogleAdsRsaBuilderView
+  http: GET /app/create/g/rsaBuilder/{builderId}
+- name: app_create_google_ads_rsa_builder_update
+  category: App/Create/GoogleAds/RsaBuilder
+  source_operation: openapi/optimyzee-openapi.yml#appCreateGoogleAdsRsaBuilderUpdate
+  http: PUT /app/create/g/rsaBuilder/{builderId}
+- name: app_create_google_ads_rsa_builder_export
+  category: App/Create/GoogleAds/RsaBuilder
+  source_operation: openapi/optimyzee-openapi.yml#appCreateGoogleAdsRsaBuilderExport
+  http: GET /app/create/g/rsaBuilder/{builderId}/export
+- name: app_create_google_ads_rsa_builder_reprocess
+  category: App/Create/GoogleAds/RsaBuilder
+  source_operation: openapi/optimyzee-openapi.yml#appCreateGoogleAdsRsaBuilderReprocess
+  http: POST /app/create/g/rsaBuilder/{builderId}/reprocess
+- name: app_create_google_ads_search_creation_create
+  category: App/Create/GoogleAds/SearchCreation
+  source_operation: openapi/optimyzee-openapi.yml#appCreateGoogleAdsSearchCreationCreate
+  http: POST /app/create/g/searchCreation
+- name: app_create_google_ads_search_creation_view
+  category: App/Create/GoogleAds/SearchCreation
+  source_operation: openapi/optimyzee-openapi.yml#appCreateGoogleAdsSearchCreationView
+  http: GET /app/create/g/searchCreation/{draftId}
+- name: app_create_google_ads_search_creation_update
+  category: App/Create/GoogleAds/SearchCreation
+  source_operation: openapi/optimyzee-openapi.yml#appCreateGoogleAdsSearchCreationUpdate
+  http: PATCH /app/create/g/searchCreation/{draftId}
+- name: app_create_google_ads_search_creation_publish
+  category: App/Create/GoogleAds/SearchCreation
+  source_operation: openapi/optimyzee-openapi.yml#appCreateGoogleAdsSearchCreationPublish
+  http: POST /app/create/g/searchCreation/{draftId}/publish
+- name: app_create_google_ads_search_creation_rebuild
+  category: App/Create/GoogleAds/SearchCreation
+  source_operation: openapi/optimyzee-openapi.yml#appCreateGoogleAdsSearchCreationRebuild
+  http: POST /app/create/g/searchCreation/{draftId}/rebuild
+- name: app_create_google_ads_search_creation_status
+  category: App/Create/GoogleAds/SearchCreation
+  source_operation: openapi/optimyzee-openapi.yml#appCreateGoogleAdsSearchCreationStatus
+  http: GET /app/create/g/searchCreation/{draftId}/status
+- name: app_create_google_ads_search_creation_ai_create
+  category: App/Create/GoogleAds/SearchCreationAi
+  source_operation: openapi/optimyzee-openapi.yml#appCreateGoogleAdsSearchCreationAiCreate
+  http: POST /app/create/g/searchCreationAi
+- name: app_create_google_ads_search_creation_ai_view
+  category: App/Create/GoogleAds/SearchCreationAi
+  source_operation: openapi/optimyzee-openapi.yml#appCreateGoogleAdsSearchCreationAiView
+  http: GET /app/create/g/searchCreationAi/{draftId}
+- name: app_create_google_ads_search_creation_ai_build_keyword_planner
+  category: App/Create/GoogleAds/SearchCreationAi
+  source_operation: openapi/optimyzee-openapi.yml#appCreateGoogleAdsSearchCreationAiBuildKeywordPlanner
+  http: POST /app/create/g/searchCreationAi/{draftId}/keywordPlanner
+- name: app_create_google_ads_search_creation_ai_build_rsa_ads
+  category: App/Create/GoogleAds/SearchCreationAi
+  source_operation: openapi/optimyzee-openapi.yml#appCreateGoogleAdsSearchCreationAiBuildRsaAds
+  http: POST /app/create/g/searchCreationAi/{draftId}/rsa-builder
+- name: app_create_google_ads_search_creation_ai_build_stag_structure
+  category: App/Create/GoogleAds/SearchCreationAi
+  source_operation: openapi/optimyzee-openapi.yml#appCreateGoogleAdsSearchCreationAiBuildStagStructure
+  http: POST /app/create/g/searchCreationAi/{draftId}/stag-builder
+- name: app_create_google_ads_search_creation_ai_status
+  category: App/Create/GoogleAds/SearchCreationAi
+  source_operation: openapi/optimyzee-openapi.yml#appCreateGoogleAdsSearchCreationAiStatus
+  http: GET /app/create/g/searchCreationAi/{draftId}/status
+- name: app_create_google_ads_sitelink_builder_queue
+  category: App/Create/GoogleAds/SitelinkBuilder
+  source_operation: openapi/optimyzee-openapi.yml#appCreateGoogleAdsSitelinkBuilderQueue
+  http: POST /app/create/g/sitelinkBuilder
+- name: app_create_google_ads_sitelink_builder_view
+  category: App/Create/GoogleAds/SitelinkBuilder
+  source_operation: openapi/optimyzee-openapi.yml#appCreateGoogleAdsSitelinkBuilderView
+  http: GET /app/create/g/sitelinkBuilder/{builderId}
+- name: app_create_google_ads_sitelink_builder_update
+  category: App/Create/GoogleAds/SitelinkBuilder
+  source_operation: openapi/optimyzee-openapi.yml#appCreateGoogleAdsSitelinkBuilderUpdate
+  http: PUT /app/create/g/sitelinkBuilder/{builderId}
+- name: app_create_google_ads_sitelink_builder_export
+  category: App/Create/GoogleAds/SitelinkBuilder
+  source_operation: openapi/optimyzee-openapi.yml#appCreateGoogleAdsSitelinkBuilderExport
+  http: GET /app/create/g/sitelinkBuilder/{builderId}/export
+- name: app_create_google_ads_sitelink_builder_reprocess
+  category: App/Create/GoogleAds/SitelinkBuilder
+  source_operation: openapi/optimyzee-openapi.yml#appCreateGoogleAdsSitelinkBuilderReprocess
+  http: POST /app/create/g/sitelinkBuilder/{builderId}/reprocess
+- name: app_free_limit_check
+  category: App/FreeLimit
+  source_operation: openapi/optimyzee-openapi.yml#appFreeLimitCheck
+  http: GET /app/campaign/free-limit-check
+- name: app_linking_google_ads_query
+  category: App/Linking/GoogleAds
+  source_operation: openapi/optimyzee-openapi.yml#appLinkingGoogleAdsQuery
+  http: GET /app/linking/g
+- name: app_linking_google_ads_issue
+  category: App/Linking/GoogleAds
+  source_operation: openapi/optimyzee-openapi.yml#appLinkingGoogleAdsIssue
+  http: POST /app/linking/g
+- name: app_linking_google_ads_hierarchy
+  category: App/Linking/GoogleAds
+  source_operation: openapi/optimyzee-openapi.yml#appLinkingGoogleAdsHierarchy
+  http: GET /app/linking/g/hierarchy
+- name: app_linking_google_ads_uri
+  category: App/Linking/GoogleAds
+  source_operation: openapi/optimyzee-openapi.yml#appLinkingGoogleAdsUri
+  http: GET /app/linking/g/uri
+- name: app_linking_google_ads_view
+  category: App/Linking/GoogleAds
+  source_operation: openapi/optimyzee-openapi.yml#appLinkingGoogleAdsView
+  http: GET /app/linking/g/{linkingId}
+- name: app_linking_google_ads_delete
+  category: App/Linking/GoogleAds
+  source_operation: openapi/optimyzee-openapi.yml#appLinkingGoogleAdsDelete
+  http: DELETE /app/linking/g/{linkingId}
+- name: app_linking_google_ads_ping
+  category: App/Linking/GoogleAds
+  source_operation: openapi/optimyzee-openapi.yml#appLinkingGoogleAdsPing
+  http: GET /app/linking/g/{linkingId}/ping
+- name: app_linking_meta_query
+  category: App/Linking/Meta
+  source_operation: openapi/optimyzee-openapi.yml#appLinkingMetaQuery
+  http: GET /app/linking/meta
+- name: app_linking_meta_uri
+  category: App/Linking/Meta
+  source_operation: openapi/optimyzee-openapi.yml#appLinkingMetaUri
+  http: GET /app/linking/meta/uri
+- name: app_linking_meta_view
+  category: App/Linking/Meta
+  source_operation: openapi/optimyzee-openapi.yml#appLinkingMetaView
+  http: GET /app/linking/meta/{linkingId}
+- name: app_linking_meta_delete
+  category: App/Linking/Meta
+  source_operation: openapi/optimyzee-openapi.yml#appLinkingMetaDelete
+  http: DELETE /app/linking/meta/{linkingId}
+- name: app_linking_meta_accounts
+  category: App/Linking/Meta
+  source_operation: openapi/optimyzee-openapi.yml#appLinkingMetaAccounts
+  http: GET /app/linking/meta/{linkingId}/accounts
+- name: app_linking_meta_ping
+  category: App/Linking/Meta
+  source_operation: openapi/optimyzee-openapi.yml#appLinkingMetaPing
+  http: GET /app/linking/meta/{linkingId}/ping
+- name: app_linking_meta_select_account
+  category: App/Linking/Meta
+  source_operation: openapi/optimyzee-openapi.yml#appLinkingMetaSelectAccount
+  http: POST /app/linking/meta/{linkingId}/select
+- name: app_lookup_google_ads_campaign_query
+  category: App/Lookup/GoogleAds/Campaign
+  source_operation: openapi/optimyzee-openapi.yml#appLookupGoogleAdsCampaignQuery
+  http: GET /app/lookup/g/campaign
+- name: app_lookup_google_ads_geo_target_constant_query
+  category: App/Lookup/GoogleAds/GeoTargetConstant
+  source_operation: openapi/optimyzee-openapi.yml#appLookupGoogleAdsGeoTargetConstantQuery
+  http: GET /app/lookup/g/geoTargetConstant
+- name: app_lookup_google_ads_language_constant_query
+  category: App/Lookup/GoogleAds/LanguageConstant
+  source_operation: openapi/optimyzee-openapi.yml#appLookupGoogleAdsLanguageConstantQuery
+  http: GET /app/lookup/g/languageConstant
+- name: app_lookup_google_ads_merchant_center_query
+  category: App/Lookup/GoogleAds/MerchantCenter
+  source_operation: openapi/optimyzee-openapi.yml#appLookupGoogleAdsMerchantCenterQuery
+  http: GET /app/lookup/g/merchant-center
+- name: app_support
+  category: App/Support
+  source_operation: openapi/optimyzee-openapi.yml#appSupport
+  http: POST /app/support
+- name: app_support_beta
+  category: App/Support
+  source_operation: openapi/optimyzee-openapi.yml#appSupportBeta
+  http: POST /app/support/beta
+- name: app_support_bug
+  category: App/Support
+  source_operation: openapi/optimyzee-openapi.yml#appSupportBug
+  http: POST /app/support/bug
+- name: app_support_contact
+  category: App/Support
+  source_operation: openapi/optimyzee-openapi.yml#appSupportContact
+  http: POST /app/support/contact
+- name: app_support_sales
+  category: App/Support
+  source_operation: openapi/optimyzee-openapi.yml#appSupportSales
+  http: POST /app/support/sales
+excluded:
+- group: authentication
+  operation_count: 23
+  reason: Session/credential lifecycle (sign-in, signup, password reset, TFA, trusted devices) - not agent-safe tool surface.
+- group: operations-admin
+  operation_count: 32
+  reason: Internal /operations/* back-office surface including user impersonation - staff-only, must never be exposed as tools.
+- group: unnamed-operations
+  operation_count: 39
+  reason: These operations carry 32-character hex operationIds instead of names (31 of them on the Yelp surface), so a derived
+    tool name would be invented rather than read. Excluded rather than guessed.

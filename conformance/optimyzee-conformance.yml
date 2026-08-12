@@ -1,0 +1,68 @@
+generated: '2026-08-12'
+method: derived
+source: openapi/_original/optimyzee-openapi.json + live probes of api.optimyzee.com and optimyzee.com
+note: >-
+  Derived from the harvested contract and from probes. Optimyzee publishes no compliance page, no trust
+  center and no certification claims, so no `Compliance` pointer is emitted.
+standards:
+- id: openapi-3.0
+  conforms: true
+  evidence: 'openapi: 3.0.0 with 151 paths, 184 operations, 73 component schemas, parses cleanly'
+- id: oauth2
+  conforms: false
+  evidence: >-
+    No oauth2 securityScheme. Auth is a bearer token in an `authorization` header declared as an apiKey
+    scheme. Social sign-in (Google, Facebook) is consumed by the application server-side; there is no
+    OAuth authorization server exposed to third parties.
+- id: oidc
+  conforms: false
+  evidence: /.well-known/openid-configuration returned 404 on optimyzee.com and api.optimyzee.com
+- id: rfc8414-oauth-authorization-server-metadata
+  conforms: false
+  evidence: /.well-known/oauth-authorization-server returned 404 on both hosts
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    No application/problem+json media type anywhere in the spec; errors use a vendor
+    `{error, message}` / `{errors:{...}}` envelope
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returned 404 on optimyzee.com, www.optimyzee.com and api.optimyzee.com
+- id: rfc9727-api-catalog
+  conforms: false
+  evidence: /.well-known/api-catalog returned 404 on optimyzee.com and api.optimyzee.com
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: no Sunset or Deprecation header advertised; zero deprecated operations in the spec
+- id: pagination
+  conforms: true
+  evidence: >-
+    Cursor pagination - `cursor` + `perPage` query parameters on 11 operations, and
+    x-pagination-next/previous/per-page/last/total response headers exposed via
+    access-control-expose-headers on live responses
+- id: idempotency
+  conforms: false
+  evidence: no Idempotency-Key header or equivalent anywhere in the spec
+- id: json-api
+  conforms: false
+  evidence: plain application/json resource shapes; no JSON:API document structure
+- id: asyncapi
+  conforms: false
+  evidence: no event, streaming, or webhook surface in the spec or on the site
+- id: mcp
+  conforms: false
+  evidence: no MCP server published; no /.well-known/oauth-protected-resource
+- id: a2a
+  conforms: false
+  evidence: >-
+    /.well-known/agent-card.json and /.well-known/agent.json returned 404 on optimyzee.com and
+    api.optimyzee.com; app.optimyzee.com answers 200 with the SPA HTML shell for every path, which is
+    not an agent card
+compliance_program:
+  published: false
+  certifications: []
+  evidence: >-
+    No trust center, no SOC 2 / ISO 27001 / PCI / HIPAA / GDPR compliance page found; probes of
+    /security and /trust on www.optimyzee.com both returned 404. The privacy policy at
+    https://www.optimyzee.com/policy and the terms at /terms-of-service are the only published legal
+    surface.

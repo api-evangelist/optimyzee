@@ -1,0 +1,50 @@
+generated: '2026-08-12'
+method: probed
+source: live GET probes on 2026-08-12
+note: >-
+  Every /.well-known/ path returned 404 on both real hosts. NO WellKnown or SecurityTxt pointer is
+  emitted in apis.yml - this file records a verified absence, not a presence. The third host,
+  app.optimyzee.com, answers HTTP 200 with the same 1,563-byte single-page-app HTML shell for every
+  path including every /.well-known/* path; those are catch-all responses, not documents, and are
+  recorded as misses.
+hosts:
+- host: https://optimyzee.com
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/oauth-protected-resource, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+- host: https://www.optimyzee.com
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+- host: https://api.optimyzee.com
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/oauth-protected-resource, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+  note: >-
+    This host returns a genuine JSON 404 body {"error":"not_found","message":null} rather than an HTML
+    shell, so these are real negatives from the application router.
+- host: https://app.optimyzee.com
+  documents:
+  - {path: /.well-known/security.txt, status: 200, verdict: spa-shell-not-a-document}
+  - {path: /.well-known/openid-configuration, status: 200, verdict: spa-shell-not-a-document}
+  - {path: /.well-known/oauth-authorization-server, status: 200, verdict: spa-shell-not-a-document}
+  - {path: /.well-known/agent-card.json, status: 200, verdict: spa-shell-not-a-document}
+  - {path: /.well-known/agent.json, status: 200, verdict: spa-shell-not-a-document}
+  note: >-
+    Single-page-app catch-all - identical 1,563-byte text/html body for /, /auth, /openapi.json,
+    /graphql and every /.well-known/* path. Treated as a miss on every path.
+other_discovery:
+- {path: /robots.txt, host: https://optimyzee.com, status: 200, file: optimyzee-robots.txt}
+- {path: /sitemap.xml, host: https://optimyzee.com, status: 200, note: 46 URLs, all marketing/blog pages, no developer pages}
+- {path: /llms.txt, host: https://optimyzee.com, status: 404}
+- {path: /llms.txt, host: https://www.optimyzee.com, status: 404}
