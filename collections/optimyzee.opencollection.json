@@ -1,0 +1,4175 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Optimyzee Application API",
+    "version": "4.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "App/Analyze/GoogleAds/Audit",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "appAnalyzeGoogleAdsAuditQueue",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/analyze/g/audit",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appAnalyzeGoogleAdsAuditView",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/analyze/g/audit/:auditId",
+            "params": [
+              {
+                "name": "auditId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "App/Analyze/GoogleAds/Health",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "appAnalyzeGoogleAdsHealthAnalyze",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/analyze/g/health",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "App/Analyze/GoogleAds/Optimization",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "appAnalyzeGoogleAdsOptimizationAnalyze",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/analyze/g/optimization/search-terms",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appAnalyzeGoogleAdsOptimizationMarkResult",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/analyze/g/optimization/search-terms/results/mark",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appAnalyzeGoogleAdsOptimizationPMaxAnalyze",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/analyze/g/optimization/p-max",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appAnalyzeGoogleAdsOptimizationPMaxCenterAssetDraft",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/analyze/g/optimization/pmax-center/:optimizationId/asset-draft",
+            "params": [
+              {
+                "name": "optimizationId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appAnalyzeGoogleAdsOptimizationPMaxCenterDeepAudit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/analyze/g/optimization/pmax-center/deep-audit",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appAnalyzeGoogleAdsOptimizationPMaxCenterPromotionDraftLatest",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/analyze/g/optimization/pmax-center/:optimizationId/promotion-draft",
+            "params": [
+              {
+                "name": "optimizationId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appAnalyzeGoogleAdsOptimizationPMaxCenterPromotionDraft",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/analyze/g/optimization/pmax-center/:optimizationId/promotion-draft",
+            "params": [
+              {
+                "name": "optimizationId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appAnalyzeGoogleAdsOptimizationPMaxCenterSearchThemeSuggestions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/analyze/g/optimization/pmax-center/:optimizationId/search-theme-suggestions",
+            "params": [
+              {
+                "name": "optimizationId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appAnalyzeGoogleAdsOptimizationPMaxCenterStart",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/analyze/g/optimization/pmax-center/:optimizationId/start",
+            "params": [
+              {
+                "name": "optimizationId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appAnalyzeGoogleAdsOptimizationPMaxCenterView",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/analyze/g/optimization/pmax-center/:optimizationId",
+            "params": [
+              {
+                "name": "optimizationId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appAnalyzeGoogleAdsOptimizationPMaxMarkResult",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/analyze/g/optimization/p-max/results/mark",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appAnalyzeGoogleAdsOptimizationPMaxView",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/analyze/g/optimization/p-max/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appAnalyzeGoogleAdsOptimizationView",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/analyze/g/optimization/search-terms/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appAnalyzeGoogleAdsOptimizationHistory",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/analyze/g/optimization/optimized-history",
+            "params": [
+              {
+                "name": "linkingId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appAnalyzeGoogleAdsOptimizationRecommendations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/analyze/g/optimization/recommendations",
+            "params": [
+              {
+                "name": "from",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "App/Analyze/GoogleAds/Reporting",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "appAnalyzeGoogleAdsReportingEditor",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/analyze/g/reporting/editor",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appAnalyzeGoogleAdsReportingQuerier",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/analyze/g/reporting/querier",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "App/Auth/Email",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "appAuthEmailResend",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/auth/email/resend",
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appAuthEmailUpdate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/auth/email",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appAuthEmailVerify",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/auth/email/verify",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "App/Auth/Gateway",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "appAuthGatewayEmail",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/auth/gateway/email",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appAuthGatewayEmailSignup",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/auth/gateway/emailSignup",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appAuthGatewayFacebook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/auth/gateway/facebook",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appAuthGatewayFacebookSignup",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/auth/gateway/facebookSignup",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appAuthGatewayGoogle",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/auth/gateway/google",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appAuthGatewayGoogleSignup",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/auth/gateway/googleSignup",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appAuthGatewayRefresh",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/auth/gateway/refresh",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appAuthGatewayRevoke",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/auth/gateway/revoke",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "App/Auth/Password",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "appAuthPasswordReset",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/auth/password/reset",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appAuthPasswordSendResetLink",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/auth/password/sendResetLink",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "App/Auth/Profile",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "appAuthProfile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/auth/profile",
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appAuthProfileUpdate",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.optimyzee.com/app/auth/profile",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "App/Auth/Tfa",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "appAuthTfaDisable",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/auth/tfa/disable",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appAuthTfaEnable",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/auth/tfa/enable",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appAuthTfaIssue",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/auth/tfa/issue",
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "App/Auth/TrustedDevice",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "appAuthTrustedDeviceQuery",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/auth/trustedDevice",
+            "params": [
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appAuthTrustedDeviceCreate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/auth/trustedDevice",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appAuthTrustedDeviceCurrent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/auth/trustedDevice/current",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appAuthTrustedDeviceView",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/auth/trustedDevice/:trustedDeviceId",
+            "params": [
+              {
+                "name": "trustedDeviceId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appAuthTrustedDeviceDelete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.optimyzee.com/app/auth/trustedDevice/:trustedDeviceId",
+            "params": [
+              {
+                "name": "trustedDeviceId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "App Automation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Delete an automation",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.optimyzee.com/app/automations/:automationId",
+            "params": [
+              {
+                "name": "automationId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete an automation"
+        },
+        {
+          "info": {
+            "name": "Interpret a natural-language intent into proposed automations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/automations/interpret",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Interpret a natural-language intent into proposed automations"
+        },
+        {
+          "info": {
+            "name": "List the current user's automations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/automations"
+          },
+          "docs": "List the current user's automations"
+        },
+        {
+          "info": {
+            "name": "Enable (persist) an automation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/automations"
+          },
+          "docs": "Enable (persist) an automation"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "App Automations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List automation execution history for the current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/automations/runs",
+            "params": [
+              {
+                "name": "automationId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List automation execution history for the current user"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "App/Billing/Subscription",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "appBillingSubscriptionCancel",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/billing/subscription/cancel",
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appBillingSubscriptionCharge",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/billing/subscription/charge",
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appBillingSubscriptionQuery",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/billing/subscription"
+          }
+        },
+        {
+          "info": {
+            "name": "appBillingSubscriptionSubscribe",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/billing/subscription",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appBillingSubscriptionSession",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/billing/subscription/session",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appBillingSubscriptionSkip",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/billing/subscription/skip",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "App/Campaign",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "appCampaignActivate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/campaign/:campaignId/activate",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appCampaignView",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/campaign/:campaignId",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appCampaignDelete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.optimyzee.com/app/campaign/:campaignId",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appCampaignOptimization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/campaign/:campaignId/optimization",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appCampaignPause",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/campaign/:campaignId/pause",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appCampaignQuery",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/campaign",
+            "params": [
+              {
+                "name": "googleAdsLinkingId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "googleAdsCampaignId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "App/FreeLimit",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "appFreeLimitCheck",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/campaign/free-limit-check",
+            "params": [
+              {
+                "name": "action_key",
+                "value": "",
+                "type": "query",
+                "description": "Ex: publish.campaign, start.optimization, report.generate..."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "App/Campaign/Activity",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "appCampaignActivityApply",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/campaign/activity/apply/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appCampaignActivityDismiss",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/campaign/activity/dismiss/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appCampaignActivityQuery",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/campaign/activity/:campaignId",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "App/Campaign/GoogleAds",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "appCampaignGoogleAdsAccess",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/campaign/googleAds/:campaignId/access",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appCampaignGoogleAdsCreate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/campaign/googleAds",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appCampaignGoogleAdsMetrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/campaign/googleAds/:campaignId/metrics",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appCampaignGoogleAdsRefresh",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/campaign/googleAds/:campaignId/refresh",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "App/Create/GoogleAds/KeywordPlanner",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "appCreateGoogleAdsKeywordPlannerExport",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/create/g/keywordPlanner/:plannerId/export",
+            "params": [
+              {
+                "name": "plannerId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appCreateGoogleAdsKeywordPlannerQueue",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/create/g/keywordPlanner",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appCreateGoogleAdsKeywordPlannerReprocess",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/create/g/keywordPlanner/:plannerId/reprocess",
+            "params": [
+              {
+                "name": "plannerId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appCreateGoogleAdsKeywordPlannerView",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/create/g/keywordPlanner/:plannerId",
+            "params": [
+              {
+                "name": "plannerId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appCreateGoogleAdsKeywordPlannerUpdate",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.optimyzee.com/app/create/g/keywordPlanner/:plannerId",
+            "params": [
+              {
+                "name": "plannerId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "App/Create/GoogleAds/RsaBuilder",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "appCreateGoogleAdsRsaBuilderExport",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/create/g/rsaBuilder/:builderId/export",
+            "params": [
+              {
+                "name": "builderId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appCreateGoogleAdsRsaBuilderQueue",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/create/g/rsaBuilder",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appCreateGoogleAdsRsaBuilderReprocess",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/create/g/rsaBuilder/:builderId/reprocess",
+            "params": [
+              {
+                "name": "builderId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appCreateGoogleAdsRsaBuilderView",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/create/g/rsaBuilder/:builderId",
+            "params": [
+              {
+                "name": "builderId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appCreateGoogleAdsRsaBuilderUpdate",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.optimyzee.com/app/create/g/rsaBuilder/:builderId",
+            "params": [
+              {
+                "name": "builderId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "App/Create/GoogleAds/SearchCreation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "appCreateGoogleAdsSearchCreationCreate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/create/g/searchCreation",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appCreateGoogleAdsSearchCreationPublish",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/create/g/searchCreation/:draftId/publish",
+            "params": [
+              {
+                "name": "draftId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appCreateGoogleAdsSearchCreationRebuild",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/create/g/searchCreation/:draftId/rebuild",
+            "params": [
+              {
+                "name": "draftId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appCreateGoogleAdsSearchCreationStatus",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/create/g/searchCreation/:draftId/status",
+            "params": [
+              {
+                "name": "draftId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appCreateGoogleAdsSearchCreationView",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/create/g/searchCreation/:draftId",
+            "params": [
+              {
+                "name": "draftId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appCreateGoogleAdsSearchCreationUpdate",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.optimyzee.com/app/create/g/searchCreation/:draftId",
+            "params": [
+              {
+                "name": "draftId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "App/Create/GoogleAds/SearchCreationAi",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "appCreateGoogleAdsSearchCreationAiBuildKeywordPlanner",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/create/g/searchCreationAi/:draftId/keywordPlanner",
+            "params": [
+              {
+                "name": "draftId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appCreateGoogleAdsSearchCreationAiBuildRsaAds",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/create/g/searchCreationAi/:draftId/rsa-builder",
+            "params": [
+              {
+                "name": "draftId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appCreateGoogleAdsSearchCreationAiBuildStagStructure",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/create/g/searchCreationAi/:draftId/stag-builder",
+            "params": [
+              {
+                "name": "draftId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appCreateGoogleAdsSearchCreationAiCreate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/create/g/searchCreationAi",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appCreateGoogleAdsSearchCreationAiStatus",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/create/g/searchCreationAi/:draftId/status",
+            "params": [
+              {
+                "name": "draftId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appCreateGoogleAdsSearchCreationAiView",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/create/g/searchCreationAi/:draftId",
+            "params": [
+              {
+                "name": "draftId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "App/Create/GoogleAds/SitelinkBuilder",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "appCreateGoogleAdsSitelinkBuilderExport",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/create/g/sitelinkBuilder/:builderId/export",
+            "params": [
+              {
+                "name": "builderId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appCreateGoogleAdsSitelinkBuilderQueue",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/create/g/sitelinkBuilder",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appCreateGoogleAdsSitelinkBuilderReprocess",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/create/g/sitelinkBuilder/:builderId/reprocess",
+            "params": [
+              {
+                "name": "builderId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appCreateGoogleAdsSitelinkBuilderView",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/create/g/sitelinkBuilder/:builderId",
+            "params": [
+              {
+                "name": "builderId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appCreateGoogleAdsSitelinkBuilderUpdate",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.optimyzee.com/app/create/g/sitelinkBuilder/:builderId",
+            "params": [
+              {
+                "name": "builderId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "App/Linking/GoogleAds",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "appLinkingGoogleAdsView",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/linking/g/:linkingId",
+            "params": [
+              {
+                "name": "linkingId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appLinkingGoogleAdsDelete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.optimyzee.com/app/linking/g/:linkingId",
+            "params": [
+              {
+                "name": "linkingId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appLinkingGoogleAdsHierarchy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/linking/g/hierarchy",
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appLinkingGoogleAdsQuery",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/linking/g",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "isManager",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appLinkingGoogleAdsIssue",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/linking/g",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appLinkingGoogleAdsPing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/linking/g/:linkingId/ping",
+            "params": [
+              {
+                "name": "linkingId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appLinkingGoogleAdsUri",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/linking/g/uri",
+            "params": [
+              {
+                "name": "redirectUri",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "App/Linking/Meta",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "appLinkingMetaAccounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/linking/meta/:linkingId/accounts",
+            "params": [
+              {
+                "name": "linkingId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appLinkingMetaView",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/linking/meta/:linkingId",
+            "params": [
+              {
+                "name": "linkingId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appLinkingMetaDelete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.optimyzee.com/app/linking/meta/:linkingId",
+            "params": [
+              {
+                "name": "linkingId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appLinkingMetaPing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/linking/meta/:linkingId/ping",
+            "params": [
+              {
+                "name": "linkingId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appLinkingMetaQuery",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/linking/meta",
+            "params": [
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appLinkingMetaSelectAccount",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/linking/meta/:linkingId/select",
+            "params": [
+              {
+                "name": "linkingId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appLinkingMetaUri",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/linking/meta/uri",
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "App/Lookup/GoogleAds/Campaign",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "appLookupGoogleAdsCampaignQuery",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/lookup/g/campaign",
+            "params": [
+              {
+                "name": "linkingId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "advertisingChannelType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "advertisingChannelTypes[]",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "App/Lookup/GoogleAds/GeoTargetConstant",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "appLookupGoogleAdsGeoTargetConstantQuery",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/lookup/g/geoTargetConstant",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "resourceNames",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "App/Lookup/GoogleAds/LanguageConstant",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "appLookupGoogleAdsLanguageConstantQuery",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/lookup/g/languageConstant"
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "App/Lookup/GoogleAds/MerchantCenter",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "appLookupGoogleAdsMerchantCenterQuery",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/lookup/g/merchant-center",
+            "params": [
+              {
+                "name": "linkingId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "App Recommendation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List the current user's stored recommendations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/recommendations",
+            "params": [
+              {
+                "name": "businessId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List the current user's stored recommendations"
+        },
+        {
+          "info": {
+            "name": "Update a recommendation status",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.optimyzee.com/app/recommendations/:recommendationId",
+            "params": [
+              {
+                "name": "recommendationId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a recommendation status"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "App Signal",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Live readings from every registered signal connector",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/signals",
+            "params": [
+              {
+                "name": "city",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Live readings from every registered signal connector"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "App/Support",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "appSupportBeta",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/support/beta",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appSupportBug",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/support/bug",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appSupportContact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/support/contact",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appSupportSales",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/support/sales",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "appSupport",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/support",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "App Yelp",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Enqueue a manual guarded Yelp ads job (pause/resume/edit budget)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/yelp/ads-jobs/manual",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enqueue a manual guarded Yelp ads job (pause/resume/edit budget)"
+        },
+        {
+          "info": {
+            "name": "List guarded Yelp ads jobs for the current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/yelp/ads-jobs",
+            "params": [
+              {
+                "name": "businessId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "programRef",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List guarded Yelp ads jobs for the current user"
+        },
+        {
+          "info": {
+            "name": "Build a local Yelp autoresponder reply queue from synced leads",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/yelp/autoresponders/runs/build"
+          },
+          "docs": "Build a local Yelp autoresponder reply queue from synced leads"
+        },
+        {
+          "info": {
+            "name": "Refresh local Yelp autoresponder status from synced rows",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/yelp/autoresponders/check-status"
+          },
+          "docs": "Refresh local Yelp autoresponder status from synced rows"
+        },
+        {
+          "info": {
+            "name": "Update a local Yelp autoresponder response-flow message",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.optimyzee.com/app/yelp/autoresponders/:businessId/messages/:messageId"
+          },
+          "docs": "Update a local Yelp autoresponder response-flow message"
+        },
+        {
+          "info": {
+            "name": "Delete a local Yelp autoresponder response-flow message",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.optimyzee.com/app/yelp/autoresponders/:businessId/messages/:messageId"
+          },
+          "docs": "Delete a local Yelp autoresponder response-flow message"
+        },
+        {
+          "info": {
+            "name": "List local Yelp autoresponder response-flow messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/yelp/autoresponders/:businessId/messages"
+          },
+          "docs": "List local Yelp autoresponder response-flow messages"
+        },
+        {
+          "info": {
+            "name": "Create a local Yelp autoresponder response-flow message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/yelp/autoresponders/:businessId/messages"
+          },
+          "docs": "Create a local Yelp autoresponder response-flow message"
+        },
+        {
+          "info": {
+            "name": "List local Yelp autoresponder configurations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/yelp/autoresponders"
+          },
+          "docs": "List local Yelp autoresponder configurations"
+        },
+        {
+          "info": {
+            "name": "Create a local Yelp autoresponder configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/yelp/autoresponders"
+          },
+          "docs": "Create a local Yelp autoresponder configuration"
+        },
+        {
+          "info": {
+            "name": "List local Yelp autoresponder queue runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/yelp/autoresponders/runs"
+          },
+          "docs": "List local Yelp autoresponder queue runs"
+        },
+        {
+          "info": {
+            "name": "Attempt to send an approved Yelp AI reply through the guarded outbound gateway",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/yelp/autoresponders/runs/:runId/send",
+            "params": [
+              {
+                "name": "runId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Attempt to send an approved Yelp AI reply through the guarded outbound gateway"
+        },
+        {
+          "info": {
+            "name": "Approve or reject a local Yelp autoresponder run",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.optimyzee.com/app/yelp/autoresponders/runs/:runId",
+            "params": [
+              {
+                "name": "runId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Approve or reject a local Yelp autoresponder run"
+        },
+        {
+          "info": {
+            "name": "Update a local Yelp autoresponder configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.optimyzee.com/app/yelp/autoresponders/:businessId",
+            "params": [
+              {
+                "name": "businessId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update a local Yelp autoresponder configuration"
+        },
+        {
+          "info": {
+            "name": "Update the editable AI business profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.optimyzee.com/app/yelp/businesses/:businessRef/profile",
+            "params": [
+              {
+                "name": "businessRef",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update the editable AI business profile"
+        },
+        {
+          "info": {
+            "name": "List Yelp businesses synced for the current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/yelp/businesses",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List Yelp businesses synced for the current user"
+        },
+        {
+          "info": {
+            "name": "List signal eligibility settings for a Yelp business",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/yelp/businesses/:businessRef/signal-settings",
+            "params": [
+              {
+                "name": "businessRef",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List signal eligibility settings for a Yelp business"
+        },
+        {
+          "info": {
+            "name": "Update one signal eligibility setting for a Yelp business",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.optimyzee.com/app/yelp/businesses/:businessRef/signal-settings/:signal",
+            "params": [
+              {
+                "name": "businessRef",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "signal",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update one signal eligibility setting for a Yelp business"
+        },
+        {
+          "info": {
+            "name": "View a synced Yelp business",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/yelp/businesses/:businessRef",
+            "params": [
+              {
+                "name": "businessRef",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "View a synced Yelp business"
+        },
+        {
+          "info": {
+            "name": "View the current user's Yelp Partner connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/yelp/connection"
+          },
+          "docs": "View the current user's Yelp Partner connection"
+        },
+        {
+          "info": {
+            "name": "Create or update the current user's Yelp Partner connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.optimyzee.com/app/yelp/connection"
+          },
+          "docs": "Create or update the current user's Yelp Partner connection"
+        },
+        {
+          "info": {
+            "name": "Delete the current user's Yelp Partner connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.optimyzee.com/app/yelp/connection"
+          },
+          "docs": "Delete the current user's Yelp Partner connection"
+        },
+        {
+          "info": {
+            "name": "Validate the stored Yelp partner credentials against the Partner API",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/yelp/connection/test"
+          },
+          "docs": "Validate the stored Yelp partner credentials against the Partner API"
+        },
+        {
+          "info": {
+            "name": "List synced Yelp leads for the current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/yelp/leads",
+            "params": [
+              {
+                "name": "businessId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List synced Yelp leads for the current user"
+        },
+        {
+          "info": {
+            "name": "Generate a guarded AI reply draft for a synced Yelp lead",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/yelp/leads/:leadId/reply-draft",
+            "params": [
+              {
+                "name": "leadId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Generate a guarded AI reply draft for a synced Yelp lead"
+        },
+        {
+          "info": {
+            "name": "List Yelp advertising programs synced for the current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/yelp/programs",
+            "params": [
+              {
+                "name": "businessId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List Yelp advertising programs synced for the current user"
+        },
+        {
+          "info": {
+            "name": "View aggregated synced Yelp reporting metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/yelp/reporting",
+            "params": [
+              {
+                "name": "businessId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "View aggregated synced Yelp reporting metrics"
+        },
+        {
+          "info": {
+            "name": "List Yelp sync/import runs for the current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/app/yelp/sync-runs",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "source",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List Yelp sync/import runs for the current user"
+        },
+        {
+          "info": {
+            "name": "Poll outstanding Yelp report requests and import ready ones",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/yelp/reporting/poll"
+          },
+          "docs": "Poll outstanding Yelp report requests and import ready ones"
+        },
+        {
+          "info": {
+            "name": "Request a Yelp daily metrics report (async)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/yelp/reporting/request"
+          },
+          "docs": "Request a Yelp daily metrics report (async)"
+        },
+        {
+          "info": {
+            "name": "Pull live businesses + programs from the Yelp Partner API",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/app/yelp/sync"
+          },
+          "docs": "Pull live businesses + programs from the Yelp Partner API"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Operations/Admin",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "operationsAdminQuery",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/operations/admin",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "permissions",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "operationsAdminCreate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/operations/admin",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "operationsAdminView",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/operations/admin/:adminId",
+            "params": [
+              {
+                "name": "adminId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "operationsAdminUpdate",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.optimyzee.com/operations/admin/:adminId",
+            "params": [
+              {
+                "name": "adminId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "operationsAdminDelete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.optimyzee.com/operations/admin/:adminId",
+            "params": [
+              {
+                "name": "adminId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "operationsAdminReset",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/operations/admin/:adminId/reset",
+            "params": [
+              {
+                "name": "adminId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Operations/Auth/Gateway",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "operationsAuthGateway",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/operations/auth/gateway",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "operationsAuthGatewayRefresh",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/operations/auth/gateway/refresh",
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "operationsAuthGatewayRevoke",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/operations/auth/gateway/revoke",
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Operations/Auth/Profile",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "operationsAuthProfile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/operations/auth/profile",
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Operations/Billing/Subscription",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "operationsBillingSubscriptionQuery",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/operations/billing/subscription",
+            "params": [
+              {
+                "name": "legacy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "operationsBillingSubscriptionCreate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/operations/billing/subscription",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "operationsBillingSubscriptionView",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/operations/billing/subscription/:subscriptionId",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "operationsBillingSubscriptionUpdate",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.optimyzee.com/operations/billing/subscription/:subscriptionId",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "operationsBillingSubscriptionDelete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.optimyzee.com/operations/billing/subscription/:subscriptionId",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Operations/Campaign",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "operationsCampaignQuery",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/operations/campaign",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "adminId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "operationsCampaignView",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/operations/campaign/:campaignId",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "operationsCampaignUpdate",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.optimyzee.com/operations/campaign/:campaignId",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Operations/Campaign/Log",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "operationsCampaignLogQuery",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/operations/campaign/log",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "operationsCampaignLogCreate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/operations/campaign/log",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "operationsCampaignLogView",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/operations/campaign/log/:logId",
+            "params": [
+              {
+                "name": "logId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "operationsCampaignLogUpdate",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.optimyzee.com/operations/campaign/log/:logId",
+            "params": [
+              {
+                "name": "logId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "operationsCampaignLogDelete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.optimyzee.com/operations/campaign/log/:logId",
+            "params": [
+              {
+                "name": "logId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Operations/Campaign/Task",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "operationsCampaignTaskQuery",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/operations/campaign/task",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "parentId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "operationsCampaignTaskCreate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/operations/campaign/task",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "operationsCampaignTaskView",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/operations/campaign/task/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "authorization",
+              "value": "{{authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "operationsCampaignTaskUpdate",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.optimyzee.com/operations/campaign/task/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "operationsCampaignTaskDelete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.optimyzee.com/operations/campaign/task/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Operations/User",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "operationsUserView",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/operations/user/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "operationsUserDelete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.optimyzee.com/operations/user/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "operationsUserImpersonate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.optimyzee.com/operations/user/:userId/impersonate",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "operationsUserQuery",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.optimyzee.com/operations/user",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

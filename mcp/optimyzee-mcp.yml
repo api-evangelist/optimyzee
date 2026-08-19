@@ -3,16 +3,16 @@ method: derived
 status: candidate
 source: openapi/_original/optimyzee-openapi.json
 published_server: null
-search_note: Optimyzee publishes no MCP server. Searched the site, sitemap, npm (registry.npmjs.org returned 0 results for
-  "optimyzee"), the GitHub org (0 public repos) and the web on 2026-08-12; /.well-known/oauth-protected-resource returned
-  404 on optimyzee.com and api.optimyzee.com. No MCPServer pointer is emitted in apis.yml - this file is a derived candidate
-  surface only, and must not be read as a server Optimyzee operates.
+search_note: Optimyzee publishes no MCP server. Searched the site, sitemap, npm (registry.npmjs.org returned
+  0 results for "optimyzee"), the GitHub org (0 public repos) and the web on 2026-08-12; /.well-known/oauth-protected-resource
+  returned 404 on optimyzee.com and api.optimyzee.com. No MCPServer pointer is emitted in apis.yml - this
+  file is a derived candidate surface only, and must not be read as a server Optimyzee operates.
 server:
   name: optimyzee
   transport: http
   url: null
-  auth: Bearer token in the `authorization` header, minted by the /app/auth/gateway/* operations. There is no user-issuable
-    API key, which is the practical blocker to an MCP server over this API.
+  auth: Bearer token in the `authorization` header, minted by the /app/auth/gateway/* operations. There
+    is no user-issuable API key, which is the practical blocker to an MCP server over this API.
 tool_count: 90
 tools:
 - name: app_analyze_google_ads_audit_queue
@@ -378,11 +378,19 @@ tools:
 excluded:
 - group: authentication
   operation_count: 23
-  reason: Session/credential lifecycle (sign-in, signup, password reset, TFA, trusted devices) - not agent-safe tool surface.
+  reason: Session/credential lifecycle (sign-in, signup, password reset, TFA, trusted devices) - not agent-safe
+    tool surface.
 - group: operations-admin
   operation_count: 32
-  reason: Internal /operations/* back-office surface including user impersonation - staff-only, must never be exposed as tools.
+  reason: Internal /operations/* back-office surface including user impersonation - staff-only, must never
+    be exposed as tools.
 - group: unnamed-operations
   operation_count: 39
-  reason: These operations carry 32-character hex operationIds instead of names (31 of them on the Yelp surface), so a derived
-    tool name would be invented rather than read. Excluded rather than guessed.
+  reason: These operations carry 32-character hex operationIds instead of names (31 of them on the Yelp
+    surface), so a derived tool name would be invented rather than read. Excluded rather than guessed.
+deployment:
+  mode: none
+  verified: derived
+  tools: 90
+  checked: '2026-08-12'
+  source: catalog MCP census
