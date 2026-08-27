@@ -67,33 +67,16 @@ tags_raw:
 - Keyword Research
 - Reporting
 apis:
-- name: Optimyzee Application API
-  description: >-
-    The REST API behind the Optimyzee web application. Covers Google Ads campaign creation
-    (search creation, AI search creation, keyword planner, RSA builder, sitelink builder),
-    analysis (account audit, account health, search-terms optimization, Performance Max
-    optimization and the P-Max center, reporting editor/querier), account linking (Google
-    Ads, Meta, Merchant Center), lookups (campaigns, geo target constants, language
-    constants), campaign lifecycle and activity, recommendations and signals, automations,
-    Yelp Ads (autoresponders, leads, businesses, programs, reporting, sync), billing
-    subscriptions, authentication (email, social gateway, password, TFA, trusted devices),
-    plus an internal /operations administrative surface. The OpenAPI 3.0.0 document is
-    served publicly and anonymously; there is no developer portal, human API reference,
-    or published API program around it.
+- aid: optimyzee:optimyzee-app-analyze-googleads-audit-api
+  name: Optimyzee App/Analyze/Google Ads/Audit API
+  description: App/Analyze/GoogleAds/Audit
   humanURL: https://www.optimyzee.com/
   baseURL: https://api.optimyzee.com
   tags:
-  - Google Ads
-  - PPC
-  - Campaign Management
-  - Search Advertising
-  - Yelp Ads
-  - Meta Ads
-  - Advertising
-  - Automation
+  - App/Analyze/GoogleAds/Audit
   properties:
   - type: OpenAPI
-    url: openapi/optimyzee-openapi.yml
+    url: openapi/optimyzee-app-analyze-googleads-audit-api-openapi.yml
   - type: Authentication
     url: authentication/optimyzee-authentication.yml
   - type: Conventions
@@ -102,8 +85,708 @@ apis:
     url: errors/optimyzee-problem-types.yml
   - type: DataModel
     url: data-model/optimyzee-data-model.yml
-  - type: Overlay
-    url: overlays/optimyzee-openapi-overlay.yaml
+- aid: optimyzee:optimyzee-app-analyze-googleads-health-api
+  name: Optimyzee App/Analyze/Google Ads/Health API
+  description: App/Analyze/GoogleAds/Health
+  humanURL: https://www.optimyzee.com/
+  baseURL: https://api.optimyzee.com
+  tags:
+  - App/Analyze/GoogleAds/Health
+  properties:
+  - type: OpenAPI
+    url: openapi/optimyzee-app-analyze-googleads-health-api-openapi.yml
+  - type: Authentication
+    url: authentication/optimyzee-authentication.yml
+  - type: Conventions
+    url: conventions/optimyzee-conventions.yml
+  - type: ErrorCatalog
+    url: errors/optimyzee-problem-types.yml
+  - type: DataModel
+    url: data-model/optimyzee-data-model.yml
+- aid: optimyzee:optimyzee-app-analyze-googleads-optimization-api
+  name: Optimyzee App/Analyze/Google Ads/Optimization API
+  description: App/Analyze/GoogleAds/Optimization
+  humanURL: https://www.optimyzee.com/
+  baseURL: https://api.optimyzee.com
+  tags:
+  - App/Analyze/GoogleAds/Optimization
+  properties:
+  - type: OpenAPI
+    url: openapi/optimyzee-app-analyze-googleads-optimization-api-openapi.yml
+  - type: Authentication
+    url: authentication/optimyzee-authentication.yml
+  - type: Conventions
+    url: conventions/optimyzee-conventions.yml
+  - type: ErrorCatalog
+    url: errors/optimyzee-problem-types.yml
+  - type: DataModel
+    url: data-model/optimyzee-data-model.yml
+- aid: optimyzee:optimyzee-app-analyze-googleads-reporting-api
+  name: Optimyzee App/Analyze/Google Ads/Reporting API
+  description: App/Analyze/GoogleAds/Reporting
+  humanURL: https://www.optimyzee.com/
+  baseURL: https://api.optimyzee.com
+  tags:
+  - App/Analyze/GoogleAds/Reporting
+  properties:
+  - type: OpenAPI
+    url: openapi/optimyzee-app-analyze-googleads-reporting-api-openapi.yml
+  - type: Authentication
+    url: authentication/optimyzee-authentication.yml
+  - type: Conventions
+    url: conventions/optimyzee-conventions.yml
+  - type: ErrorCatalog
+    url: errors/optimyzee-problem-types.yml
+  - type: DataModel
+    url: data-model/optimyzee-data-model.yml
+- aid: optimyzee:optimyzee-app-auth-email-api
+  name: Optimyzee App/Auth/Email API
+  description: App/Auth/Email
+  humanURL: https://www.optimyzee.com/
+  baseURL: https://api.optimyzee.com
+  tags:
+  - App/Auth/Email
+  properties:
+  - type: OpenAPI
+    url: openapi/optimyzee-app-auth-email-api-openapi.yml
+  - type: Authentication
+    url: authentication/optimyzee-authentication.yml
+  - type: Conventions
+    url: conventions/optimyzee-conventions.yml
+  - type: ErrorCatalog
+    url: errors/optimyzee-problem-types.yml
+  - type: DataModel
+    url: data-model/optimyzee-data-model.yml
+- aid: optimyzee:optimyzee-app-auth-gateway-api
+  name: Optimyzee App/Auth/Gateway API
+  description: App/Auth/Gateway
+  humanURL: https://www.optimyzee.com/
+  baseURL: https://api.optimyzee.com
+  tags:
+  - App/Auth/Gateway
+  properties:
+  - type: OpenAPI
+    url: openapi/optimyzee-app-auth-gateway-api-openapi.yml
+  - type: Authentication
+    url: authentication/optimyzee-authentication.yml
+  - type: Conventions
+    url: conventions/optimyzee-conventions.yml
+  - type: ErrorCatalog
+    url: errors/optimyzee-problem-types.yml
+  - type: DataModel
+    url: data-model/optimyzee-data-model.yml
+- aid: optimyzee:optimyzee-app-auth-password-api
+  name: Optimyzee App/Auth/Password API
+  description: App/Auth/Password
+  humanURL: https://www.optimyzee.com/
+  baseURL: https://api.optimyzee.com
+  tags:
+  - App/Auth/Password
+  properties:
+  - type: OpenAPI
+    url: openapi/optimyzee-app-auth-password-api-openapi.yml
+  - type: Authentication
+    url: authentication/optimyzee-authentication.yml
+  - type: Conventions
+    url: conventions/optimyzee-conventions.yml
+  - type: ErrorCatalog
+    url: errors/optimyzee-problem-types.yml
+  - type: DataModel
+    url: data-model/optimyzee-data-model.yml
+- aid: optimyzee:optimyzee-app-auth-profile-api
+  name: Optimyzee App/Auth/Profile API
+  description: App/Auth/Profile
+  humanURL: https://www.optimyzee.com/
+  baseURL: https://api.optimyzee.com
+  tags:
+  - App/Auth/Profile
+  properties:
+  - type: OpenAPI
+    url: openapi/optimyzee-app-auth-profile-api-openapi.yml
+  - type: Authentication
+    url: authentication/optimyzee-authentication.yml
+  - type: Conventions
+    url: conventions/optimyzee-conventions.yml
+  - type: ErrorCatalog
+    url: errors/optimyzee-problem-types.yml
+  - type: DataModel
+    url: data-model/optimyzee-data-model.yml
+- aid: optimyzee:optimyzee-app-auth-tfa-api
+  name: Optimyzee App/Auth/Tfa API
+  description: App/Auth/Tfa
+  humanURL: https://www.optimyzee.com/
+  baseURL: https://api.optimyzee.com
+  tags:
+  - App/Auth/Tfa
+  properties:
+  - type: OpenAPI
+    url: openapi/optimyzee-app-auth-tfa-api-openapi.yml
+  - type: Authentication
+    url: authentication/optimyzee-authentication.yml
+  - type: Conventions
+    url: conventions/optimyzee-conventions.yml
+  - type: ErrorCatalog
+    url: errors/optimyzee-problem-types.yml
+  - type: DataModel
+    url: data-model/optimyzee-data-model.yml
+- aid: optimyzee:optimyzee-app-auth-trusteddevice-api
+  name: Optimyzee App/Auth/Trusted Device API
+  description: App/Auth/TrustedDevice
+  humanURL: https://www.optimyzee.com/
+  baseURL: https://api.optimyzee.com
+  tags:
+  - App/Auth/TrustedDevice
+  properties:
+  - type: OpenAPI
+    url: openapi/optimyzee-app-auth-trusteddevice-api-openapi.yml
+  - type: Authentication
+    url: authentication/optimyzee-authentication.yml
+  - type: Conventions
+    url: conventions/optimyzee-conventions.yml
+  - type: ErrorCatalog
+    url: errors/optimyzee-problem-types.yml
+  - type: DataModel
+    url: data-model/optimyzee-data-model.yml
+- aid: optimyzee:optimyzee-app-automation-api
+  name: Optimyzee App Automation API
+  description: App Automation
+  humanURL: https://www.optimyzee.com/
+  baseURL: https://api.optimyzee.com
+  tags:
+  - App Automation
+  properties:
+  - type: OpenAPI
+    url: openapi/optimyzee-app-automation-api-openapi.yml
+  - type: Authentication
+    url: authentication/optimyzee-authentication.yml
+  - type: Conventions
+    url: conventions/optimyzee-conventions.yml
+  - type: ErrorCatalog
+    url: errors/optimyzee-problem-types.yml
+  - type: DataModel
+    url: data-model/optimyzee-data-model.yml
+- aid: optimyzee:optimyzee-app-automations-api
+  name: Optimyzee App Automations API
+  description: App Automations
+  humanURL: https://www.optimyzee.com/
+  baseURL: https://api.optimyzee.com
+  tags:
+  - App Automations
+  properties:
+  - type: OpenAPI
+    url: openapi/optimyzee-app-automations-api-openapi.yml
+  - type: Authentication
+    url: authentication/optimyzee-authentication.yml
+  - type: Conventions
+    url: conventions/optimyzee-conventions.yml
+  - type: ErrorCatalog
+    url: errors/optimyzee-problem-types.yml
+  - type: DataModel
+    url: data-model/optimyzee-data-model.yml
+- aid: optimyzee:optimyzee-app-billing-subscription-api
+  name: Optimyzee App/Billing/Subscription API
+  description: App/Billing/Subscription
+  humanURL: https://www.optimyzee.com/
+  baseURL: https://api.optimyzee.com
+  tags:
+  - App/Billing/Subscription
+  properties:
+  - type: OpenAPI
+    url: openapi/optimyzee-app-billing-subscription-api-openapi.yml
+  - type: Authentication
+    url: authentication/optimyzee-authentication.yml
+  - type: Conventions
+    url: conventions/optimyzee-conventions.yml
+  - type: ErrorCatalog
+    url: errors/optimyzee-problem-types.yml
+  - type: DataModel
+    url: data-model/optimyzee-data-model.yml
+- aid: optimyzee:optimyzee-app-campaign-activity-api
+  name: Optimyzee App/Campaign/Activity API
+  description: App/Campaign/Activity
+  humanURL: https://www.optimyzee.com/
+  baseURL: https://api.optimyzee.com
+  tags:
+  - App/Campaign/Activity
+  properties:
+  - type: OpenAPI
+    url: openapi/optimyzee-app-campaign-activity-api-openapi.yml
+  - type: Authentication
+    url: authentication/optimyzee-authentication.yml
+  - type: Conventions
+    url: conventions/optimyzee-conventions.yml
+  - type: ErrorCatalog
+    url: errors/optimyzee-problem-types.yml
+  - type: DataModel
+    url: data-model/optimyzee-data-model.yml
+- aid: optimyzee:optimyzee-app-campaign-api
+  name: Optimyzee App/Campaign API
+  description: App/Campaign
+  humanURL: https://www.optimyzee.com/
+  baseURL: https://api.optimyzee.com
+  tags:
+  - App/Campaign
+  properties:
+  - type: OpenAPI
+    url: openapi/optimyzee-app-campaign-api-openapi.yml
+  - type: Authentication
+    url: authentication/optimyzee-authentication.yml
+  - type: Conventions
+    url: conventions/optimyzee-conventions.yml
+  - type: ErrorCatalog
+    url: errors/optimyzee-problem-types.yml
+  - type: DataModel
+    url: data-model/optimyzee-data-model.yml
+- aid: optimyzee:optimyzee-app-campaign-googleads-api
+  name: Optimyzee App/Campaign/Google Ads API
+  description: App/Campaign/GoogleAds
+  humanURL: https://www.optimyzee.com/
+  baseURL: https://api.optimyzee.com
+  tags:
+  - App/Campaign/GoogleAds
+  properties:
+  - type: OpenAPI
+    url: openapi/optimyzee-app-campaign-googleads-api-openapi.yml
+  - type: Authentication
+    url: authentication/optimyzee-authentication.yml
+  - type: Conventions
+    url: conventions/optimyzee-conventions.yml
+  - type: ErrorCatalog
+    url: errors/optimyzee-problem-types.yml
+  - type: DataModel
+    url: data-model/optimyzee-data-model.yml
+- aid: optimyzee:optimyzee-app-create-googleads-keywordplanner-api
+  name: Optimyzee App/Create/Google Ads/Keyword Planner API
+  description: App/Create/GoogleAds/KeywordPlanner
+  humanURL: https://www.optimyzee.com/
+  baseURL: https://api.optimyzee.com
+  tags:
+  - App/Create/GoogleAds/KeywordPlanner
+  properties:
+  - type: OpenAPI
+    url: openapi/optimyzee-app-create-googleads-keywordplanner-api-openapi.yml
+  - type: Authentication
+    url: authentication/optimyzee-authentication.yml
+  - type: Conventions
+    url: conventions/optimyzee-conventions.yml
+  - type: ErrorCatalog
+    url: errors/optimyzee-problem-types.yml
+  - type: DataModel
+    url: data-model/optimyzee-data-model.yml
+- aid: optimyzee:optimyzee-app-create-googleads-rsabuilder-api
+  name: Optimyzee App/Create/Google Ads/Rsa Builder API
+  description: App/Create/GoogleAds/RsaBuilder
+  humanURL: https://www.optimyzee.com/
+  baseURL: https://api.optimyzee.com
+  tags:
+  - App/Create/GoogleAds/RsaBuilder
+  properties:
+  - type: OpenAPI
+    url: openapi/optimyzee-app-create-googleads-rsabuilder-api-openapi.yml
+  - type: Authentication
+    url: authentication/optimyzee-authentication.yml
+  - type: Conventions
+    url: conventions/optimyzee-conventions.yml
+  - type: ErrorCatalog
+    url: errors/optimyzee-problem-types.yml
+  - type: DataModel
+    url: data-model/optimyzee-data-model.yml
+- aid: optimyzee:optimyzee-app-create-googleads-searchcreation-api
+  name: Optimyzee App/Create/Google Ads/Search Creation API
+  description: App/Create/GoogleAds/SearchCreation
+  humanURL: https://www.optimyzee.com/
+  baseURL: https://api.optimyzee.com
+  tags:
+  - App/Create/GoogleAds/SearchCreation
+  properties:
+  - type: OpenAPI
+    url: openapi/optimyzee-app-create-googleads-searchcreation-api-openapi.yml
+  - type: Authentication
+    url: authentication/optimyzee-authentication.yml
+  - type: Conventions
+    url: conventions/optimyzee-conventions.yml
+  - type: ErrorCatalog
+    url: errors/optimyzee-problem-types.yml
+  - type: DataModel
+    url: data-model/optimyzee-data-model.yml
+- aid: optimyzee:optimyzee-app-create-googleads-searchcreationai-api
+  name: Optimyzee App/Create/Google Ads/Search Creation AI API
+  description: App/Create/GoogleAds/SearchCreationAi
+  humanURL: https://www.optimyzee.com/
+  baseURL: https://api.optimyzee.com
+  tags:
+  - App/Create/GoogleAds/SearchCreationAi
+  properties:
+  - type: OpenAPI
+    url: openapi/optimyzee-app-create-googleads-searchcreationai-api-openapi.yml
+  - type: Authentication
+    url: authentication/optimyzee-authentication.yml
+  - type: Conventions
+    url: conventions/optimyzee-conventions.yml
+  - type: ErrorCatalog
+    url: errors/optimyzee-problem-types.yml
+  - type: DataModel
+    url: data-model/optimyzee-data-model.yml
+- aid: optimyzee:optimyzee-app-create-googleads-sitelinkbuilder-api
+  name: Optimyzee App/Create/Google Ads/Sitelink Builder API
+  description: App/Create/GoogleAds/SitelinkBuilder
+  humanURL: https://www.optimyzee.com/
+  baseURL: https://api.optimyzee.com
+  tags:
+  - App/Create/GoogleAds/SitelinkBuilder
+  properties:
+  - type: OpenAPI
+    url: openapi/optimyzee-app-create-googleads-sitelinkbuilder-api-openapi.yml
+  - type: Authentication
+    url: authentication/optimyzee-authentication.yml
+  - type: Conventions
+    url: conventions/optimyzee-conventions.yml
+  - type: ErrorCatalog
+    url: errors/optimyzee-problem-types.yml
+  - type: DataModel
+    url: data-model/optimyzee-data-model.yml
+- aid: optimyzee:optimyzee-app-freelimit-api
+  name: Optimyzee App/Free Limit API
+  description: App/FreeLimit
+  humanURL: https://www.optimyzee.com/
+  baseURL: https://api.optimyzee.com
+  tags:
+  - App/FreeLimit
+  properties:
+  - type: OpenAPI
+    url: openapi/optimyzee-app-freelimit-api-openapi.yml
+  - type: Authentication
+    url: authentication/optimyzee-authentication.yml
+  - type: Conventions
+    url: conventions/optimyzee-conventions.yml
+  - type: ErrorCatalog
+    url: errors/optimyzee-problem-types.yml
+  - type: DataModel
+    url: data-model/optimyzee-data-model.yml
+- aid: optimyzee:optimyzee-app-linking-googleads-api
+  name: Optimyzee App/Linking/Google Ads API
+  description: App/Linking/GoogleAds
+  humanURL: https://www.optimyzee.com/
+  baseURL: https://api.optimyzee.com
+  tags:
+  - App/Linking/GoogleAds
+  properties:
+  - type: OpenAPI
+    url: openapi/optimyzee-app-linking-googleads-api-openapi.yml
+  - type: Authentication
+    url: authentication/optimyzee-authentication.yml
+  - type: Conventions
+    url: conventions/optimyzee-conventions.yml
+  - type: ErrorCatalog
+    url: errors/optimyzee-problem-types.yml
+  - type: DataModel
+    url: data-model/optimyzee-data-model.yml
+- aid: optimyzee:optimyzee-app-linking-meta-api
+  name: Optimyzee App/Linking/Meta API
+  description: App/Linking/Meta
+  humanURL: https://www.optimyzee.com/
+  baseURL: https://api.optimyzee.com
+  tags:
+  - App/Linking/Meta
+  properties:
+  - type: OpenAPI
+    url: openapi/optimyzee-app-linking-meta-api-openapi.yml
+  - type: Authentication
+    url: authentication/optimyzee-authentication.yml
+  - type: Conventions
+    url: conventions/optimyzee-conventions.yml
+  - type: ErrorCatalog
+    url: errors/optimyzee-problem-types.yml
+  - type: DataModel
+    url: data-model/optimyzee-data-model.yml
+- aid: optimyzee:optimyzee-app-lookup-googleads-campaign-api
+  name: Optimyzee App/Lookup/Google Ads/Campaign API
+  description: App/Lookup/GoogleAds/Campaign
+  humanURL: https://www.optimyzee.com/
+  baseURL: https://api.optimyzee.com
+  tags:
+  - App/Lookup/GoogleAds/Campaign
+  properties:
+  - type: OpenAPI
+    url: openapi/optimyzee-app-lookup-googleads-campaign-api-openapi.yml
+  - type: Authentication
+    url: authentication/optimyzee-authentication.yml
+  - type: Conventions
+    url: conventions/optimyzee-conventions.yml
+  - type: ErrorCatalog
+    url: errors/optimyzee-problem-types.yml
+  - type: DataModel
+    url: data-model/optimyzee-data-model.yml
+- aid: optimyzee:optimyzee-app-lookup-googleads-geotargetconstant-api
+  name: Optimyzee App/Lookup/Google Ads/Geo Target Constant API
+  description: App/Lookup/GoogleAds/GeoTargetConstant
+  humanURL: https://www.optimyzee.com/
+  baseURL: https://api.optimyzee.com
+  tags:
+  - App/Lookup/GoogleAds/GeoTargetConstant
+  properties:
+  - type: OpenAPI
+    url: openapi/optimyzee-app-lookup-googleads-geotargetconstant-api-openapi.yml
+  - type: Authentication
+    url: authentication/optimyzee-authentication.yml
+  - type: Conventions
+    url: conventions/optimyzee-conventions.yml
+  - type: ErrorCatalog
+    url: errors/optimyzee-problem-types.yml
+  - type: DataModel
+    url: data-model/optimyzee-data-model.yml
+- aid: optimyzee:optimyzee-app-lookup-googleads-languageconstant-api
+  name: Optimyzee App/Lookup/Google Ads/Language Constant API
+  description: App/Lookup/GoogleAds/LanguageConstant
+  humanURL: https://www.optimyzee.com/
+  baseURL: https://api.optimyzee.com
+  tags:
+  - App/Lookup/GoogleAds/LanguageConstant
+  properties:
+  - type: OpenAPI
+    url: openapi/optimyzee-app-lookup-googleads-languageconstant-api-openapi.yml
+  - type: Authentication
+    url: authentication/optimyzee-authentication.yml
+  - type: Conventions
+    url: conventions/optimyzee-conventions.yml
+  - type: ErrorCatalog
+    url: errors/optimyzee-problem-types.yml
+  - type: DataModel
+    url: data-model/optimyzee-data-model.yml
+- aid: optimyzee:optimyzee-app-lookup-googleads-merchantcenter-api
+  name: Optimyzee App/Lookup/Google Ads/Merchant Center API
+  description: App/Lookup/GoogleAds/MerchantCenter
+  humanURL: https://www.optimyzee.com/
+  baseURL: https://api.optimyzee.com
+  tags:
+  - App/Lookup/GoogleAds/MerchantCenter
+  properties:
+  - type: OpenAPI
+    url: openapi/optimyzee-app-lookup-googleads-merchantcenter-api-openapi.yml
+  - type: Authentication
+    url: authentication/optimyzee-authentication.yml
+  - type: Conventions
+    url: conventions/optimyzee-conventions.yml
+  - type: ErrorCatalog
+    url: errors/optimyzee-problem-types.yml
+  - type: DataModel
+    url: data-model/optimyzee-data-model.yml
+- aid: optimyzee:optimyzee-app-recommendation-api
+  name: Optimyzee App Recommendation API
+  description: App Recommendation
+  humanURL: https://www.optimyzee.com/
+  baseURL: https://api.optimyzee.com
+  tags:
+  - App Recommendation
+  properties:
+  - type: OpenAPI
+    url: openapi/optimyzee-app-recommendation-api-openapi.yml
+  - type: Authentication
+    url: authentication/optimyzee-authentication.yml
+  - type: Conventions
+    url: conventions/optimyzee-conventions.yml
+  - type: ErrorCatalog
+    url: errors/optimyzee-problem-types.yml
+  - type: DataModel
+    url: data-model/optimyzee-data-model.yml
+- aid: optimyzee:optimyzee-app-signal-api
+  name: Optimyzee App Signal API
+  description: App Signal
+  humanURL: https://www.optimyzee.com/
+  baseURL: https://api.optimyzee.com
+  tags:
+  - App Signal
+  properties:
+  - type: OpenAPI
+    url: openapi/optimyzee-app-signal-api-openapi.yml
+  - type: Authentication
+    url: authentication/optimyzee-authentication.yml
+  - type: Conventions
+    url: conventions/optimyzee-conventions.yml
+  - type: ErrorCatalog
+    url: errors/optimyzee-problem-types.yml
+  - type: DataModel
+    url: data-model/optimyzee-data-model.yml
+- aid: optimyzee:optimyzee-app-support-api
+  name: Optimyzee App/Support API
+  description: App/Support
+  humanURL: https://www.optimyzee.com/
+  baseURL: https://api.optimyzee.com
+  tags:
+  - App/Support
+  properties:
+  - type: OpenAPI
+    url: openapi/optimyzee-app-support-api-openapi.yml
+  - type: Authentication
+    url: authentication/optimyzee-authentication.yml
+  - type: Conventions
+    url: conventions/optimyzee-conventions.yml
+  - type: ErrorCatalog
+    url: errors/optimyzee-problem-types.yml
+  - type: DataModel
+    url: data-model/optimyzee-data-model.yml
+- aid: optimyzee:optimyzee-app-yelp-api
+  name: Optimyzee App Yelp API
+  description: App Yelp
+  humanURL: https://www.optimyzee.com/
+  baseURL: https://api.optimyzee.com
+  tags:
+  - App Yelp
+  properties:
+  - type: OpenAPI
+    url: openapi/optimyzee-app-yelp-api-openapi.yml
+  - type: Authentication
+    url: authentication/optimyzee-authentication.yml
+  - type: Conventions
+    url: conventions/optimyzee-conventions.yml
+  - type: ErrorCatalog
+    url: errors/optimyzee-problem-types.yml
+  - type: DataModel
+    url: data-model/optimyzee-data-model.yml
+- aid: optimyzee:optimyzee-operations-admin-api
+  name: Optimyzee Operations/Admin API
+  description: Operations/Admin
+  humanURL: https://www.optimyzee.com/
+  baseURL: https://api.optimyzee.com
+  tags:
+  - Operations/Admin
+  properties:
+  - type: OpenAPI
+    url: openapi/optimyzee-operations-admin-api-openapi.yml
+  - type: Authentication
+    url: authentication/optimyzee-authentication.yml
+  - type: Conventions
+    url: conventions/optimyzee-conventions.yml
+  - type: ErrorCatalog
+    url: errors/optimyzee-problem-types.yml
+  - type: DataModel
+    url: data-model/optimyzee-data-model.yml
+- aid: optimyzee:optimyzee-operations-auth-gateway-api
+  name: Optimyzee Operations/Auth/Gateway API
+  description: Operations/Auth/Gateway
+  humanURL: https://www.optimyzee.com/
+  baseURL: https://api.optimyzee.com
+  tags:
+  - Operations/Auth/Gateway
+  properties:
+  - type: OpenAPI
+    url: openapi/optimyzee-operations-auth-gateway-api-openapi.yml
+  - type: Authentication
+    url: authentication/optimyzee-authentication.yml
+  - type: Conventions
+    url: conventions/optimyzee-conventions.yml
+  - type: ErrorCatalog
+    url: errors/optimyzee-problem-types.yml
+  - type: DataModel
+    url: data-model/optimyzee-data-model.yml
+- aid: optimyzee:optimyzee-operations-auth-profile-api
+  name: Optimyzee Operations/Auth/Profile API
+  description: Operations/Auth/Profile
+  humanURL: https://www.optimyzee.com/
+  baseURL: https://api.optimyzee.com
+  tags:
+  - Operations/Auth/Profile
+  properties:
+  - type: OpenAPI
+    url: openapi/optimyzee-operations-auth-profile-api-openapi.yml
+  - type: Authentication
+    url: authentication/optimyzee-authentication.yml
+  - type: Conventions
+    url: conventions/optimyzee-conventions.yml
+  - type: ErrorCatalog
+    url: errors/optimyzee-problem-types.yml
+  - type: DataModel
+    url: data-model/optimyzee-data-model.yml
+- aid: optimyzee:optimyzee-operations-billing-subscription-api
+  name: Optimyzee Operations/Billing/Subscription API
+  description: Operations/Billing/Subscription
+  humanURL: https://www.optimyzee.com/
+  baseURL: https://api.optimyzee.com
+  tags:
+  - Operations/Billing/Subscription
+  properties:
+  - type: OpenAPI
+    url: openapi/optimyzee-operations-billing-subscription-api-openapi.yml
+  - type: Authentication
+    url: authentication/optimyzee-authentication.yml
+  - type: Conventions
+    url: conventions/optimyzee-conventions.yml
+  - type: ErrorCatalog
+    url: errors/optimyzee-problem-types.yml
+  - type: DataModel
+    url: data-model/optimyzee-data-model.yml
+- aid: optimyzee:optimyzee-operations-campaign-api
+  name: Optimyzee Operations/Campaign API
+  description: Operations/Campaign
+  humanURL: https://www.optimyzee.com/
+  baseURL: https://api.optimyzee.com
+  tags:
+  - Operations/Campaign
+  properties:
+  - type: OpenAPI
+    url: openapi/optimyzee-operations-campaign-api-openapi.yml
+  - type: Authentication
+    url: authentication/optimyzee-authentication.yml
+  - type: Conventions
+    url: conventions/optimyzee-conventions.yml
+  - type: ErrorCatalog
+    url: errors/optimyzee-problem-types.yml
+  - type: DataModel
+    url: data-model/optimyzee-data-model.yml
+- aid: optimyzee:optimyzee-operations-campaign-log-api
+  name: Optimyzee Operations/Campaign/Log API
+  description: Operations/Campaign/Log
+  humanURL: https://www.optimyzee.com/
+  baseURL: https://api.optimyzee.com
+  tags:
+  - Operations/Campaign/Log
+  properties:
+  - type: OpenAPI
+    url: openapi/optimyzee-operations-campaign-log-api-openapi.yml
+  - type: Authentication
+    url: authentication/optimyzee-authentication.yml
+  - type: Conventions
+    url: conventions/optimyzee-conventions.yml
+  - type: ErrorCatalog
+    url: errors/optimyzee-problem-types.yml
+  - type: DataModel
+    url: data-model/optimyzee-data-model.yml
+- aid: optimyzee:optimyzee-operations-campaign-task-api
+  name: Optimyzee Operations/Campaign/Task API
+  description: Operations/Campaign/Task
+  humanURL: https://www.optimyzee.com/
+  baseURL: https://api.optimyzee.com
+  tags:
+  - Operations/Campaign/Task
+  properties:
+  - type: OpenAPI
+    url: openapi/optimyzee-operations-campaign-task-api-openapi.yml
+  - type: Authentication
+    url: authentication/optimyzee-authentication.yml
+  - type: Conventions
+    url: conventions/optimyzee-conventions.yml
+  - type: ErrorCatalog
+    url: errors/optimyzee-problem-types.yml
+  - type: DataModel
+    url: data-model/optimyzee-data-model.yml
+- aid: optimyzee:optimyzee-operations-user-api
+  name: Optimyzee Operations/User API
+  description: Operations/User
+  humanURL: https://www.optimyzee.com/
+  baseURL: https://api.optimyzee.com
+  tags:
+  - Operations/User
+  properties:
+  - type: OpenAPI
+    url: openapi/optimyzee-operations-user-api-openapi.yml
+  - type: Authentication
+    url: authentication/optimyzee-authentication.yml
+  - type: Conventions
+    url: conventions/optimyzee-conventions.yml
+  - type: ErrorCatalog
+    url: errors/optimyzee-problem-types.yml
+  - type: DataModel
+    url: data-model/optimyzee-data-model.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
