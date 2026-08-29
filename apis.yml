@@ -20,6 +20,18 @@ x-backed-by:
 - 500-global
 x-tier: enriched
 x-tier-reason: openapi-harvested
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
@@ -793,6 +805,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/optimyzee-capability-edges.yml
+  name: Optimyzee Business Capability Map
 - type: DomainSecurity
   url: security/optimyzee-domain-security.yml
 - type: Website
