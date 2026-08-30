@@ -1,0 +1,113 @@
+openapi: 3.2.0
+info:
+  title: Optimyzee Application App/Lookup/Google Ads/Geo Target Constant API
+  version: 4.1.0
+  x-original-title: API
+  description: App/Lookup/GoogleAds/GeoTargetConstant
+servers:
+- url: https://api.optimyzee.com
+  description: Production (host serving this document at /docs)
+tags:
+- name: App/Lookup/GoogleAds/GeoTargetConstant
+  description: App/Lookup/GoogleAds/GeoTargetConstant
+paths:
+  /app/lookup/g/geoTargetConstant:
+    get:
+      tags:
+      - App/Lookup/GoogleAds/GeoTargetConstant
+      operationId: appLookupGoogleAdsGeoTargetConstantQuery
+      parameters:
+      - name: q
+        in: query
+        schema:
+          type: string
+      - name: ids
+        in: query
+        schema:
+          type: array
+          items:
+            type: integer
+      - name: resourceNames
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AppLookupGoogleAdsGeoTargetConstantSchema'
+                type: object
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+components:
+  schemas:
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
+    AppLookupGoogleAdsGeoTargetConstantSchema:
+      required:
+      - id
+      - resourceName
+      - name
+      - canonicalName
+      - countryCode
+      - targetType
+      properties:
+        id:
+          type: integer
+        resourceName:
+          type: string
+        name:
+          type: string
+        canonicalName:
+          type: string
+        countryCode:
+          type: string
+        targetType:
+          type: string
+      type: object
+    ErrorBagSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      type: object
+  securitySchemes:
+    token:
+      type: apiKey
+      description: Bearer token authorization
+      name: authorization
+      in: header

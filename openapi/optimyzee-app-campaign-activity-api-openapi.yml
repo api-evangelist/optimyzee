@@ -1,0 +1,289 @@
+openapi: 3.2.0
+info:
+  title: Optimyzee Application App/Campaign/Activity API
+  version: 4.1.0
+  x-original-title: API
+  description: App/Campaign/Activity
+servers:
+- url: https://api.optimyzee.com
+  description: Production (host serving this document at /docs)
+tags:
+- name: App/Campaign/Activity
+  description: App/Campaign/Activity
+paths:
+  /app/campaign/activity/apply/{taskId}:
+    post:
+      tags:
+      - App/Campaign/Activity
+      operationId: appCampaignActivityApply
+      parameters:
+      - name: taskId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Successful
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/campaign/activity/dismiss/{taskId}:
+    post:
+      tags:
+      - App/Campaign/Activity
+      operationId: appCampaignActivityDismiss
+      parameters:
+      - name: taskId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - message
+              properties:
+                message:
+                  type: string
+              type: object
+      responses:
+        '204':
+          description: Successful
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/campaign/activity/{campaignId}:
+    get:
+      tags:
+      - App/Campaign/Activity
+      operationId: appCampaignActivityQuery
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: statuses
+        in: query
+        schema:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            enum:
+            - DRAFT
+            - RECOMMENDATION
+            - BLOCKED
+            - PENDING
+            - PROCESSING
+            - DONE
+            - GOAL
+      - name: cursor
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - items
+                - perPage
+                - next
+                - previous
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AppCampaignActivityTaskSchema'
+                  perPage:
+                    type: integer
+                  previous:
+                    type:
+                    - string
+                    - 'null'
+                  next:
+                    type:
+                    - string
+                    - 'null'
+                type: object
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+components:
+  schemas:
+    AppCampaignActivityLogSchema:
+      required:
+      - id
+      - message
+      - createdAt
+      properties:
+        id:
+          type: integer
+        message:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+      type: object
+    AppCampaignActivityTaskSchema:
+      required:
+      - id
+      - campaignId
+      - parentId
+      - title
+      - description
+      - status
+      - startedAt
+      - finishedAt
+      - logs
+      - subtasks
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        description:
+          type:
+          - string
+          - 'null'
+        status:
+          type: string
+          enum:
+          - DRAFT
+          - RECOMMENDATION
+          - BLOCKED
+          - PENDING
+          - PROCESSING
+          - DONE
+          - GOAL
+        startedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        finishedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        logs:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppCampaignActivityLogSchema'
+        subtasks:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppCampaignActivitySubtaskSchema'
+      type: object
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
+    AppCampaignActivitySubtaskSchema:
+      required:
+      - id
+      - title
+      - description
+      - status
+      - startedAt
+      - finishedAt
+      - logs
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        description:
+          type:
+          - string
+          - 'null'
+        status:
+          type: string
+          enum:
+          - DRAFT
+          - RECOMMENDATION
+          - BLOCKED
+          - PENDING
+          - PROCESSING
+          - DONE
+          - GOAL
+        startedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        finishedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        logs:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppCampaignActivityLogSchema'
+      type: object
+    ErrorBagSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      type: object
+  securitySchemes:
+    token:
+      type: apiKey
+      description: Bearer token authorization
+      name: authorization
+      in: header

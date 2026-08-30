@@ -1,0 +1,291 @@
+openapi: 3.2.0
+info:
+  title: Optimyzee Application App/Campaign API
+  version: 4.1.0
+  x-original-title: API
+  description: App/Campaign
+servers:
+- url: https://api.optimyzee.com
+  description: Production (host serving this document at /docs)
+tags:
+- name: App/Campaign
+  description: App/Campaign
+paths:
+  /app/campaign/{campaignId}/activate:
+    post:
+      tags:
+      - App/Campaign
+      operationId: appCampaignActivate
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Successful
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/campaign/{campaignId}:
+    get:
+      tags:
+      - App/Campaign
+      operationId: appCampaignView
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/AppCampaignSchema'
+                type: object
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+    delete:
+      tags:
+      - App/Campaign
+      operationId: appCampaignDelete
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Successful
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/campaign/{campaignId}/optimization:
+    post:
+      tags:
+      - App/Campaign
+      operationId: appCampaignOptimization
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - message
+              properties:
+                message:
+                  type: string
+              type: object
+      responses:
+        '204':
+          description: Successful
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/campaign/{campaignId}/pause:
+    post:
+      tags:
+      - App/Campaign
+      operationId: appCampaignPause
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Successful
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/campaign:
+    get:
+      tags:
+      - App/Campaign
+      operationId: appCampaignQuery
+      parameters:
+      - name: googleAdsLinkingId
+        in: query
+        schema:
+          type: integer
+      - name: googleAdsCampaignId
+        in: query
+        schema:
+          type: integer
+      - name: perPage
+        in: query
+        schema:
+          type: integer
+      - name: cursor
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - items
+                - perPage
+                - next
+                - previous
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AppCampaignSchema'
+                  perPage:
+                    type: integer
+                  previous:
+                    type:
+                    - string
+                    - 'null'
+                  next:
+                    type:
+                    - string
+                    - 'null'
+                type: object
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+components:
+  schemas:
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
+    AppCampaignSchema:
+      required:
+      - id
+      - name
+      - channel
+      - status
+      - analyzing
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        channel:
+          type: string
+          enum:
+          - GOOGLE_ADS
+        status:
+          type: string
+          enum:
+          - ACCESS_PENDING_REQUEST
+          - ACCESS_PENDING_GRANT
+          - ACTIVE
+          - PAUSED
+        analyzing:
+          type: boolean
+      type: object
+    ErrorBagSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      type: object
+  securitySchemes:
+    token:
+      type: apiKey
+      description: Bearer token authorization
+      name: authorization
+      in: header

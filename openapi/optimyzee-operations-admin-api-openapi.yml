@@ -1,0 +1,342 @@
+openapi: 3.2.0
+info:
+  title: Optimyzee Application Operations/Admin API
+  version: 4.1.0
+  x-original-title: API
+  description: Operations/Admin
+servers:
+- url: https://api.optimyzee.com
+  description: Production (host serving this document at /docs)
+tags:
+- name: Operations/Admin
+  description: Operations/Admin
+paths:
+  /operations/admin:
+    get:
+      tags:
+      - Operations/Admin
+      operationId: operationsAdminQuery
+      parameters:
+      - name: q
+        in: query
+        schema:
+          type:
+          - string
+          - 'null'
+      - name: permissions
+        in: query
+        schema:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            enum:
+            - MANAGE_USERS
+            - MANAGE_BILLING_SUBSCRIPTIONS
+            - MANAGE_CAMPAIGNS
+            - MANAGE_ADMINS
+      - name: perPage
+        in: query
+        schema:
+          type: integer
+      - name: cursor
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - items
+                - perPage
+                - next
+                - previous
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/OperationsAdminSchema'
+                  perPage:
+                    type: integer
+                  previous:
+                    type:
+                    - string
+                    - 'null'
+                  next:
+                    type:
+                    - string
+                    - 'null'
+                type: object
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+    post:
+      tags:
+      - Operations/Admin
+      operationId: operationsAdminCreate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - email
+              - name
+              - permissions
+              properties:
+                email:
+                  type: string
+                name:
+                  type: string
+                permissions:
+                  type: array
+                  items:
+                    type: string
+                    enum:
+                    - MANAGE_USERS
+                    - MANAGE_BILLING_SUBSCRIPTIONS
+                    - MANAGE_CAMPAIGNS
+                    - MANAGE_ADMINS
+              type: object
+      responses:
+        '201':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdSchema'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+  /operations/admin/{adminId}:
+    get:
+      tags:
+      - Operations/Admin
+      operationId: operationsAdminView
+      parameters:
+      - name: adminId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/OperationsAdminSchema'
+                type: object
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+    put:
+      tags:
+      - Operations/Admin
+      operationId: operationsAdminUpdate
+      parameters:
+      - name: adminId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - name
+              - permissions
+              properties:
+                name:
+                  type: string
+                permissions:
+                  type: array
+                  items:
+                    type: string
+                    enum:
+                    - MANAGE_USERS
+                    - MANAGE_BILLING_SUBSCRIPTIONS
+                    - MANAGE_CAMPAIGNS
+                    - MANAGE_ADMINS
+              type: object
+      responses:
+        '204':
+          description: Successful
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+    delete:
+      tags:
+      - Operations/Admin
+      operationId: operationsAdminDelete
+      parameters:
+      - name: adminId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Successful
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+  /operations/admin/{adminId}/reset:
+    post:
+      tags:
+      - Operations/Admin
+      operationId: operationsAdminReset
+      parameters:
+      - name: adminId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Successful
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+components:
+  schemas:
+    OperationsAdminSchema:
+      required:
+      - id
+      - email
+      - name
+      - permissions
+      properties:
+        id:
+          type: integer
+        email:
+          type: string
+        name:
+          type: string
+        permissions:
+          type: array
+          items:
+            type: string
+            enum:
+            - MANAGE_USERS
+            - MANAGE_BILLING_SUBSCRIPTIONS
+            - MANAGE_CAMPAIGNS
+            - MANAGE_ADMINS
+      type: object
+    IdSchema:
+      required:
+      - id
+      properties:
+        id:
+          type: integer
+      type: object
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
+    ErrorBagSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      type: object
+  securitySchemes:
+    token:
+      type: apiKey
+      description: Bearer token authorization
+      name: authorization
+      in: header

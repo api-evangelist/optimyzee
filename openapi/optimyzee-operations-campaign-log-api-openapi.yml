@@ -1,0 +1,294 @@
+openapi: 3.2.0
+info:
+  title: Optimyzee Application Operations/Campaign/Log API
+  version: 4.1.0
+  x-original-title: API
+  description: Operations/Campaign/Log
+servers:
+- url: https://api.optimyzee.com
+  description: Production (host serving this document at /docs)
+tags:
+- name: Operations/Campaign/Log
+  description: Operations/Campaign/Log
+paths:
+  /operations/campaign/log:
+    get:
+      tags:
+      - Operations/Campaign/Log
+      operationId: operationsCampaignLogQuery
+      parameters:
+      - name: campaignId
+        in: query
+        schema:
+          type: integer
+      - name: taskId
+        in: query
+        schema:
+          type: integer
+      - name: perPage
+        in: query
+        schema:
+          type: integer
+      - name: cursor
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - items
+                - perPage
+                - next
+                - previous
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/OperationsCampaignLogSchema'
+                  perPage:
+                    type: integer
+                  previous:
+                    type:
+                    - string
+                    - 'null'
+                  next:
+                    type:
+                    - string
+                    - 'null'
+                type: object
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+    post:
+      tags:
+      - Operations/Campaign/Log
+      operationId: operationsCampaignLogCreate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - taskId
+              - message
+              - createdAt
+              properties:
+                taskId:
+                  type: integer
+                message:
+                  type: string
+                createdAt:
+                  type: string
+                  format: date-time
+              type: object
+      responses:
+        '201':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdSchema'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+  /operations/campaign/log/{logId}:
+    get:
+      tags:
+      - Operations/Campaign/Log
+      operationId: operationsCampaignLogView
+      parameters:
+      - name: logId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/OperationsCampaignLogSchema'
+                type: object
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+    put:
+      tags:
+      - Operations/Campaign/Log
+      operationId: operationsCampaignLogUpdate
+      parameters:
+      - name: logId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - taskId
+              - message
+              - createdAt
+              properties:
+                taskId:
+                  type: integer
+                message:
+                  type: string
+                createdAt:
+                  type: string
+                  format: date-time
+              type: object
+      responses:
+        '204':
+          description: Successful
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+    delete:
+      tags:
+      - Operations/Campaign/Log
+      operationId: operationsCampaignLogDelete
+      parameters:
+      - name: logId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Successful
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+components:
+  schemas:
+    IdSchema:
+      required:
+      - id
+      properties:
+        id:
+          type: integer
+      type: object
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
+    OperationsCampaignLogSchema:
+      required:
+      - id
+      - taskId
+      - message
+      - createdAt
+      properties:
+        id:
+          type: integer
+        taskId:
+          type: integer
+        message:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+      type: object
+    ErrorBagSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      type: object
+  securitySchemes:
+    token:
+      type: apiKey
+      description: Bearer token authorization
+      name: authorization
+      in: header

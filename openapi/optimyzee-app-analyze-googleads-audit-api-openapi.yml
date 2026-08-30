@@ -1,0 +1,220 @@
+openapi: 3.2.0
+info:
+  title: Optimyzee Application App/Analyze/Google Ads/Audit API
+  version: 4.1.0
+  x-original-title: API
+  description: App/Analyze/GoogleAds/Audit
+servers:
+- url: https://api.optimyzee.com
+  description: Production (host serving this document at /docs)
+tags:
+- name: App/Analyze/GoogleAds/Audit
+  description: App/Analyze/GoogleAds/Audit
+paths:
+  /app/analyze/g/audit:
+    post:
+      tags:
+      - App/Analyze/GoogleAds/Audit
+      operationId: appAnalyzeGoogleAdsAuditQueue
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              required:
+              - linkingId
+              - campaignId
+              - scope
+              properties:
+                linkingId:
+                  type: integer
+                campaignId:
+                  type: integer
+                scope:
+                  type: string
+                  enum:
+                  - CAMPAIGN
+                  - SEARCH_ADS
+                  - SEARCH_KEYWORDS
+                  - SEARCH_TERMS
+                  - P_MAX
+              type: object
+      responses:
+        '201':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdSchema'
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/analyze/g/audit/{auditId}:
+    get:
+      tags:
+      - App/Analyze/GoogleAds/Audit
+      operationId: appAnalyzeGoogleAdsAuditView
+      parameters:
+      - name: auditId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/AppAnalyzeGoogleAdsAuditSchema'
+                type: object
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+components:
+  schemas:
+    AppAnalyzeGoogleAdsAuditResultSchema:
+      required:
+      - id
+      - status
+      - title
+      - description
+      - scoreValue
+      - scoreMaxValue
+      - category
+      - details
+      properties:
+        id:
+          type: integer
+        status:
+          type: string
+          enum:
+          - PASSED
+          - FAILED
+          - WARNING
+          - ERROR
+        title:
+          type: string
+        description:
+          type:
+          - string
+          - 'null'
+        scoreValue:
+          type: integer
+        scoreMaxValue:
+          type: integer
+        category:
+          type:
+          - string
+          - 'null'
+        summary:
+          type:
+          - string
+          - 'null'
+        details:
+          type:
+          - array
+          - 'null'
+          items:
+            type: object
+            additionalProperties: {}
+      type: object
+    IdSchema:
+      required:
+      - id
+      properties:
+        id:
+          type: integer
+      type: object
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
+    AppAnalyzeGoogleAdsAuditSchema:
+      required:
+      - id
+      - name
+      - linkingId
+      - linkingCustomerId
+      - linkingName
+      - campaignId
+      - status
+      - auditedAt
+      - results
+      properties:
+        id:
+          type: integer
+        linkingId:
+          type: integer
+        linkingCustomerId:
+          type: integer
+        linkingName:
+          type: string
+        campaignId:
+          type: integer
+        campaignName:
+          type:
+          - string
+          - 'null'
+        status:
+          type: string
+          enum:
+          - QUEUED
+          - PROCESSING
+          - SUCCESSFUL
+        scope:
+          type: string
+          enum:
+          - CAMPAIGN
+          - SEARCH_ADS
+          - SEARCH_KEYWORDS
+          - SEARCH_TERMS
+          - P_MAX
+        auditedAt:
+          type:
+          - string
+          - 'null'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppAnalyzeGoogleAdsAuditResultSchema'
+      type: object
+  securitySchemes:
+    token:
+      type: apiKey
+      description: Bearer token authorization
+      name: authorization
+      in: header

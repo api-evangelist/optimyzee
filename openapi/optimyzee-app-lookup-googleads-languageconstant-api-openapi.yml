@@ -1,0 +1,70 @@
+openapi: 3.2.0
+info:
+  title: Optimyzee Application App/Lookup/Google Ads/Language Constant API
+  version: 4.1.0
+  x-original-title: API
+  description: App/Lookup/GoogleAds/LanguageConstant
+servers:
+- url: https://api.optimyzee.com
+  description: Production (host serving this document at /docs)
+tags:
+- name: App/Lookup/GoogleAds/LanguageConstant
+  description: App/Lookup/GoogleAds/LanguageConstant
+paths:
+  /app/lookup/g/languageConstant:
+    get:
+      tags:
+      - App/Lookup/GoogleAds/LanguageConstant
+      operationId: appLookupGoogleAdsLanguageConstantQuery
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AppLookupGoogleAdsLanguageConstantSchema'
+                type: object
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+components:
+  schemas:
+    AppLookupGoogleAdsLanguageConstantSchema:
+      required:
+      - id
+      - code
+      - name
+      properties:
+        id:
+          type: integer
+        code:
+          type: string
+        name:
+          type: string
+      type: object
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
+  securitySchemes:
+    token:
+      type: apiKey
+      description: Bearer token authorization
+      name: authorization
+      in: header

@@ -1,0 +1,77 @@
+openapi: 3.2.0
+info:
+  title: Optimyzee Application App Signal API
+  version: 4.1.0
+  x-original-title: API
+  description: App Signal
+servers:
+- url: https://api.optimyzee.com
+  description: Production (host serving this document at /docs)
+tags:
+- name: App Signal
+  description: App Signal
+paths:
+  /app/signals:
+    get:
+      tags:
+      - App Signal
+      summary: Live readings from every registered signal connector
+      operationId: cf53c6cd627e8de50d4805cf385fe540
+      parameters:
+      - name: city
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: state
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AppSignalReadingSchema'
+components:
+  schemas:
+    AppSignalReadingSchema:
+      required:
+      - connectorId
+      - label
+      - value
+      - status
+      - cost
+      - detail
+      - error
+      properties:
+        connectorId:
+          type: string
+        label:
+          type: string
+        value:
+          type:
+          - number
+          - 'null'
+          format: float
+        status:
+          type: string
+        cost:
+          type: string
+        detail:
+          type:
+          - string
+          - 'null'
+        error:
+          type: boolean
+      type: object
+  securitySchemes:
+    token:
+      type: apiKey
+      description: Bearer token authorization
+      name: authorization
+      in: header

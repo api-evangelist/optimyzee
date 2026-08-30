@@ -1,0 +1,253 @@
+openapi: 3.2.0
+info:
+  title: Optimyzee Application App/Campaign/Google Ads API
+  version: 4.1.0
+  x-original-title: API
+  description: App/Campaign/GoogleAds
+servers:
+- url: https://api.optimyzee.com
+  description: Production (host serving this document at /docs)
+tags:
+- name: App/Campaign/GoogleAds
+  description: App/Campaign/GoogleAds
+paths:
+  /app/campaign/googleAds/{campaignId}/access:
+    post:
+      tags:
+      - App/Campaign/GoogleAds
+      operationId: appCampaignGoogleAdsAccess
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Successful
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/campaign/googleAds:
+    post:
+      tags:
+      - App/Campaign/GoogleAds
+      operationId: appCampaignGoogleAdsCreate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - linkingId
+              - campaignId
+              properties:
+                linkingId:
+                  type: integer
+                campaignId:
+                  type: integer
+              type: object
+      responses:
+        '201':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdSchema'
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/campaign/googleAds/{campaignId}/metrics:
+    get:
+      tags:
+      - App/Campaign/GoogleAds
+      operationId: appCampaignGoogleAdsMetrics
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: from
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+      - name: to
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/AppCampaignGoogleAdsMetricsReportSchema'
+                type: object
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/campaign/googleAds/{campaignId}/refresh:
+    post:
+      tags:
+      - App/Campaign/GoogleAds
+      operationId: appCampaignGoogleAdsRefresh
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Successful
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+components:
+  schemas:
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
+    IdSchema:
+      required:
+      - id
+      properties:
+        id:
+          type: integer
+      type: object
+    ErrorBagSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      type: object
+    AppCampaignGoogleAdsMetricsReportSchema:
+      required:
+      - unit
+      - currencyCode
+      - metrics
+      - summary
+      properties:
+        unit:
+          type: string
+        currencyCode:
+          type: string
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppCampaignGoogleAdsMetricsSchema'
+        summary:
+          $ref: '#/components/schemas/AppCampaignGoogleAdsMetricsSummarySchema'
+      type: object
+    AppCampaignGoogleAdsMetricsSchema:
+      required:
+      - date
+      - costMicros
+      - clicks
+      - conversions
+      - costPerConversion
+      properties:
+        date:
+          type: string
+          format: date
+        costMicros:
+          type: integer
+        clicks:
+          type: integer
+        conversions:
+          type: number
+          format: float
+        costPerConversion:
+          type: number
+          format: float
+      type: object
+    AppCampaignGoogleAdsMetricsSummarySchema:
+      required:
+      - costMicros
+      - clicks
+      - conversions
+      - costPerConversion
+      properties:
+        costMicros:
+          type: integer
+        clicks:
+          type: integer
+        conversions:
+          type: number
+          format: float
+        costPerConversion:
+          type: number
+          format: float
+      type: object
+  securitySchemes:
+    token:
+      type: apiKey
+      description: Bearer token authorization
+      name: authorization
+      in: header

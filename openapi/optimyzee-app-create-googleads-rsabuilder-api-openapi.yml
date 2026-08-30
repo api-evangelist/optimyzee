@@ -1,0 +1,293 @@
+openapi: 3.2.0
+info:
+  title: Optimyzee Application App/Create/Google Ads/Rsa Builder API
+  version: 4.1.0
+  x-original-title: API
+  description: App/Create/GoogleAds/RsaBuilder
+servers:
+- url: https://api.optimyzee.com
+  description: Production (host serving this document at /docs)
+tags:
+- name: App/Create/GoogleAds/RsaBuilder
+  description: App/Create/GoogleAds/RsaBuilder
+paths:
+  /app/create/g/rsaBuilder/{builderId}/export:
+    get:
+      tags:
+      - App/Create/GoogleAds/RsaBuilder
+      operationId: appCreateGoogleAdsRsaBuilderExport
+      parameters:
+      - name: builderId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            text/csv:
+              schema:
+                type: string
+                format: binary
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/create/g/rsaBuilder:
+    post:
+      tags:
+      - App/Create/GoogleAds/RsaBuilder
+      operationId: appCreateGoogleAdsRsaBuilderQueue
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - url
+              properties:
+                url:
+                  type: string
+                prompt:
+                  type:
+                  - string
+                  - 'null'
+              type: object
+      responses:
+        '201':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdSchema'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/create/g/rsaBuilder/{builderId}/reprocess:
+    post:
+      tags:
+      - App/Create/GoogleAds/RsaBuilder
+      operationId: appCreateGoogleAdsRsaBuilderReprocess
+      parameters:
+      - name: builderId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - url
+              properties:
+                url:
+                  type: string
+                prompt:
+                  type:
+                  - string
+                  - 'null'
+              type: object
+      responses:
+        '204':
+          description: Successful
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/create/g/rsaBuilder/{builderId}:
+    get:
+      tags:
+      - App/Create/GoogleAds/RsaBuilder
+      operationId: appCreateGoogleAdsRsaBuilderView
+      parameters:
+      - name: builderId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/AppCreateGoogleAdsRsaBuilderSchema'
+                type: object
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+    put:
+      tags:
+      - App/Create/GoogleAds/RsaBuilder
+      operationId: appCreateGoogleAdsRsaBuilderUpdate
+      parameters:
+      - name: builderId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - headlines
+              - descriptions
+              properties:
+                headlines:
+                  type: array
+                  items:
+                    type: string
+                descriptions:
+                  type: array
+                  items:
+                    type: string
+              type: object
+      responses:
+        '204':
+          description: Successful
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+components:
+  schemas:
+    IdSchema:
+      required:
+      - id
+      properties:
+        id:
+          type: integer
+      type: object
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
+    AppCreateGoogleAdsRsaBuilderSchema:
+      required:
+      - id
+      - url
+      - prompt
+      - status
+      - headlines
+      - descriptions
+      properties:
+        id:
+          type: integer
+        url:
+          type: string
+        prompt:
+          type:
+          - string
+          - 'null'
+        status:
+          type: string
+          enum:
+          - QUEUED
+          - PROCESSING
+          - SUCCESSFUL
+        headlines:
+          type: array
+          items:
+            type: string
+        descriptions:
+          type: array
+          items:
+            type: string
+      type: object
+    ErrorBagSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      type: object
+  securitySchemes:
+    token:
+      type: apiKey
+      description: Bearer token authorization
+      name: authorization
+      in: header

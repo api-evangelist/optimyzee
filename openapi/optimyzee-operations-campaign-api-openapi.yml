@@ -1,0 +1,328 @@
+openapi: 3.2.0
+info:
+  title: Optimyzee Application Operations/Campaign API
+  version: 4.1.0
+  x-original-title: API
+  description: Operations/Campaign
+servers:
+- url: https://api.optimyzee.com
+  description: Production (host serving this document at /docs)
+tags:
+- name: Operations/Campaign
+  description: Operations/Campaign
+paths:
+  /operations/campaign:
+    get:
+      tags:
+      - Operations/Campaign
+      operationId: operationsCampaignQuery
+      parameters:
+      - name: q
+        in: query
+        schema:
+          type:
+          - string
+          - 'null'
+      - name: adminId
+        in: query
+        schema:
+          type:
+          - integer
+          - 'null'
+      - name: status
+        in: query
+        schema:
+          type:
+          - string
+          - 'null'
+          enum:
+          - ACCESS_PENDING_REQUEST
+          - ACCESS_PENDING_GRANT
+          - ACTIVE
+          - PAUSED
+      - name: orderBy
+        in: query
+        schema:
+          type:
+          - string
+          - 'null'
+          enum:
+          - lastManagedAt
+          - createdAt
+      - name: order
+        in: query
+        schema:
+          type:
+          - string
+          - 'null'
+          enum:
+          - ASC
+          - DESC
+      - name: perPage
+        in: query
+        schema:
+          type: integer
+      - name: cursor
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - items
+                - perPage
+                - next
+                - previous
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/OperationsCampaignSchema'
+                  perPage:
+                    type: integer
+                  previous:
+                    type:
+                    - string
+                    - 'null'
+                  next:
+                    type:
+                    - string
+                    - 'null'
+                type: object
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /operations/campaign/{campaignId}:
+    get:
+      tags:
+      - Operations/Campaign
+      operationId: operationsCampaignView
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/OperationsCampaignSchema'
+                type: object
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+    put:
+      tags:
+      - Operations/Campaign
+      operationId: operationsCampaignUpdate
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - name
+              - status
+              - analyzing
+              properties:
+                adminId:
+                  type:
+                  - integer
+                  - 'null'
+                name:
+                  type: string
+                status:
+                  type: string
+                  enum:
+                  - ACCESS_PENDING_REQUEST
+                  - ACCESS_PENDING_GRANT
+                  - ACTIVE
+                  - PAUSED
+                analyzing:
+                  type: boolean
+              type: object
+      responses:
+        '204':
+          description: Successful
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+components:
+  schemas:
+    OperationsCampaignSchema:
+      required:
+      - id
+      - adminId
+      - adminName
+      - adminEmail
+      - userId
+      - userEmail
+      - userSubscriptionPlan
+      - userSubscriptionStatus
+      - name
+      - status
+      - analyzing
+      - googleAdsLinkingId
+      - googleAdsLinkingCustomerId
+      - googleAdsLinkingName
+      - googleAdsCampaignId
+      - lastManagedAt
+      - createdAt
+      properties:
+        id:
+          type: integer
+        adminId:
+          type:
+          - integer
+          - 'null'
+        adminEmail:
+          type:
+          - string
+          - 'null'
+        adminName:
+          type:
+          - string
+          - 'null'
+        userId:
+          type: integer
+        userEmail:
+          type:
+          - string
+          - 'null'
+        userSubscriptionPlan:
+          type:
+          - string
+          - 'null'
+          enum:
+          - FREE
+          - STARTUP
+          - BUSINESS
+          - PROFESSIONAL
+        userSubscriptionStatus:
+          type:
+          - string
+          - 'null'
+          enum:
+          - TRIAL
+          - ACTIVE
+          - CANCELLED
+        name:
+          type: string
+        status:
+          type: string
+          enum:
+          - ACCESS_PENDING_REQUEST
+          - ACCESS_PENDING_GRANT
+          - ACTIVE
+          - PAUSED
+        analyzing:
+          type: boolean
+        googleAdsLinkingId:
+          type:
+          - integer
+          - 'null'
+        googleAdsLinkingCustomerId:
+          type:
+          - integer
+          - 'null'
+        googleAdsLinkingName:
+          type:
+          - string
+          - 'null'
+        googleAdsCampaignId:
+          type:
+          - integer
+          - 'null'
+        lastManagedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        createdAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      type: object
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
+    ErrorBagSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      type: object
+  securitySchemes:
+    token:
+      type: apiKey
+      description: Bearer token authorization
+      name: authorization
+      in: header

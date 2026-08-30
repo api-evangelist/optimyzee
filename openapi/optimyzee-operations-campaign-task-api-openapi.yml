@@ -1,0 +1,401 @@
+openapi: 3.2.0
+info:
+  title: Optimyzee Application Operations/Campaign/Task API
+  version: 4.1.0
+  x-original-title: API
+  description: Operations/Campaign/Task
+servers:
+- url: https://api.optimyzee.com
+  description: Production (host serving this document at /docs)
+tags:
+- name: Operations/Campaign/Task
+  description: Operations/Campaign/Task
+paths:
+  /operations/campaign/task:
+    get:
+      tags:
+      - Operations/Campaign/Task
+      operationId: operationsCampaignTaskQuery
+      parameters:
+      - name: campaignId
+        in: query
+        schema:
+          type: integer
+      - name: parentId
+        in: query
+        schema:
+          type: integer
+      - name: q
+        in: query
+        schema:
+          type: string
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - DRAFT
+          - RECOMMENDATION
+          - BLOCKED
+          - PENDING
+          - PROCESSING
+          - DONE
+          - GOAL
+      - name: perPage
+        in: query
+        schema:
+          type: integer
+      - name: cursor
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - items
+                - perPage
+                - next
+                - previous
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/OperationsCampaignTaskSchema'
+                  perPage:
+                    type: integer
+                  previous:
+                    type:
+                    - string
+                    - 'null'
+                  next:
+                    type:
+                    - string
+                    - 'null'
+                type: object
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+    post:
+      tags:
+      - Operations/Campaign/Task
+      operationId: operationsCampaignTaskCreate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - campaignId
+              - title
+              - status
+              - order
+              properties:
+                campaignId:
+                  type: integer
+                parentId:
+                  type:
+                  - integer
+                  - 'null'
+                title:
+                  type: string
+                description:
+                  type:
+                  - string
+                  - 'null'
+                status:
+                  type: string
+                  enum:
+                  - DRAFT
+                  - RECOMMENDATION
+                  - BLOCKED
+                  - PENDING
+                  - PROCESSING
+                  - DONE
+                  - GOAL
+                startedAt:
+                  type:
+                  - string
+                  - 'null'
+                  format: date-time
+                finishedAt:
+                  type:
+                  - string
+                  - 'null'
+                  format: date-time
+                order:
+                  type: integer
+              type: object
+      responses:
+        '201':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdSchema'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+  /operations/campaign/task/{taskId}:
+    get:
+      tags:
+      - Operations/Campaign/Task
+      operationId: operationsCampaignTaskView
+      parameters:
+      - name: taskId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/OperationsCampaignTaskSchema'
+                type: object
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+    put:
+      tags:
+      - Operations/Campaign/Task
+      operationId: operationsCampaignTaskUpdate
+      parameters:
+      - name: taskId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - campaignId
+              - title
+              - status
+              - order
+              properties:
+                campaignId:
+                  type: integer
+                parentId:
+                  type:
+                  - integer
+                  - 'null'
+                title:
+                  type: string
+                description:
+                  type:
+                  - string
+                  - 'null'
+                status:
+                  type: string
+                  enum:
+                  - DRAFT
+                  - RECOMMENDATION
+                  - BLOCKED
+                  - PENDING
+                  - PROCESSING
+                  - DONE
+                  - GOAL
+                startedAt:
+                  type:
+                  - string
+                  - 'null'
+                  format: date-time
+                finishedAt:
+                  type:
+                  - string
+                  - 'null'
+                  format: date-time
+                order:
+                  type: integer
+              type: object
+      responses:
+        '204':
+          description: Successful
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+    delete:
+      tags:
+      - Operations/Campaign/Task
+      operationId: operationsCampaignTaskDelete
+      parameters:
+      - name: taskId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Successful
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+components:
+  schemas:
+    IdSchema:
+      required:
+      - id
+      properties:
+        id:
+          type: integer
+      type: object
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
+    ErrorBagSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      type: object
+    OperationsCampaignTaskSchema:
+      required:
+      - id
+      - campaignId
+      - parentId
+      - title
+      - description
+      - status
+      - startedAt
+      - finishedAt
+      - order
+      - childrenCount
+      properties:
+        id:
+          type: integer
+        campaignId:
+          type: integer
+        parentId:
+          type:
+          - integer
+          - 'null'
+        title:
+          type: string
+        description:
+          type:
+          - string
+          - 'null'
+        status:
+          type: string
+          enum:
+          - DRAFT
+          - RECOMMENDATION
+          - BLOCKED
+          - PENDING
+          - PROCESSING
+          - DONE
+          - GOAL
+        startedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        finishedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        order:
+          type: integer
+        childrenCount:
+          type: integer
+      type: object
+  securitySchemes:
+    token:
+      type: apiKey
+      description: Bearer token authorization
+      name: authorization
+      in: header

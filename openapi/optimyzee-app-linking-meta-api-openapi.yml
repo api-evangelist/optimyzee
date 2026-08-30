@@ -1,0 +1,370 @@
+openapi: 3.2.0
+info:
+  title: Optimyzee Application App/Linking/Meta API
+  version: 4.1.0
+  x-original-title: API
+  description: App/Linking/Meta
+servers:
+- url: https://api.optimyzee.com
+  description: Production (host serving this document at /docs)
+tags:
+- name: App/Linking/Meta
+  description: App/Linking/Meta
+paths:
+  /app/linking/meta/{linkingId}/accounts:
+    get:
+      tags:
+      - App/Linking/Meta
+      operationId: appLinkingMetaAccounts
+      parameters:
+      - name: linkingId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AppLinkingMetaAccountSchema'
+                type: object
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/linking/meta/{linkingId}:
+    get:
+      tags:
+      - App/Linking/Meta
+      operationId: appLinkingMetaView
+      parameters:
+      - name: linkingId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/AppLinkingMetaSchema'
+                type: object
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+    delete:
+      tags:
+      - App/Linking/Meta
+      operationId: appLinkingMetaDelete
+      parameters:
+      - name: linkingId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Successful
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/linking/meta/{linkingId}/ping:
+    get:
+      tags:
+      - App/Linking/Meta
+      operationId: appLinkingMetaPing
+      parameters:
+      - name: linkingId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Successful
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/linking/meta:
+    get:
+      tags:
+      - App/Linking/Meta
+      operationId: appLinkingMetaQuery
+      parameters:
+      - name: perPage
+        in: query
+        schema:
+          type: integer
+      - name: cursor
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - items
+                - perPage
+                - next
+                - previous
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AppLinkingMetaSchema'
+                  perPage:
+                    type: integer
+                  previous:
+                    type:
+                    - string
+                    - 'null'
+                  next:
+                    type:
+                    - string
+                    - 'null'
+                type: object
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/linking/meta/{linkingId}/select:
+    post:
+      tags:
+      - App/Linking/Meta
+      operationId: appLinkingMetaSelectAccount
+      parameters:
+      - name: linkingId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - accountId
+              properties:
+                accountId:
+                  type: integer
+              type: object
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/AppLinkingMetaAccountSchema'
+                type: object
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/linking/meta/uri:
+    get:
+      tags:
+      - App/Linking/Meta
+      operationId: appLinkingMetaUri
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - uri
+                properties:
+                  uri:
+                    type: string
+                type: object
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+components:
+  schemas:
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
+    AppLinkingMetaSchema:
+      required:
+      - id
+      - externalUserId
+      - name
+      - status
+      - scopes
+      - accountsCount
+      - selectedAccount
+      properties:
+        id:
+          type: integer
+        externalUserId:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        status:
+          type: string
+        scopes:
+          type: array
+          items:
+            type: string
+        accountsCount:
+          type: integer
+        selectedAccount:
+          oneOf:
+          - $ref: '#/components/schemas/AppLinkingMetaAccountSchema'
+      type: object
+    AppLinkingMetaAccountSchema:
+      required:
+      - id
+      - externalId
+      - accountId
+      - name
+      - currency
+      - timezoneName
+      - accountStatus
+      - selected
+      properties:
+        id:
+          type: integer
+        externalId:
+          type: string
+        accountId:
+          type: string
+        name:
+          type:
+          - string
+          - 'null'
+        currency:
+          type:
+          - string
+          - 'null'
+        timezoneName:
+          type:
+          - string
+          - 'null'
+        accountStatus:
+          type:
+          - integer
+          - 'null'
+        selected:
+          type: boolean
+      type: object
+    ErrorBagSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      type: object
+  securitySchemes:
+    token:
+      type: apiKey
+      description: Bearer token authorization
+      name: authorization
+      in: header

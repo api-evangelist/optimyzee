@@ -1,0 +1,274 @@
+openapi: 3.2.0
+info:
+  title: Optimyzee Application Operations/User API
+  version: 4.1.0
+  x-original-title: API
+  description: Operations/User
+servers:
+- url: https://api.optimyzee.com
+  description: Production (host serving this document at /docs)
+tags:
+- name: Operations/User
+  description: Operations/User
+paths:
+  /operations/user/{userId}:
+    get:
+      tags:
+      - Operations/User
+      operationId: operationsUserView
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/OperationsUserSchema'
+                type: object
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+    delete:
+      tags:
+      - Operations/User
+      operationId: operationsUserDelete
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Successful
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+  /operations/user/{userId}/impersonate:
+    post:
+      tags:
+      - Operations/User
+      operationId: operationsUserImpersonate
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/OperationsUserTokenSchema'
+                type: object
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+  /operations/user:
+    get:
+      tags:
+      - Operations/User
+      operationId: operationsUserQuery
+      parameters:
+      - name: q
+        in: query
+        schema:
+          type:
+          - string
+          - 'null'
+      - name: perPage
+        in: query
+        schema:
+          type: integer
+      - name: cursor
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - items
+                - perPage
+                - next
+                - previous
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/OperationsUserSchema'
+                  perPage:
+                    type: integer
+                  previous:
+                    type:
+                    - string
+                    - 'null'
+                  next:
+                    type:
+                    - string
+                    - 'null'
+                type: object
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+components:
+  schemas:
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
+    OperationsUserTokenSchema:
+      required:
+      - userId
+      - accessToken
+      properties:
+        userId:
+          type: integer
+        accessToken:
+          type: string
+      type: object
+    ErrorBagSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      type: object
+    OperationsUserSchema:
+      required:
+      - id
+      - email
+      - name
+      - position
+      - spend
+      - goal
+      - subscriptionPlan
+      - subscriptionStatus
+      - subscriptionExpiresAt
+      - subscriptionAnnual
+      - subscriptionSkipped
+      properties:
+        id:
+          type: integer
+        email:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        position:
+          type:
+          - string
+          - 'null'
+        spend:
+          type:
+          - string
+          - 'null'
+        goal:
+          type:
+          - string
+          - 'null'
+        subscriptionPlan:
+          type: string
+          enum:
+          - FREE
+          - STARTUP
+          - BUSINESS
+          - PROFESSIONAL
+        subscriptionStatus:
+          type: string
+          enum:
+          - TRIAL
+          - ACTIVE
+          - CANCELLED
+        subscriptionExpiresAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        subscriptionAnnual:
+          type:
+          - boolean
+          - 'null'
+        subscriptionSkipped:
+          type: boolean
+      type: object
+  securitySchemes:
+    token:
+      type: apiKey
+      description: Bearer token authorization
+      name: authorization
+      in: header

@@ -1,0 +1,290 @@
+openapi: 3.2.0
+info:
+  title: Optimyzee Application App/Analyze/Google Ads/Health API
+  version: 4.1.0
+  x-original-title: API
+  description: App/Analyze/GoogleAds/Health
+servers:
+- url: https://api.optimyzee.com
+  description: Production (host serving this document at /docs)
+tags:
+- name: App/Analyze/GoogleAds/Health
+  description: App/Analyze/GoogleAds/Health
+paths:
+  /app/analyze/g/health:
+    post:
+      tags:
+      - App/Analyze/GoogleAds/Health
+      operationId: appAnalyzeGoogleAdsHealthAnalyze
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - linking_id
+              properties:
+                linking_id:
+                  type: integer
+                period_days:
+                  type: integer
+                  default: 30
+                  enum:
+                  - 30
+                  - 60
+                  - 90
+              type: object
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/AppAnalyzeGoogleAdsHealthReportSchema'
+                type: object
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+components:
+  schemas:
+    AppAnalyzeGoogleAdsHealthReportSchema:
+      required:
+      - linkingId
+      - linkingCustomerId
+      - linkingName
+      - periodDays
+      - account
+      - campaigns
+      properties:
+        linkingId:
+          type: integer
+        linkingCustomerId:
+          type: integer
+        linkingName:
+          type: string
+        periodDays:
+          type: integer
+        account:
+          $ref: '#/components/schemas/AppAnalyzeGoogleAdsHealthAccountSchema'
+        campaigns:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppAnalyzeGoogleAdsHealthCampaignSchema'
+      type: object
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
+    AppAnalyzeGoogleAdsHealthAccountSchema:
+      required:
+      - campaignCount
+      - hasConversionValue
+      - totals
+      properties:
+        campaignCount:
+          type: integer
+        hasConversionValue:
+          type: boolean
+        totals:
+          $ref: '#/components/schemas/AppAnalyzeGoogleAdsHealthMetricsSchema'
+      type: object
+    AppAnalyzeGoogleAdsHealthDeltasSchema:
+      description: 'Signed fractional change vs the previous period (0.25 = +25%).
+
+        Any field may be null when the previous period had no comparable base.'
+      required:
+      - cost
+      - conversions
+      - conversionValue
+      - cpa
+      - roas
+      - convRate
+      - ctr
+      - cpc
+      properties:
+        cost:
+          type:
+          - number
+          - 'null'
+          format: float
+        conversions:
+          type:
+          - number
+          - 'null'
+          format: float
+        conversionValue:
+          type:
+          - number
+          - 'null'
+          format: float
+        cpa:
+          type:
+          - number
+          - 'null'
+          format: float
+        roas:
+          type:
+          - number
+          - 'null'
+          format: float
+        convRate:
+          type:
+          - number
+          - 'null'
+          format: float
+        ctr:
+          type:
+          - number
+          - 'null'
+          format: float
+        cpc:
+          type:
+          - number
+          - 'null'
+          format: float
+      type: object
+    AppAnalyzeGoogleAdsHealthCampaignSchema:
+      required:
+      - campaignId
+      - campaignName
+      - goalType
+      - status
+      - trend
+      - score
+      - topIssue
+      - current
+      - previous
+      - deltas
+      - flags
+      properties:
+        campaignId:
+          type: integer
+        campaignName:
+          type: string
+        goalType:
+          type: string
+          enum:
+          - LEADGEN
+          - ECOMMERCE
+        status:
+          type: string
+          enum:
+          - GOOD
+          - STABLE
+          - NEEDS_ATTENTION
+          - ISSUE
+          - INSUFFICIENT_DATA
+        trend:
+          type: string
+          enum:
+          - IMPROVING
+          - STABLE
+          - DECLINING
+          - INSUFFICIENT_DATA
+        score:
+          type:
+          - integer
+          - 'null'
+        topIssue:
+          type:
+          - string
+          - 'null'
+        current:
+          $ref: '#/components/schemas/AppAnalyzeGoogleAdsHealthMetricsSchema'
+        previous:
+          $ref: '#/components/schemas/AppAnalyzeGoogleAdsHealthMetricsSchema'
+        deltas:
+          $ref: '#/components/schemas/AppAnalyzeGoogleAdsHealthDeltasSchema'
+        flags:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppAnalyzeGoogleAdsHealthFlagSchema'
+      type: object
+    AppAnalyzeGoogleAdsHealthMetricsSchema:
+      required:
+      - cost
+      - clicks
+      - impressions
+      - conversions
+      - conversionValue
+      - cpa
+      - roas
+      - ctr
+      - cpc
+      - convRate
+      properties:
+        cost:
+          type: number
+          format: float
+        clicks:
+          type: integer
+        impressions:
+          type: integer
+        conversions:
+          type: number
+          format: float
+        conversionValue:
+          type: number
+          format: float
+        cpa:
+          type: number
+          format: float
+        roas:
+          type: number
+          format: float
+        ctr:
+          type: number
+          format: float
+        cpc:
+          type: number
+          format: float
+        convRate:
+          type: number
+          format: float
+      type: object
+    AppAnalyzeGoogleAdsHealthFlagSchema:
+      required:
+      - level
+      - area
+      - message
+      properties:
+        level:
+          type: string
+          enum:
+          - GREEN
+          - YELLOW
+          - RED
+          - INSUFFICIENT_DATA
+        area:
+          type: string
+        message:
+          type: string
+      type: object
+  securitySchemes:
+    token:
+      type: apiKey
+      description: Bearer token authorization
+      name: authorization
+      in: header

@@ -1,0 +1,80 @@
+openapi: 3.2.0
+info:
+  title: Optimyzee Application Operations/Auth/Profile API
+  version: 4.1.0
+  x-original-title: API
+  description: Operations/Auth/Profile
+servers:
+- url: https://api.optimyzee.com
+  description: Production (host serving this document at /docs)
+tags:
+- name: Operations/Auth/Profile
+  description: Operations/Auth/Profile
+paths:
+  /operations/auth/profile:
+    get:
+      tags:
+      - Operations/Auth/Profile
+      operationId: operationsAuthProfile
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/OperationsAuthProfileSchema'
+                type: object
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+components:
+  schemas:
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
+    OperationsAuthProfileSchema:
+      required:
+      - id
+      - email
+      - name
+      - permissions
+      properties:
+        id:
+          type: integer
+        email:
+          type: string
+        name:
+          type: string
+        permissions:
+          type: array
+          items:
+            type: string
+            enum:
+            - MANAGE_USERS
+            - MANAGE_BILLING_SUBSCRIPTIONS
+            - MANAGE_CAMPAIGNS
+            - MANAGE_ADMINS
+      type: object
+  securitySchemes:
+    token:
+      type: apiKey
+      description: Bearer token authorization
+      name: authorization
+      in: header

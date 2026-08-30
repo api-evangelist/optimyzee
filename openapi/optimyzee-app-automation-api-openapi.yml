@@ -1,0 +1,224 @@
+openapi: 3.2.0
+info:
+  title: Optimyzee Application App Automation API
+  version: 4.1.0
+  x-original-title: API
+  description: App Automation
+servers:
+- url: https://api.optimyzee.com
+  description: Production (host serving this document at /docs)
+tags:
+- name: App Automation
+  description: App Automation
+paths:
+  /app/automations/{automationId}:
+    delete:
+      tags:
+      - App Automation
+      summary: Delete an automation
+      operationId: 8a4d6eaf33c6a8399451f759169cfa31
+      parameters:
+      - name: automationId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: No Content
+  /app/automations/interpret:
+    post:
+      tags:
+      - App Automation
+      summary: Interpret a natural-language intent into proposed automations
+      operationId: 9cee8dd5e43b406f87a6d7785d79c22f
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - intent
+              properties:
+                intent:
+                  type: string
+                context:
+                  type:
+                  - object
+                  - 'null'
+              type: object
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AppAutomationSpecSchema'
+  /app/automations:
+    get:
+      tags:
+      - App Automation
+      summary: List the current user's automations
+      operationId: ea27e985d6ee2548d8dcc475dddcc4db
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AppAutomationSchema'
+    post:
+      tags:
+      - App Automation
+      summary: Enable (persist) an automation
+      operationId: ca27bcedfbe5f11307e47810b1b2a0b9
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppAutomationSchema'
+components:
+  schemas:
+    AppAutomationSchema:
+      required:
+      - id
+      - businessId
+      - title
+      - summary
+      - signal
+      - trigger
+      - direction
+      - deltaPct
+      - target
+      - scope
+      - channels
+      - guardrails
+      - confidence
+      - status
+      - createdAt
+      properties:
+        id:
+          type: integer
+        businessId:
+          type:
+          - string
+          - 'null'
+        title:
+          type: string
+        summary:
+          type:
+          - string
+          - 'null'
+        signal:
+          type: string
+        trigger:
+          type:
+          - string
+          - 'null'
+        direction:
+          type: string
+        deltaPct:
+          type: integer
+        target:
+          type:
+          - string
+          - 'null'
+        scope:
+          type:
+          - string
+          - 'null'
+        channels:
+          type: array
+          items:
+            type: string
+        guardrails:
+          type:
+          - string
+          - 'null'
+        confidence:
+          type: string
+        status:
+          type: string
+        createdAt:
+          type:
+          - string
+          - 'null'
+      type: object
+    AppAutomationConfigFieldSchema:
+      required:
+      - label
+      - value
+      - filledByAi
+      properties:
+        label:
+          type: string
+        value:
+          type: string
+        filledByAi:
+          type: boolean
+      type: object
+    AppAutomationSpecSchema:
+      required:
+      - id
+      - intentText
+      - title
+      - summary
+      - signal
+      - signalLabel
+      - trigger
+      - direction
+      - deltaPct
+      - target
+      - scope
+      - channels
+      - guardrails
+      - requiredConfig
+      - confidence
+      properties:
+        id:
+          type: string
+        intentText:
+          type: string
+        title:
+          type: string
+        summary:
+          type: string
+        signal:
+          type: string
+        signalLabel:
+          type: string
+        trigger:
+          type: string
+        direction:
+          type: string
+        deltaPct:
+          type: integer
+        target:
+          type: string
+        scope:
+          type: string
+        channels:
+          type: array
+          items:
+            type: string
+        guardrails:
+          type: string
+        requiredConfig:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppAutomationConfigFieldSchema'
+        confidence:
+          type: string
+      type: object
+  securitySchemes:
+    token:
+      type: apiKey
+      description: Bearer token authorization
+      name: authorization
+      in: header

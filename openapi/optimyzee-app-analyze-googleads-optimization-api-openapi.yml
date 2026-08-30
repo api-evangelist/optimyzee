@@ -1,0 +1,572 @@
+openapi: 3.2.0
+info:
+  title: Optimyzee Application App/Analyze/Google Ads/Optimization API
+  version: 4.1.0
+  x-original-title: API
+  description: App/Analyze/GoogleAds/Optimization
+servers:
+- url: https://api.optimyzee.com
+  description: Production (host serving this document at /docs)
+tags:
+- name: App/Analyze/GoogleAds/Optimization
+  description: App/Analyze/GoogleAds/Optimization
+paths:
+  /app/analyze/g/optimization/search-terms:
+    post:
+      tags:
+      - App/Analyze/GoogleAds/Optimization
+      operationId: appAnalyzeGoogleAdsOptimizationAnalyze
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - linking_id
+              - campaign_id
+              properties:
+                linking_id:
+                  type: integer
+                campaign_id:
+                  type: integer
+              type: object
+      responses:
+        '201':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdSchema'
+      security:
+      - token: []
+  /app/analyze/g/optimization/search-terms/results/mark:
+    post:
+      tags:
+      - App/Analyze/GoogleAds/Optimization
+      operationId: appAnalyzeGoogleAdsOptimizationMarkResult
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - analysis_id
+              - result_ids
+              - action
+              properties:
+                analysis_id:
+                  type: integer
+                result_ids:
+                  type: array
+                  items:
+                    type: integer
+                action:
+                  type: string
+                  enum:
+                  - negative
+                  - keyword
+                  - observe
+                  - brand
+                  - competitor
+                  - ok
+                  - relevant
+                optimized:
+                  type: boolean
+                  example: false
+              type: object
+      responses:
+        '200':
+          description: Successful
+      security:
+      - token: []
+  /app/analyze/g/optimization/p-max:
+    post:
+      tags:
+      - App/Analyze/GoogleAds/Optimization
+      operationId: appAnalyzeGoogleAdsOptimizationPMaxAnalyze
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - linking_id
+              - campaign_id
+              properties:
+                linking_id:
+                  type: integer
+                campaign_id:
+                  type: integer
+              type: object
+      responses:
+        '201':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdSchema'
+      security:
+      - token: []
+  /app/analyze/g/optimization/pmax-center/{optimizationId}/asset-draft:
+    post:
+      tags:
+      - App/Analyze/GoogleAds/Optimization
+      operationId: appAnalyzeGoogleAdsOptimizationPMaxCenterAssetDraft
+      parameters:
+      - name: optimizationId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - asset_group_id
+              properties:
+                asset_group_id:
+                  type: integer
+                recommendation:
+                  type: object
+              type: object
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+      security:
+      - token: []
+  /app/analyze/g/optimization/pmax-center/deep-audit:
+    post:
+      tags:
+      - App/Analyze/GoogleAds/Optimization
+      operationId: appAnalyzeGoogleAdsOptimizationPMaxCenterDeepAudit
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - linking_id
+              - campaign_id
+              properties:
+                linking_id:
+                  type: integer
+                campaign_id:
+                  type: integer
+                run_audit:
+                  type: boolean
+                  default: true
+                run_search_intent:
+                  type: boolean
+                  default: true
+                health_period_days:
+                  type: integer
+                  default: 30
+                  enum:
+                  - 30
+                  - 60
+                  - 90
+                audit_scope:
+                  properties:
+                    performance:
+                      type: boolean
+                    assetGroups:
+                      type: boolean
+                    products:
+                      type: boolean
+                    searchIntent:
+                      type: boolean
+                    settings:
+                      type: boolean
+                  type: object
+              type: object
+      responses:
+        '201':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    required:
+                    - optimization_id
+                    - audit_id
+                    - search_intent_analysis_id
+                    properties:
+                      optimization_id:
+                        type: integer
+                      audit_id:
+                        type:
+                        - integer
+                        - 'null'
+                      search_intent_analysis_id:
+                        type:
+                        - integer
+                        - 'null'
+                    type: object
+                type: object
+      security:
+      - token: []
+  /app/analyze/g/optimization/pmax-center/{optimizationId}/promotion-draft:
+    get:
+      tags:
+      - App/Analyze/GoogleAds/Optimization
+      operationId: appAnalyzeGoogleAdsOptimizationPMaxCenterPromotionDraftLatest
+      parameters:
+      - name: optimizationId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+      security:
+      - token: []
+    post:
+      tags:
+      - App/Analyze/GoogleAds/Optimization
+      operationId: appAnalyzeGoogleAdsOptimizationPMaxCenterPromotionDraft
+      parameters:
+      - name: optimizationId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              properties:
+                recommendation:
+                  type: object
+              type: object
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+      security:
+      - token: []
+  /app/analyze/g/optimization/pmax-center/{optimizationId}/search-theme-suggestions:
+    post:
+      tags:
+      - App/Analyze/GoogleAds/Optimization
+      operationId: appAnalyzeGoogleAdsOptimizationPMaxCenterSearchThemeSuggestions
+      parameters:
+      - name: optimizationId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - asset_group_id
+              properties:
+                asset_group_id:
+                  type: integer
+                seed_terms:
+                  type: array
+                  items:
+                    type: string
+              type: object
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+      security:
+      - token: []
+  /app/analyze/g/optimization/pmax-center/{optimizationId}/start:
+    post:
+      tags:
+      - App/Analyze/GoogleAds/Optimization
+      operationId: appAnalyzeGoogleAdsOptimizationPMaxCenterStart
+      parameters:
+      - name: optimizationId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    required:
+                    - started
+                    properties:
+                      started:
+                        type: boolean
+                    type: object
+                type: object
+        '403':
+          description: Monthly action limit reached / unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/analyze/g/optimization/pmax-center/{optimizationId}:
+    get:
+      tags:
+      - App/Analyze/GoogleAds/Optimization
+      operationId: appAnalyzeGoogleAdsOptimizationPMaxCenterView
+      parameters:
+      - name: optimizationId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    required:
+                    - id
+                    - linking_id
+                    - campaign_id
+                    - health_period_days
+                    - audit_scope
+                    - audit_id
+                    - search_intent_analysis_id
+                    properties:
+                      id:
+                        type: integer
+                      linking_id:
+                        type: integer
+                      linking_customer_id:
+                        type: integer
+                      linking_name:
+                        type: string
+                      campaign_id:
+                        type: integer
+                      campaign_name:
+                        type:
+                        - string
+                        - 'null'
+                      health_period_days:
+                        type: integer
+                        enum:
+                        - 30
+                        - 60
+                        - 90
+                      audit_scope:
+                        type: object
+                      audit_id:
+                        type:
+                        - integer
+                        - 'null'
+                      search_intent_analysis_id:
+                        type:
+                        - integer
+                        - 'null'
+                      started:
+                        type: boolean
+                      created_at:
+                        type:
+                        - string
+                        - 'null'
+                      updated_at:
+                        type:
+                        - string
+                        - 'null'
+                    type: object
+                type: object
+      security:
+      - token: []
+  /app/analyze/g/optimization/p-max/results/mark:
+    post:
+      tags:
+      - App/Analyze/GoogleAds/Optimization
+      operationId: appAnalyzeGoogleAdsOptimizationPMaxMarkResult
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - analysis_id
+              - result_ids
+              - action
+              properties:
+                analysis_id:
+                  type: integer
+                result_ids:
+                  type: array
+                  items:
+                    type: integer
+                action:
+                  type: string
+                  enum:
+                  - negative
+                  - keyword
+                  - observe
+                  - brand
+                  - competitor
+                  - ok
+                  - relevant
+                optimized:
+                  type: boolean
+                  example: false
+              type: object
+      responses:
+        '200':
+          description: Successful
+      security:
+      - token: []
+  /app/analyze/g/optimization/p-max/{id}:
+    get:
+      tags:
+      - App/Analyze/GoogleAds/Optimization
+      operationId: appAnalyzeGoogleAdsOptimizationPMaxView
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+      security:
+      - token: []
+  /app/analyze/g/optimization/search-terms/{id}:
+    get:
+      tags:
+      - App/Analyze/GoogleAds/Optimization
+      operationId: appAnalyzeGoogleAdsOptimizationView
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+      security:
+      - token: []
+  /app/analyze/g/optimization/optimized-history:
+    get:
+      tags:
+      - App/Analyze/GoogleAds/Optimization
+      operationId: appAnalyzeGoogleAdsOptimizationHistory
+      parameters:
+      - name: linkingId
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: campaignId
+        in: query
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+      security:
+      - token: []
+  /app/analyze/g/optimization/recommendations:
+    get:
+      tags:
+      - App/Analyze/GoogleAds/Optimization
+      operationId: appAnalyzeGoogleAdsOptimizationRecommendations
+      parameters:
+      - name: from
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+      - name: to
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+      security:
+      - token: []
+components:
+  schemas:
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
+    IdSchema:
+      required:
+      - id
+      properties:
+        id:
+          type: integer
+      type: object
+  securitySchemes:
+    token:
+      type: apiKey
+      description: Bearer token authorization
+      name: authorization
+      in: header

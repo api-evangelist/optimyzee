@@ -1,0 +1,318 @@
+openapi: 3.2.0
+info:
+  title: Optimyzee Application App/Analyze/Google Ads/Reporting API
+  version: 4.1.0
+  x-original-title: API
+  description: App/Analyze/GoogleAds/Reporting
+servers:
+- url: https://api.optimyzee.com
+  description: Production (host serving this document at /docs)
+tags:
+- name: App/Analyze/GoogleAds/Reporting
+  description: App/Analyze/GoogleAds/Reporting
+paths:
+  /app/analyze/g/reporting/editor:
+    post:
+      tags:
+      - App/Analyze/GoogleAds/Reporting
+      operationId: appAnalyzeGoogleAdsReportingEditor
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - linkingId
+              properties:
+                linkingId:
+                  type: integer
+                delete:
+                  type:
+                  - array
+                  - 'null'
+                  items:
+                    required:
+                    - resource
+                    - payload
+                    properties:
+                      resource:
+                        type: string
+                      payload:
+                        type: object
+                    type: object
+                update:
+                  type:
+                  - array
+                  - 'null'
+                  items:
+                    required:
+                    - resource
+                    - payload
+                    properties:
+                      resource:
+                        type: string
+                      payload:
+                        type: object
+                    type: object
+                create:
+                  type:
+                  - array
+                  - 'null'
+                  items:
+                    required:
+                    - resource
+                    - payload
+                    properties:
+                      resource:
+                        type: string
+                      payload:
+                        type: object
+                    type: object
+              type: object
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/AppAnalyzeGoogleAdsReportingEditorResponseSchema'
+                type: object
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorListSchema'
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/analyze/g/reporting/querier:
+    post:
+      tags:
+      - App/Analyze/GoogleAds/Reporting
+      operationId: appAnalyzeGoogleAdsReportingQuerier
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - linkingId
+              - resource
+              - select
+              properties:
+                linkingId:
+                  type: integer
+                resource:
+                  type: string
+                select:
+                  type: array
+                  items:
+                    type: string
+                where:
+                  type:
+                  - array
+                  - 'null'
+                  items:
+                    required:
+                    - column
+                    properties:
+                      column:
+                        type: string
+                      operator:
+                        type:
+                        - string
+                        - 'null'
+                        enum:
+                        - '='
+                        - '!='
+                        - <
+                        - <=
+                        - '>'
+                        - '>='
+                        - LIKE
+                        - IN
+                        - NOT_IN
+                        - DURING
+                      value:
+                        oneOf:
+                        - type: boolean
+                        - type: string
+                        - type: number
+                        - type:
+                          - array
+                          - 'null'
+                          items:
+                            oneOf:
+                            - type: boolean
+                            - type: string
+                            - type: number
+                      boolean:
+                        type:
+                        - string
+                        - 'null'
+                        enum:
+                        - AND
+                        - OR
+                    type: object
+                sort:
+                  type:
+                  - array
+                  - 'null'
+                  items:
+                    required:
+                    - column
+                    properties:
+                      column:
+                        type: string
+                      direction:
+                        type:
+                        - string
+                        - 'null'
+                        enum:
+                        - ASC
+                        - DESC
+                    type: object
+                limit:
+                  type:
+                  - integer
+                  - 'null'
+                perPage:
+                  type:
+                  - integer
+                  - 'null'
+                cursor:
+                  type:
+                  - string
+                  - 'null'
+              type: object
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - items
+                - perPage
+                - next
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AppAnalyzeGoogleAdsReportingRowSchema'
+                  perPage:
+                    type: integer
+                  next:
+                    type:
+                    - string
+                    - 'null'
+                type: object
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorListSchema'
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+components:
+  schemas:
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
+    ErrorListSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorSchema'
+      type: object
+    AppAnalyzeGoogleAdsReportingEditorResponseSchema:
+      required:
+      - delete
+      - update
+      - create
+      properties:
+        delete:
+          type: array
+          items:
+            type: integer
+        update:
+          type: array
+          items:
+            type: integer
+        create:
+          type: array
+          items:
+            type: integer
+      type: object
+    ErrorBagSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      type: object
+    AppAnalyzeGoogleAdsReportingRowSchema:
+      type: object
+      additionalProperties: {}
+  securitySchemes:
+    token:
+      type: apiKey
+      description: Bearer token authorization
+      name: authorization
+      in: header

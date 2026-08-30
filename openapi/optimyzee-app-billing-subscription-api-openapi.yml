@@ -1,0 +1,290 @@
+openapi: 3.2.0
+info:
+  title: Optimyzee Application App/Billing/Subscription API
+  version: 4.1.0
+  x-original-title: API
+  description: App/Billing/Subscription
+servers:
+- url: https://api.optimyzee.com
+  description: Production (host serving this document at /docs)
+tags:
+- name: App/Billing/Subscription
+  description: App/Billing/Subscription
+paths:
+  /app/billing/subscription/cancel:
+    post:
+      tags:
+      - App/Billing/Subscription
+      operationId: appBillingSubscriptionCancel
+      responses:
+        '204':
+          description: Successful
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/billing/subscription/charge:
+    post:
+      tags:
+      - App/Billing/Subscription
+      operationId: appBillingSubscriptionCharge
+      responses:
+        '204':
+          description: Successful
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/billing/subscription:
+    get:
+      tags:
+      - App/Billing/Subscription
+      operationId: appBillingSubscriptionQuery
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AppBillingSubscriptionSchema'
+                type: object
+    post:
+      tags:
+      - App/Billing/Subscription
+      operationId: appBillingSubscriptionSubscribe
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - subscriptionId
+              - successUrl
+              - cancelUrl
+              properties:
+                subscriptionId:
+                  type: integer
+                successUrl:
+                  type: string
+                cancelUrl:
+                  type: string
+              type: object
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/AppBillingSubscriptionCheckoutSchema'
+                type: object
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/billing/subscription/session:
+    post:
+      tags:
+      - App/Billing/Subscription
+      operationId: appBillingSubscriptionSession
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - returnUrl
+              properties:
+                returnUrl:
+                  type: string
+              type: object
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/AppBillingSubscriptionSessionSchema'
+                type: object
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/billing/subscription/skip:
+    post:
+      tags:
+      - App/Billing/Subscription
+      operationId: appBillingSubscriptionSkip
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - subscriptionId
+              properties:
+                subscriptionId:
+                  type: integer
+              type: object
+      responses:
+        '204':
+          description: Successful
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+components:
+  schemas:
+    AppBillingSubscriptionSessionSchema:
+      required:
+      - uri
+      properties:
+        uri:
+          type: string
+      type: object
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
+    AppBillingSubscriptionSchema:
+      required:
+      - id
+      - plan
+      - description
+      - features
+      - featured
+      - amount
+      - annual
+      - trial
+      - sales
+      properties:
+        id:
+          type: integer
+        plan:
+          type: string
+          enum:
+          - STARTUP
+          - BUSINESS
+          - PROFESSIONAL
+        description:
+          type: string
+        features:
+          type: array
+          items:
+            type: string
+        featured:
+          type: boolean
+        amount:
+          type: number
+          format: float
+        annual:
+          type: boolean
+        trial:
+          type:
+          - integer
+          - 'null'
+        sales:
+          type: boolean
+      type: object
+    ErrorBagSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      type: object
+    AppBillingSubscriptionCheckoutSchema:
+      required:
+      - uri
+      properties:
+        uri:
+          type:
+          - string
+          - 'null'
+      type: object
+  securitySchemes:
+    token:
+      type: apiKey
+      description: Bearer token authorization
+      name: authorization
+      in: header

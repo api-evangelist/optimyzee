@@ -1,0 +1,120 @@
+openapi: 3.2.0
+info:
+  title: Optimyzee Application App Automations API
+  version: 4.1.0
+  x-original-title: API
+  description: App Automations
+servers:
+- url: https://api.optimyzee.com
+  description: Production (host serving this document at /docs)
+tags:
+- name: App Automations
+  description: App Automations
+paths:
+  /app/automations/runs:
+    get:
+      tags:
+      - App Automations
+      summary: List automation execution history for the current user
+      operationId: aeeca8c46e345b931240e55f10d4fd26
+      parameters:
+      - name: automationId
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AppAutomationRunSchema'
+components:
+  schemas:
+    AppAutomationRunSchema:
+      required:
+      - id
+      - automationId
+      - businessId
+      - automationTitle
+      - status
+      - signal
+      - signalStatus
+      - signalLabel
+      - locationLabel
+      - recommendationId
+      - recommendationCount
+      - skipReason
+      - startedAt
+      - finishedAt
+      properties:
+        id:
+          type: integer
+        automationId:
+          type:
+          - integer
+          - 'null'
+        businessId:
+          type:
+          - string
+          - 'null'
+        automationTitle:
+          type:
+          - string
+          - 'null'
+        status:
+          type: string
+        signal:
+          type:
+          - string
+          - 'null'
+        signalStatus:
+          type:
+          - string
+          - 'null'
+        signalLabel:
+          type:
+          - string
+          - 'null'
+        locationLabel:
+          type:
+          - string
+          - 'null'
+        recommendationId:
+          type:
+          - integer
+          - 'null'
+        recommendationCount:
+          type: integer
+        skipReason:
+          type:
+          - string
+          - 'null'
+        startedAt:
+          type:
+          - string
+          - 'null'
+        finishedAt:
+          type:
+          - string
+          - 'null'
+      type: object
+  securitySchemes:
+    token:
+      type: apiKey
+      description: Bearer token authorization
+      name: authorization
+      in: header

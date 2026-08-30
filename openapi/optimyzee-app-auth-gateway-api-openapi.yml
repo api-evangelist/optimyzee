@@ -1,0 +1,406 @@
+openapi: 3.2.0
+info:
+  title: Optimyzee Application App/Auth/Gateway API
+  version: 4.1.0
+  x-original-title: API
+  description: App/Auth/Gateway
+servers:
+- url: https://api.optimyzee.com
+  description: Production (host serving this document at /docs)
+tags:
+- name: App/Auth/Gateway
+  description: App/Auth/Gateway
+paths:
+  /app/auth/gateway/email:
+    post:
+      tags:
+      - App/Auth/Gateway
+      operationId: appAuthGatewayEmail
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - email
+              - password
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+                device:
+                  type:
+                  - string
+                  - 'null'
+                otp:
+                  type:
+                  - string
+                  - 'null'
+                otpRecoveryCode:
+                  type:
+                  - string
+                  - 'null'
+              type: object
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/AppAuthGatewayTokenSchema'
+                type: object
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '400':
+          description: Authentication error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+  /app/auth/gateway/emailSignup:
+    post:
+      tags:
+      - App/Auth/Gateway
+      operationId: appAuthGatewayEmailSignup
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - email
+              - password
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+                device:
+                  type:
+                  - string
+                  - 'null'
+              type: object
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/AppAuthGatewayTokenSchema'
+                type: object
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '400':
+          description: Authentication error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+  /app/auth/gateway/facebook:
+    post:
+      tags:
+      - App/Auth/Gateway
+      operationId: appAuthGatewayFacebook
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - accessToken
+              properties:
+                accessToken:
+                  type: string
+                device:
+                  type:
+                  - string
+                  - 'null'
+              type: object
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/AppAuthGatewayTokenSchema'
+                type: object
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '400':
+          description: Authentication error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+  /app/auth/gateway/facebookSignup:
+    post:
+      tags:
+      - App/Auth/Gateway
+      operationId: appAuthGatewayFacebookSignup
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - accessToken
+              properties:
+                accessToken:
+                  type: string
+                device:
+                  type:
+                  - string
+                  - 'null'
+              type: object
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/AppAuthGatewayTokenSchema'
+                type: object
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '400':
+          description: Authentication error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+  /app/auth/gateway/google:
+    post:
+      tags:
+      - App/Auth/Gateway
+      operationId: appAuthGatewayGoogle
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - accessToken
+              properties:
+                accessToken:
+                  type: string
+                device:
+                  type:
+                  - string
+                  - 'null'
+              type: object
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/AppAuthGatewayTokenSchema'
+                type: object
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '400':
+          description: Authentication error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+  /app/auth/gateway/googleSignup:
+    post:
+      tags:
+      - App/Auth/Gateway
+      operationId: appAuthGatewayGoogleSignup
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - accessToken
+              properties:
+                accessToken:
+                  type: string
+                device:
+                  type:
+                  - string
+                  - 'null'
+              type: object
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/AppAuthGatewayTokenSchema'
+                type: object
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '400':
+          description: Authentication error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+  /app/auth/gateway/refresh:
+    post:
+      tags:
+      - App/Auth/Gateway
+      operationId: appAuthGatewayRefresh
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                device:
+                  type:
+                  - string
+                  - 'null'
+              type: object
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/AppAuthGatewayTokenSchema'
+                type: object
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/auth/gateway/revoke:
+    post:
+      tags:
+      - App/Auth/Gateway
+      operationId: appAuthGatewayRevoke
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                device:
+                  type:
+                  - string
+                  - 'null'
+              type: object
+      responses:
+        '204':
+          description: Successful
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+components:
+  schemas:
+    AppAuthGatewayTokenSchema:
+      required:
+      - userId
+      - accessToken
+      properties:
+        userId:
+          type: integer
+        accessToken:
+          type: string
+      type: object
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
+    ErrorBagSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      type: object
+  securitySchemes:
+    token:
+      type: apiKey
+      description: Bearer token authorization
+      name: authorization
+      in: header

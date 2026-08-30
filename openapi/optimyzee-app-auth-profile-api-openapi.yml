@@ -1,0 +1,195 @@
+openapi: 3.2.0
+info:
+  title: Optimyzee Application App/Auth/Profile API
+  version: 4.1.0
+  x-original-title: API
+  description: App/Auth/Profile
+servers:
+- url: https://api.optimyzee.com
+  description: Production (host serving this document at /docs)
+tags:
+- name: App/Auth/Profile
+  description: App/Auth/Profile
+paths:
+  /app/auth/profile:
+    get:
+      tags:
+      - App/Auth/Profile
+      operationId: appAuthProfile
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/AppAuthProfileSchema'
+                type: object
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+    put:
+      tags:
+      - App/Auth/Profile
+      operationId: appAuthProfileUpdate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required: []
+              properties:
+                name:
+                  type:
+                  - string
+                  - 'null'
+                position:
+                  type:
+                  - string
+                  - 'null'
+                spend:
+                  type:
+                  - string
+                  - 'null'
+                goal:
+                  type:
+                  - string
+                  - 'null'
+              type: object
+      responses:
+        '204':
+          description: Successful
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+components:
+  schemas:
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
+    AppAuthProfileSchema:
+      required:
+      - id
+      - hasPassword
+      - hasGoogle
+      - hasFacebook
+      - hasStripeCustomer
+      - hasStripeSubscription
+      - tfaEnabled
+      - email
+      - emailVerified
+      - name
+      - position
+      - spend
+      - goal
+      - subscriptionPlan
+      - subscriptionStatus
+      - subscriptionExpiresAt
+      - subscriptionAnnual
+      - subscriptionSkipped
+      properties:
+        id:
+          type: integer
+        hasPassword:
+          type: boolean
+        hasGoogle:
+          type: boolean
+        hasFacebook:
+          type: boolean
+        hasStripeCustomer:
+          type: boolean
+        hasStripeSubscription:
+          type: boolean
+        tfaEnabled:
+          type: boolean
+        email:
+          type:
+          - string
+          - 'null'
+        emailVerified:
+          type: boolean
+        name:
+          type:
+          - string
+          - 'null'
+        position:
+          type:
+          - string
+          - 'null'
+        spend:
+          type:
+          - string
+          - 'null'
+        goal:
+          type:
+          - string
+          - 'null'
+        subscriptionPlan:
+          type: string
+          enum:
+          - FREE
+          - STARTUP
+          - BUSINESS
+          - PROFESSIONAL
+        subscriptionStatus:
+          type: string
+          enum:
+          - TRIAL
+          - ACTIVE
+          - CANCELLED
+        subscriptionExpiresAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        subscriptionAnnual:
+          type:
+          - boolean
+          - 'null'
+        subscriptionSkipped:
+          type: boolean
+      type: object
+    ErrorBagSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      type: object
+  securitySchemes:
+    token:
+      type: apiKey
+      description: Bearer token authorization
+      name: authorization
+      in: header

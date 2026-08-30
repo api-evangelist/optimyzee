@@ -1,0 +1,237 @@
+openapi: 3.2.0
+info:
+  title: Optimyzee Application App/Auth/Trusted Device API
+  version: 4.1.0
+  x-original-title: API
+  description: App/Auth/TrustedDevice
+servers:
+- url: https://api.optimyzee.com
+  description: Production (host serving this document at /docs)
+tags:
+- name: App/Auth/TrustedDevice
+  description: App/Auth/TrustedDevice
+paths:
+  /app/auth/trustedDevice:
+    get:
+      tags:
+      - App/Auth/TrustedDevice
+      operationId: appAuthTrustedDeviceQuery
+      parameters:
+      - name: perPage
+        in: query
+        schema:
+          type:
+          - integer
+          - 'null'
+      - name: cursor
+        in: query
+        schema:
+          type:
+          - string
+          - 'null'
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - items
+                - perPage
+                - next
+                - previous
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AppAuthTrustedDeviceSchema'
+                  perPage:
+                    type: integer
+                  previous:
+                    type:
+                    - string
+                    - 'null'
+                  next:
+                    type:
+                    - string
+                    - 'null'
+                type: object
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+    post:
+      tags:
+      - App/Auth/TrustedDevice
+      operationId: appAuthTrustedDeviceCreate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - guid
+              properties:
+                guid:
+                  type: string
+              type: object
+      responses:
+        '204':
+          description: Successful
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/auth/trustedDevice/current:
+    post:
+      tags:
+      - App/Auth/TrustedDevice
+      operationId: appAuthTrustedDeviceCurrent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - guid
+              properties:
+                guid:
+                  type: string
+              type: object
+      responses:
+        '200':
+          description: Current device is trusted
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/AppAuthTrustedDeviceSchema'
+                type: object
+        '204':
+          description: Current device is not trusted
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/auth/trustedDevice/{trustedDeviceId}:
+    get:
+      tags:
+      - App/Auth/TrustedDevice
+      operationId: appAuthTrustedDeviceView
+      parameters:
+      - name: trustedDeviceId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/AppAuthTrustedDeviceSchema'
+                type: object
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+    delete:
+      tags:
+      - App/Auth/TrustedDevice
+      operationId: appAuthTrustedDeviceDelete
+      parameters:
+      - name: trustedDeviceId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Successful
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+components:
+  schemas:
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
+    AppAuthTrustedDeviceSchema:
+      required:
+      - id
+      - userId
+      - userAgent
+      - validTo
+      - ip
+      properties:
+        id:
+          type: integer
+        userId:
+          type: integer
+        userAgent:
+          type:
+          - string
+          - 'null'
+        ip:
+          type:
+          - string
+          - 'null'
+        validTo:
+          type: string
+          format: date-time
+      type: object
+  securitySchemes:
+    token:
+      type: apiKey
+      description: Bearer token authorization
+      name: authorization
+      in: header

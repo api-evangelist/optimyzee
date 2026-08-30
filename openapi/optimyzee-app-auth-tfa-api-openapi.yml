@@ -1,0 +1,149 @@
+openapi: 3.2.0
+info:
+  title: Optimyzee Application App/Auth/Tfa API
+  version: 4.1.0
+  x-original-title: API
+  description: App/Auth/Tfa
+servers:
+- url: https://api.optimyzee.com
+  description: Production (host serving this document at /docs)
+tags:
+- name: App/Auth/Tfa
+  description: App/Auth/Tfa
+paths:
+  /app/auth/tfa/disable:
+    post:
+      tags:
+      - App/Auth/Tfa
+      operationId: appAuthTfaDisable
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required: []
+              properties:
+                otp:
+                  type:
+                  - string
+                  - 'null'
+                otpRecoveryCode:
+                  type:
+                  - string
+                  - 'null'
+              type: object
+      responses:
+        '204':
+          description: Successful
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/auth/tfa/enable:
+    post:
+      tags:
+      - App/Auth/Tfa
+      operationId: appAuthTfaEnable
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - otp
+              properties:
+                otp:
+                  type: string
+              type: object
+      responses:
+        '204':
+          description: Successful
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/auth/tfa/issue:
+    post:
+      tags:
+      - App/Auth/Tfa
+      operationId: appAuthTfaIssue
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/AppAuthTfaCredentialsSchema'
+                type: object
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+components:
+  schemas:
+    AppAuthTfaCredentialsSchema:
+      required:
+      - qr
+      - secretKey
+      - recoveryCodes
+      properties:
+        qr:
+          type: string
+        secretKey:
+          type: string
+        recoveryCodes:
+          type: array
+          items:
+            type: string
+      type: object
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
+  securitySchemes:
+    token:
+      type: apiKey
+      description: Bearer token authorization
+      name: authorization
+      in: header

@@ -1,0 +1,157 @@
+openapi: 3.2.0
+info:
+  title: Optimyzee Application Operations/Auth/Gateway API
+  version: 4.1.0
+  x-original-title: API
+  description: Operations/Auth/Gateway
+servers:
+- url: https://api.optimyzee.com
+  description: Production (host serving this document at /docs)
+tags:
+- name: Operations/Auth/Gateway
+  description: Operations/Auth/Gateway
+paths:
+  /operations/auth/gateway:
+    post:
+      tags:
+      - Operations/Auth/Gateway
+      operationId: operationsAuthGateway
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - email
+              - password
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+                otp:
+                  type:
+                  - string
+                  - 'null'
+                otpRecoveryCode:
+                  type:
+                  - string
+                  - 'null'
+              type: object
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/OperationsAuthGatewayTokenSchema'
+                type: object
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '400':
+          description: Authentication error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+  /operations/auth/gateway/refresh:
+    post:
+      tags:
+      - Operations/Auth/Gateway
+      operationId: operationsAuthGatewayRefresh
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/OperationsAuthGatewayTokenSchema'
+                type: object
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /operations/auth/gateway/revoke:
+    post:
+      tags:
+      - Operations/Auth/Gateway
+      operationId: operationsAuthGatewayRevoke
+      responses:
+        '204':
+          description: Successful
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+components:
+  schemas:
+    OperationsAuthGatewayTokenSchema:
+      required:
+      - adminId
+      - accessToken
+      properties:
+        adminId:
+          type: integer
+        accessToken:
+          type: string
+      type: object
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
+    ErrorBagSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      type: object
+  securitySchemes:
+    token:
+      type: apiKey
+      description: Bearer token authorization
+      name: authorization
+      in: header

@@ -1,0 +1,125 @@
+openapi: 3.2.0
+info:
+  title: Optimyzee Application App/Lookup/Google Ads/Campaign API
+  version: 4.1.0
+  x-original-title: API
+  description: App/Lookup/GoogleAds/Campaign
+servers:
+- url: https://api.optimyzee.com
+  description: Production (host serving this document at /docs)
+tags:
+- name: App/Lookup/GoogleAds/Campaign
+  description: App/Lookup/GoogleAds/Campaign
+paths:
+  /app/lookup/g/campaign:
+    get:
+      tags:
+      - App/Lookup/GoogleAds/Campaign
+      operationId: appLookupGoogleAdsCampaignQuery
+      parameters:
+      - name: linkingId
+        in: query
+        required: true
+        schema:
+          type: integer
+      - name: q
+        in: query
+        schema:
+          type:
+          - string
+          - 'null'
+      - name: advertisingChannelType
+        in: query
+        schema:
+          type:
+          - string
+          - 'null'
+          enum:
+          - SEARCH
+          - PERFORMANCE_MAX
+      - name: advertisingChannelTypes[]
+        in: query
+        schema:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            enum:
+            - SEARCH
+            - PERFORMANCE_MAX
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AppLookupGoogleAdsCampaignSchema'
+                type: object
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+components:
+  schemas:
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
+    AppLookupGoogleAdsCampaignSchema:
+      required:
+      - id
+      - name
+      - status
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        status:
+          type: integer
+      type: object
+    ErrorBagSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      type: object
+  securitySchemes:
+    token:
+      type: apiKey
+      description: Bearer token authorization
+      name: authorization
+      in: header

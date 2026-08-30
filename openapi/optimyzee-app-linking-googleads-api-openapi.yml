@@ -1,0 +1,392 @@
+openapi: 3.2.0
+info:
+  title: Optimyzee Application App/Linking/Google Ads API
+  version: 4.1.0
+  x-original-title: API
+  description: App/Linking/GoogleAds
+servers:
+- url: https://api.optimyzee.com
+  description: Production (host serving this document at /docs)
+tags:
+- name: App/Linking/GoogleAds
+  description: App/Linking/GoogleAds
+paths:
+  /app/linking/g/{linkingId}:
+    get:
+      tags:
+      - App/Linking/GoogleAds
+      operationId: appLinkingGoogleAdsView
+      parameters:
+      - name: linkingId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/AppLinkingGoogleAdsSchema'
+                type: object
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+    delete:
+      tags:
+      - App/Linking/GoogleAds
+      operationId: appLinkingGoogleAdsDelete
+      parameters:
+      - name: linkingId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Successful
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/linking/g/hierarchy:
+    get:
+      tags:
+      - App/Linking/GoogleAds
+      operationId: appLinkingGoogleAdsHierarchy
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AppLinkingGoogleAdsHierarchySchema'
+                type: object
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/linking/g:
+    get:
+      tags:
+      - App/Linking/GoogleAds
+      operationId: appLinkingGoogleAdsQuery
+      parameters:
+      - name: q
+        in: query
+        schema:
+          type:
+          - string
+          - 'null'
+      - name: isManager
+        in: query
+        schema:
+          type:
+          - integer
+          - 'null'
+          enum:
+          - 0
+          - 1
+      - name: perPage
+        in: query
+        schema:
+          type: integer
+      - name: cursor
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - items
+                - perPage
+                - next
+                - previous
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AppLinkingGoogleAdsSchema'
+                  perPage:
+                    type: integer
+                  previous:
+                    type:
+                    - string
+                    - 'null'
+                  next:
+                    type:
+                    - string
+                    - 'null'
+                type: object
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+    post:
+      tags:
+      - App/Linking/GoogleAds
+      operationId: appLinkingGoogleAdsIssue
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - code
+              - redirectUri
+              properties:
+                code:
+                  type: string
+                redirectUri:
+                  type: string
+              type: object
+      responses:
+        '204':
+          description: Successful
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '400':
+          description: Failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/linking/g/{linkingId}/ping:
+    get:
+      tags:
+      - App/Linking/GoogleAds
+      operationId: appLinkingGoogleAdsPing
+      parameters:
+      - name: linkingId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Successful
+        '400':
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorListSchema'
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/linking/g/uri:
+    get:
+      tags:
+      - App/Linking/GoogleAds
+      operationId: appLinkingGoogleAdsUri
+      parameters:
+      - name: redirectUri
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - uri
+                properties:
+                  uri:
+                    type: string
+                type: object
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+components:
+  schemas:
+    AppLinkingGoogleAdsHierarchySchema:
+      required:
+      - id
+      - name
+      - customerId
+      - readableCustomerId
+      - loginCustomerId
+      - currencyCode
+      - descriptiveName
+      - isManager
+      - children
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        customerId:
+          type: integer
+        readableCustomerId:
+          type: string
+        loginCustomerId:
+          type:
+          - integer
+          - 'null'
+        currencyCode:
+          type:
+          - string
+          - 'null'
+        descriptiveName:
+          type:
+          - string
+          - 'null'
+        isManager:
+          type: boolean
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppLinkingGoogleAdsHierarchySchema'
+      type: object
+    ErrorListSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorSchema'
+      type: object
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
+    AppLinkingGoogleAdsSchema:
+      required:
+      - id
+      - name
+      - customerId
+      - readableCustomerId
+      - loginCustomerId
+      - currencyCode
+      - descriptiveName
+      - isManager
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        customerId:
+          type: integer
+        readableCustomerId:
+          type: string
+        loginCustomerId:
+          type:
+          - integer
+          - 'null'
+        currencyCode:
+          type:
+          - string
+          - 'null'
+        descriptiveName:
+          type:
+          - string
+          - 'null'
+        isManager:
+          type: boolean
+      type: object
+    ErrorBagSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      type: object
+  securitySchemes:
+    token:
+      type: apiKey
+      description: Bearer token authorization
+      name: authorization
+      in: header

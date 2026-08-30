@@ -1,0 +1,357 @@
+openapi: 3.2.0
+info:
+  title: Optimyzee Application App/Create/Google Ads/Keyword Planner API
+  version: 4.1.0
+  x-original-title: API
+  description: App/Create/GoogleAds/KeywordPlanner
+servers:
+- url: https://api.optimyzee.com
+  description: Production (host serving this document at /docs)
+tags:
+- name: App/Create/GoogleAds/KeywordPlanner
+  description: App/Create/GoogleAds/KeywordPlanner
+paths:
+  /app/create/g/keywordPlanner/{plannerId}/export:
+    get:
+      tags:
+      - App/Create/GoogleAds/KeywordPlanner
+      operationId: appCreateGoogleAdsKeywordPlannerExport
+      parameters:
+      - name: plannerId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            text/csv:
+              schema:
+                type: string
+                format: binary
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/create/g/keywordPlanner:
+    post:
+      tags:
+      - App/Create/GoogleAds/KeywordPlanner
+      operationId: appCreateGoogleAdsKeywordPlannerQueue
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - url
+              properties:
+                url:
+                  type: string
+                prompt:
+                  type:
+                  - string
+                  - 'null'
+                language:
+                  type:
+                  - integer
+                  - 'null'
+                locations:
+                  type:
+                  - array
+                  - 'null'
+                  items:
+                    type: integer
+              type: object
+      responses:
+        '201':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdSchema'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/create/g/keywordPlanner/{plannerId}/reprocess:
+    post:
+      tags:
+      - App/Create/GoogleAds/KeywordPlanner
+      operationId: appCreateGoogleAdsKeywordPlannerReprocess
+      parameters:
+      - name: plannerId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - url
+              properties:
+                url:
+                  type: string
+                prompt:
+                  type:
+                  - string
+                  - 'null'
+                language:
+                  type:
+                  - integer
+                  - 'null'
+                locations:
+                  type:
+                  - array
+                  - 'null'
+                  items:
+                    type: integer
+              type: object
+      responses:
+        '204':
+          description: Successful
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/create/g/keywordPlanner/{plannerId}:
+    get:
+      tags:
+      - App/Create/GoogleAds/KeywordPlanner
+      operationId: appCreateGoogleAdsKeywordPlannerView
+      parameters:
+      - name: plannerId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/AppCreateGoogleAdsKeywordPlannerSchema'
+                type: object
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+    put:
+      tags:
+      - App/Create/GoogleAds/KeywordPlanner
+      operationId: appCreateGoogleAdsKeywordPlannerUpdate
+      parameters:
+      - name: plannerId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - selected
+              properties:
+                selected:
+                  type: array
+                  items:
+                    type: integer
+              type: object
+      responses:
+        '204':
+          description: Successful
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+components:
+  schemas:
+    AppCreateGoogleAdsKeywordPlannerSchema:
+      required:
+      - id
+      - url
+      - language
+      - locations
+      - keywordSeed
+      - prompt
+      - status
+      - keywords
+      properties:
+        id:
+          type: integer
+        url:
+          type: string
+        language:
+          type:
+          - integer
+          - 'null'
+        locations:
+          type: array
+          items:
+            type: integer
+        keywordSeed:
+          type: array
+          items:
+            type: string
+        prompt:
+          type:
+          - string
+          - 'null'
+        status:
+          type: string
+          enum:
+          - QUEUED
+          - PROCESSING
+          - SUCCESSFUL
+          - FAILED
+        keywords:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppCreateGoogleAdsKeywordPlannerKeywordSchema'
+      type: object
+    IdSchema:
+      required:
+      - id
+      properties:
+        id:
+          type: integer
+      type: object
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
+    ErrorBagSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      type: object
+    AppCreateGoogleAdsKeywordPlannerKeywordSchema:
+      required:
+      - id
+      - text
+      - lowTopOfPageBid
+      - highTopOfPageBid
+      - competition
+      - avgMonthlySearches
+      - score
+      - selected
+      properties:
+        id:
+          type: integer
+        text:
+          type: string
+        lowTopOfPageBid:
+          type:
+          - integer
+          - 'null'
+        highTopOfPageBid:
+          type:
+          - integer
+          - 'null'
+        competition:
+          type:
+          - integer
+          - 'null'
+        avgMonthlySearches:
+          type:
+          - integer
+          - 'null'
+        score:
+          type:
+          - integer
+          - 'null'
+        selected:
+          type: boolean
+      type: object
+  securitySchemes:
+    token:
+      type: apiKey
+      description: Bearer token authorization
+      name: authorization
+      in: header

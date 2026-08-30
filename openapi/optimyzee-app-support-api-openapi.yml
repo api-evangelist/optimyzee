@@ -1,0 +1,218 @@
+openapi: 3.2.0
+info:
+  title: Optimyzee Application App/Support API
+  version: 4.1.0
+  x-original-title: API
+  description: App/Support
+servers:
+- url: https://api.optimyzee.com
+  description: Production (host serving this document at /docs)
+tags:
+- name: App/Support
+  description: App/Support
+paths:
+  /app/support/beta:
+    post:
+      tags:
+      - App/Support
+      operationId: appSupportBeta
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - feature
+              properties:
+                feature:
+                  type: string
+              type: object
+      responses:
+        '204':
+          description: Successful
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/support/bug:
+    post:
+      tags:
+      - App/Support
+      operationId: appSupportBug
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - description
+              properties:
+                description:
+                  type: string
+              type: object
+      responses:
+        '204':
+          description: Successful
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/support/contact:
+    post:
+      tags:
+      - App/Support
+      operationId: appSupportContact
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - name
+              - email
+              - message
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                message:
+                  type: string
+              type: object
+      responses:
+        '204':
+          description: Successful
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+  /app/support/sales:
+    post:
+      tags:
+      - App/Support
+      operationId: appSupportSales
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - subscriptionId
+              - companyEmail
+              - message
+              properties:
+                subscriptionId:
+                  type: integer
+                companyEmail:
+                  type: string
+                message:
+                  type: string
+              type: object
+      responses:
+        '204':
+          description: Successful
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/support:
+    post:
+      tags:
+      - App/Support
+      operationId: appSupport
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - message
+              properties:
+                message:
+                  type: string
+              type: object
+      responses:
+        '204':
+          description: Successful
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+components:
+  schemas:
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
+    ErrorBagSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      type: object
+  securitySchemes:
+    token:
+      type: apiKey
+      description: Bearer token authorization
+      name: authorization
+      in: header

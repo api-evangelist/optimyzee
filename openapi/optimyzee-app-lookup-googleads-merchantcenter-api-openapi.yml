@@ -1,0 +1,79 @@
+openapi: 3.2.0
+info:
+  title: Optimyzee Application App/Lookup/Google Ads/Merchant Center API
+  version: 4.1.0
+  x-original-title: API
+  description: App/Lookup/GoogleAds/MerchantCenter
+servers:
+- url: https://api.optimyzee.com
+  description: Production (host serving this document at /docs)
+tags:
+- name: App/Lookup/GoogleAds/MerchantCenter
+  description: App/Lookup/GoogleAds/MerchantCenter
+paths:
+  /app/lookup/g/merchant-center:
+    get:
+      tags:
+      - App/Lookup/GoogleAds/MerchantCenter
+      operationId: appLookupGoogleAdsMerchantCenterQuery
+      parameters:
+      - name: linkingId
+        in: query
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+components:
+  schemas:
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
+    ErrorBagSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      type: object
+  securitySchemes:
+    token:
+      type: apiKey
+      description: Bearer token authorization
+      name: authorization
+      in: header

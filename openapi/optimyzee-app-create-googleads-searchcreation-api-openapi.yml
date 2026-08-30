@@ -1,0 +1,480 @@
+openapi: 3.2.0
+info:
+  title: Optimyzee Application App/Create/Google Ads/Search Creation API
+  version: 4.1.0
+  x-original-title: API
+  description: App/Create/GoogleAds/SearchCreation
+servers:
+- url: https://api.optimyzee.com
+  description: Production (host serving this document at /docs)
+tags:
+- name: App/Create/GoogleAds/SearchCreation
+  description: App/Create/GoogleAds/SearchCreation
+paths:
+  /app/create/g/searchCreation:
+    post:
+      tags:
+      - App/Create/GoogleAds/SearchCreation
+      operationId: appCreateGoogleAdsSearchCreationCreate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - url
+              properties:
+                url:
+                  type: string
+                linkingId:
+                  type:
+                  - integer
+                  - 'null'
+                rsaBuilderId:
+                  type:
+                  - integer
+                  - 'null'
+                keywordPlannerId:
+                  type:
+                  - integer
+                  - 'null'
+                languages:
+                  type:
+                  - array
+                  - 'null'
+                  items:
+                    type: integer
+                locations:
+                  type:
+                  - array
+                  - 'null'
+                  items:
+                    type: integer
+                budgetAmount:
+                  type:
+                  - integer
+                  - 'null'
+              type: object
+      responses:
+        '201':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdSchema'
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/create/g/searchCreation/{draftId}/publish:
+    post:
+      tags:
+      - App/Create/GoogleAds/SearchCreation
+      operationId: appCreateGoogleAdsSearchCreationPublish
+      parameters:
+      - name: draftId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Successful
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/create/g/searchCreation/{draftId}/rebuild:
+    post:
+      tags:
+      - App/Create/GoogleAds/SearchCreation
+      operationId: appCreateGoogleAdsSearchCreationRebuild
+      parameters:
+      - name: draftId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required: []
+              properties:
+                url:
+                  type:
+                  - string
+                  - 'null'
+                prompt:
+                  type:
+                  - string
+                  - 'null'
+                languages:
+                  type:
+                  - array
+                  - 'null'
+                  items:
+                    type: integer
+                locations:
+                  type:
+                  - array
+                  - 'null'
+                  items:
+                    type: integer
+              type: object
+      responses:
+        '204':
+          description: Successful
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/create/g/searchCreation/{draftId}/status:
+    get:
+      tags:
+      - App/Create/GoogleAds/SearchCreation
+      operationId: appCreateGoogleAdsSearchCreationStatus
+      parameters:
+      - name: draftId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/AppCreateGoogleAdsSearchCreationStatusSchema'
+                type: object
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/create/g/searchCreation/{draftId}:
+    get:
+      tags:
+      - App/Create/GoogleAds/SearchCreation
+      operationId: appCreateGoogleAdsSearchCreationView
+      parameters:
+      - name: draftId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/AppCreateGoogleAdsSearchCreationDraftSchema'
+                type: object
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+    patch:
+      tags:
+      - App/Create/GoogleAds/SearchCreation
+      operationId: appCreateGoogleAdsSearchCreationUpdate
+      parameters:
+      - name: draftId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required: []
+              properties:
+                linkingId:
+                  type:
+                  - integer
+                  - 'null'
+                url:
+                  type:
+                  - string
+                  - 'null'
+                languages:
+                  type:
+                  - array
+                  - 'null'
+                  items:
+                    type: integer
+                locations:
+                  type:
+                  - array
+                  - 'null'
+                  items:
+                    type: integer
+                headlines:
+                  type:
+                  - array
+                  - 'null'
+                  items:
+                    type: string
+                descriptions:
+                  type:
+                  - array
+                  - 'null'
+                  items:
+                    type: string
+                keywords:
+                  type:
+                  - array
+                  - 'null'
+                  items:
+                    type: integer
+                budgetAmount:
+                  type:
+                  - integer
+                  - 'null'
+              type: object
+      responses:
+        '204':
+          description: Successful
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+components:
+  schemas:
+    AppCreateGoogleAdsSearchCreationStatusSchema:
+      required:
+      - status
+      properties:
+        status:
+          type: string
+          enum:
+          - IDLE
+          - BUILD_QUEUED
+          - BUILD_PROCESSING
+          - PUBLISH_QUEUED
+          - PUBLISH_PROCESSING
+          - PUBLISHED
+          - PARTIALLY_PUBLISHED
+      type: object
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
+    IdSchema:
+      required:
+      - id
+      properties:
+        id:
+          type: integer
+      type: object
+    AppCreateGoogleAdsSearchCreationDraftSchema:
+      required:
+      - id
+      - linkingId
+      - linkingName
+      - linkingCurrencyCode
+      - campaignId
+      - status
+      - url
+      - prompt
+      - languages
+      - locations
+      - headlines
+      - descriptions
+      - headlineSuggestions
+      - descriptionSuggestions
+      - keywords
+      - budgetAmount
+      properties:
+        id:
+          type: integer
+        linkingId:
+          type:
+          - integer
+          - 'null'
+        linkingName:
+          type:
+          - string
+          - 'null'
+        linkingCurrencyCode:
+          type:
+          - string
+          - 'null'
+        campaignId:
+          type:
+          - integer
+          - 'null'
+        status:
+          type: string
+          enum:
+          - IDLE
+          - BUILD_QUEUED
+          - BUILD_PROCESSING
+          - PUBLISH_QUEUED
+          - PUBLISH_PROCESSING
+          - PUBLISHED
+          - PARTIALLY_PUBLISHED
+        url:
+          type:
+          - string
+          - 'null'
+        prompt:
+          type:
+          - string
+          - 'null'
+        languages:
+          type: array
+          items:
+            type: integer
+        locations:
+          type: array
+          items:
+            type: integer
+        headlines:
+          type: array
+          items:
+            type: string
+        descriptions:
+          type: array
+          items:
+            type: string
+        headlineSuggestions:
+          type: array
+          items:
+            type: string
+        descriptionSuggestions:
+          type: array
+          items:
+            type: string
+        keywords:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppCreateGoogleAdsSearchCreationDraftKeywordSchema'
+        budgetAmount:
+          type:
+          - integer
+          - 'null'
+      type: object
+    AppCreateGoogleAdsSearchCreationDraftKeywordSchema:
+      required:
+      - id
+      - text
+      - lowTopOfPageBid
+      - highTopOfPageBid
+      - competition
+      - avgMonthlySearches
+      - score
+      - selected
+      properties:
+        id:
+          type: integer
+        text:
+          type: string
+        lowTopOfPageBid:
+          type:
+          - integer
+          - 'null'
+        highTopOfPageBid:
+          type:
+          - integer
+          - 'null'
+        competition:
+          type:
+          - integer
+          - 'null'
+        avgMonthlySearches:
+          type:
+          - integer
+          - 'null'
+        score:
+          type:
+          - integer
+          - 'null'
+        selected:
+          type: boolean
+      type: object
+  securitySchemes:
+    token:
+      type: apiKey
+      description: Bearer token authorization
+      name: authorization
+      in: header

@@ -1,0 +1,309 @@
+openapi: 3.2.0
+info:
+  title: Optimyzee Application App/Create/Google Ads/Sitelink Builder API
+  version: 4.1.0
+  x-original-title: API
+  description: App/Create/GoogleAds/SitelinkBuilder
+servers:
+- url: https://api.optimyzee.com
+  description: Production (host serving this document at /docs)
+tags:
+- name: App/Create/GoogleAds/SitelinkBuilder
+  description: App/Create/GoogleAds/SitelinkBuilder
+paths:
+  /app/create/g/sitelinkBuilder/{builderId}/export:
+    get:
+      tags:
+      - App/Create/GoogleAds/SitelinkBuilder
+      operationId: appCreateGoogleAdsSitelinkBuilderExport
+      parameters:
+      - name: builderId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            text/csv:
+              schema:
+                type: string
+                format: binary
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/create/g/sitelinkBuilder:
+    post:
+      tags:
+      - App/Create/GoogleAds/SitelinkBuilder
+      operationId: appCreateGoogleAdsSitelinkBuilderQueue
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - url
+              properties:
+                url:
+                  type: string
+              type: object
+      responses:
+        '201':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdSchema'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/create/g/sitelinkBuilder/{builderId}/reprocess:
+    post:
+      tags:
+      - App/Create/GoogleAds/SitelinkBuilder
+      operationId: appCreateGoogleAdsSitelinkBuilderReprocess
+      parameters:
+      - name: builderId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - url
+              properties:
+                url:
+                  type: string
+              type: object
+      responses:
+        '204':
+          description: Successful
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+  /app/create/g/sitelinkBuilder/{builderId}:
+    get:
+      tags:
+      - App/Create/GoogleAds/SitelinkBuilder
+      operationId: appCreateGoogleAdsSitelinkBuilderView
+      parameters:
+      - name: builderId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/AppCreateGoogleAdsSitelinkBuilderSchema'
+                type: object
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+    put:
+      tags:
+      - App/Create/GoogleAds/SitelinkBuilder
+      operationId: appCreateGoogleAdsSitelinkBuilderUpdate
+      parameters:
+      - name: builderId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - sitelinks
+              properties:
+                sitelinks:
+                  type: array
+                  items:
+                    required:
+                    - finalUrl
+                    - linkText
+                    properties:
+                      finalUrl:
+                        type: string
+                      linkText:
+                        type: string
+                      description1:
+                        type:
+                        - string
+                        - 'null'
+                      description2:
+                        type:
+                        - string
+                        - 'null'
+                    type: object
+              type: object
+      responses:
+        '204':
+          description: Successful
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+      security:
+      - token: []
+components:
+  schemas:
+    IdSchema:
+      required:
+      - id
+      properties:
+        id:
+          type: integer
+      type: object
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
+    ErrorBagSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      type: object
+    AppCreateGoogleAdsSitelinkBuilderSitelinkSchema:
+      required:
+      - id
+      - finalUrl
+      - linkText
+      - description1
+      - description2
+      properties:
+        id:
+          type: integer
+        finalUrl:
+          type: string
+        linkText:
+          type: string
+        description1:
+          type:
+          - string
+          - 'null'
+        description2:
+          type:
+          - string
+          - 'null'
+      type: object
+    AppCreateGoogleAdsSitelinkBuilderSchema:
+      required:
+      - id
+      - url
+      - status
+      - sitelinks
+      properties:
+        id:
+          type: integer
+        url:
+          type: string
+        status:
+          type: string
+          enum:
+          - QUEUED
+          - PROCESSING
+          - SUCCESSFUL
+        sitelinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppCreateGoogleAdsSitelinkBuilderSitelinkSchema'
+      type: object
+  securitySchemes:
+    token:
+      type: apiKey
+      description: Bearer token authorization
+      name: authorization
+      in: header

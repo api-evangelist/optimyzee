@@ -1,0 +1,374 @@
+openapi: 3.2.0
+info:
+  title: Optimyzee Application Operations/Billing/Subscription API
+  version: 4.1.0
+  x-original-title: API
+  description: Operations/Billing/Subscription
+servers:
+- url: https://api.optimyzee.com
+  description: Production (host serving this document at /docs)
+tags:
+- name: Operations/Billing/Subscription
+  description: Operations/Billing/Subscription
+paths:
+  /operations/billing/subscription:
+    get:
+      tags:
+      - Operations/Billing/Subscription
+      operationId: operationsBillingSubscriptionQuery
+      parameters:
+      - name: legacy
+        in: query
+        schema:
+          type:
+          - integer
+          - 'null'
+          enum:
+          - 0
+          - 1
+      - name: perPage
+        in: query
+        schema:
+          type: integer
+      - name: cursor
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - items
+                - perPage
+                - next
+                - previous
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/OperationsBillingSubscriptionSchema'
+                  perPage:
+                    type: integer
+                  previous:
+                    type:
+                    - string
+                    - 'null'
+                  next:
+                    type:
+                    - string
+                    - 'null'
+                type: object
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+    post:
+      tags:
+      - Operations/Billing/Subscription
+      operationId: operationsBillingSubscriptionCreate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - plan
+              - description
+              - features
+              - featured
+              - stripePriceId
+              - annual
+              - amount
+              - sales
+              - legacy
+              properties:
+                plan:
+                  type: string
+                  enum:
+                  - STARTUP
+                  - BUSINESS
+                  - PROFESSIONAL
+                description:
+                  type: string
+                features:
+                  type: array
+                  items:
+                    type: string
+                featured:
+                  type: boolean
+                stripePriceId:
+                  type: string
+                annual:
+                  type: boolean
+                amount:
+                  type: number
+                trial:
+                  type:
+                  - number
+                  - 'null'
+                sales:
+                  type: boolean
+                legacy:
+                  type: boolean
+              type: object
+      responses:
+        '201':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdSchema'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+  /operations/billing/subscription/{subscriptionId}:
+    get:
+      tags:
+      - Operations/Billing/Subscription
+      operationId: operationsBillingSubscriptionView
+      parameters:
+      - name: subscriptionId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/OperationsBillingSubscriptionSchema'
+                type: object
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+    put:
+      tags:
+      - Operations/Billing/Subscription
+      operationId: operationsBillingSubscriptionUpdate
+      parameters:
+      - name: subscriptionId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - plan
+              - description
+              - features
+              - featured
+              - stripePriceId
+              - annual
+              - amount
+              - sales
+              - legacy
+              properties:
+                plan:
+                  type: string
+                  enum:
+                  - STARTUP
+                  - BUSINESS
+                  - PROFESSIONAL
+                description:
+                  type: string
+                features:
+                  type: array
+                  items:
+                    type: string
+                featured:
+                  type: boolean
+                stripePriceId:
+                  type: string
+                annual:
+                  type: boolean
+                amount:
+                  type: number
+                trial:
+                  type:
+                  - number
+                  - 'null'
+                sales:
+                  type: boolean
+                legacy:
+                  type: boolean
+              type: object
+      responses:
+        '204':
+          description: Successful
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBagSchema'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+    delete:
+      tags:
+      - Operations/Billing/Subscription
+      operationId: operationsBillingSubscriptionDelete
+      parameters:
+      - name: subscriptionId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Successful
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+components:
+  schemas:
+    OperationsBillingSubscriptionSchema:
+      required:
+      - id
+      - plan
+      - description
+      - features
+      - featured
+      - stripePriceId
+      - amount
+      - annual
+      - trial
+      - sales
+      - legacy
+      properties:
+        id:
+          type: integer
+        plan:
+          type: string
+          enum:
+          - STARTUP
+          - BUSINESS
+          - PROFESSIONAL
+        description:
+          type: string
+        features:
+          type: array
+          items:
+            type: string
+        featured:
+          type: boolean
+        stripePriceId:
+          type: string
+        amount:
+          type: number
+          format: float
+        annual:
+          type: boolean
+        trial:
+          type:
+          - integer
+          - 'null'
+        sales:
+          type: boolean
+        legacy:
+          type: boolean
+      type: object
+    IdSchema:
+      required:
+      - id
+      properties:
+        id:
+          type: integer
+      type: object
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
+    ErrorBagSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      type: object
+  securitySchemes:
+    token:
+      type: apiKey
+      description: Bearer token authorization
+      name: authorization
+      in: header

@@ -1,0 +1,180 @@
+openapi: 3.2.0
+info:
+  title: Optimyzee Application App Recommendation API
+  version: 4.1.0
+  x-original-title: API
+  description: App Recommendation
+servers:
+- url: https://api.optimyzee.com
+  description: Production (host serving this document at /docs)
+tags:
+- name: App Recommendation
+  description: App Recommendation
+paths:
+  /app/recommendations:
+    get:
+      tags:
+      - App Recommendation
+      summary: List the current user's stored recommendations
+      operationId: a0beb9202425004a1461d531cc8378af
+      parameters:
+      - name: businessId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: domain
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AppRecommendationSchema'
+  /app/recommendations/{recommendationId}:
+    patch:
+      tags:
+      - App Recommendation
+      summary: Update a recommendation status
+      operationId: 02b67b9bb321e6ea93f11dd324815378
+      parameters:
+      - name: recommendationId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - status
+              properties:
+                status:
+                  type: string
+              type: object
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppRecommendationSchema'
+components:
+  schemas:
+    AppRecommendationSchema:
+      required:
+      - id
+      - businessId
+      - businessName
+      - domain
+      - title
+      - rationale
+      - direction
+      - deltaPct
+      - service
+      - confidence
+      - status
+      - source
+      - createdAt
+      - acceptedAt
+      - dismissedAt
+      - outcomeCheckedAt
+      - outcomeWindowDays
+      - outcomeMetrics
+      - yelpAdsJobId
+      - yelpAdsJobStatus
+      - yelpAdsJobProgramRef
+      - yelpAdsJobMessage
+      properties:
+        id:
+          type: integer
+        businessId:
+          type:
+          - string
+          - 'null'
+        businessName:
+          type:
+          - string
+          - 'null'
+        domain:
+          type: string
+        title:
+          type: string
+        rationale:
+          type: string
+        direction:
+          type: string
+        deltaPct:
+          type:
+          - integer
+          - 'null'
+        service:
+          type:
+          - string
+          - 'null'
+        confidence:
+          type: string
+        status:
+          type: string
+        source:
+          type: string
+        createdAt:
+          type:
+          - string
+          - 'null'
+        acceptedAt:
+          type:
+          - string
+          - 'null'
+        dismissedAt:
+          type:
+          - string
+          - 'null'
+        outcomeCheckedAt:
+          type:
+          - string
+          - 'null'
+        outcomeWindowDays:
+          type:
+          - integer
+          - 'null'
+        outcomeMetrics:
+          type:
+          - object
+          - 'null'
+        yelpAdsJobId:
+          type:
+          - integer
+          - 'null'
+        yelpAdsJobStatus:
+          type:
+          - string
+          - 'null'
+        yelpAdsJobProgramRef:
+          type:
+          - string
+          - 'null'
+        yelpAdsJobMessage:
+          type:
+          - string
+          - 'null'
+      type: object
+  securitySchemes:
+    token:
+      type: apiKey
+      description: Bearer token authorization
+      name: authorization
+      in: header

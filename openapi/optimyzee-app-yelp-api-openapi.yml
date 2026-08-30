@@ -1,0 +1,1406 @@
+openapi: 3.2.0
+info:
+  title: Optimyzee Application App Yelp API
+  version: 4.1.0
+  x-original-title: API
+  description: App Yelp
+servers:
+- url: https://api.optimyzee.com
+  description: Production (host serving this document at /docs)
+tags:
+- name: App Yelp
+  description: App Yelp
+paths:
+  /app/yelp/ads-jobs/manual:
+    post:
+      tags:
+      - App Yelp
+      summary: Enqueue a manual guarded Yelp ads job (pause/resume/edit budget)
+      operationId: 87a8e2fc068a01b14ca946663945073f
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - programRef
+              - action
+              properties:
+                programRef:
+                  type: string
+                action:
+                  type: string
+                  enum:
+                  - pause
+                  - resume
+                  - edit_budget
+                direction:
+                  type: string
+                  enum:
+                  - increase
+                  - decrease
+                deltaPct:
+                  type: integer
+              type: object
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppYelpAdsJobSchema'
+  /app/yelp/ads-jobs:
+    get:
+      tags:
+      - App Yelp
+      summary: List guarded Yelp ads jobs for the current user
+      operationId: 93361097964ed54685cf6995e1f8693f
+      parameters:
+      - name: businessId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: programRef
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AppYelpAdsJobSchema'
+  /app/yelp/autoresponders/runs/build:
+    post:
+      tags:
+      - App Yelp
+      summary: Build a local Yelp autoresponder reply queue from synced leads
+      operationId: ccee741c8bbc30958794d6eb13ccf59f
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AppYelpAutoresponderRunSchema'
+  /app/yelp/autoresponders/check-status:
+    post:
+      tags:
+      - App Yelp
+      summary: Refresh local Yelp autoresponder status from synced rows
+      operationId: aa2c0af5abf4c029443b22adcfb56d96
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AppYelpAutoresponderSchema'
+  /app/yelp/autoresponders/{businessId}/messages/{messageId}:
+    delete:
+      tags:
+      - App Yelp
+      summary: Delete a local Yelp autoresponder response-flow message
+      operationId: 37787a868dbb00c7ad4eaa83ee3223d3
+      responses:
+        '204':
+          description: No Content
+    patch:
+      tags:
+      - App Yelp
+      summary: Update a local Yelp autoresponder response-flow message
+      operationId: 5a02874e694cb5ec2ce2cb6faccea1f5
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppYelpAutoresponderMessageSchema'
+  /app/yelp/autoresponders/{businessId}/messages:
+    get:
+      tags:
+      - App Yelp
+      summary: List local Yelp autoresponder response-flow messages
+      operationId: 9a4691d8ca51168cfd3c2b186b0d1528
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AppYelpAutoresponderMessageSchema'
+    post:
+      tags:
+      - App Yelp
+      summary: Create a local Yelp autoresponder response-flow message
+      operationId: e72aba2c38e7af3d587a2a41932c561c
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppYelpAutoresponderMessageSchema'
+  /app/yelp/autoresponders:
+    get:
+      tags:
+      - App Yelp
+      summary: List local Yelp autoresponder configurations
+      operationId: e934e579f8bfe2a64b031d9ef810835f
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AppYelpAutoresponderSchema'
+    post:
+      tags:
+      - App Yelp
+      summary: Create a local Yelp autoresponder configuration
+      operationId: ebf1b7b3e8851d51d81c766dca7cfb48
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppYelpAutoresponderSchema'
+  /app/yelp/autoresponders/runs:
+    get:
+      tags:
+      - App Yelp
+      summary: List local Yelp autoresponder queue runs
+      operationId: 3940ff7c46484278c47889d3cf6a67dd
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AppYelpAutoresponderRunSchema'
+  /app/yelp/autoresponders/runs/{runId}/send:
+    post:
+      tags:
+      - App Yelp
+      summary: Attempt to send an approved Yelp AI reply through the guarded outbound gateway
+      operationId: 552a77744799ac6cae012edcb03f1183
+      parameters:
+      - name: runId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppYelpAutoresponderRunSchema'
+  /app/yelp/autoresponders/runs/{runId}:
+    patch:
+      tags:
+      - App Yelp
+      summary: Approve or reject a local Yelp autoresponder run
+      operationId: 49aca5f15c0b1d22c9b48246d2792540
+      parameters:
+      - name: runId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppYelpAutoresponderRunSchema'
+  /app/yelp/autoresponders/{businessId}:
+    patch:
+      tags:
+      - App Yelp
+      summary: Update a local Yelp autoresponder configuration
+      operationId: 9cdfe4982af3c6a7e9d45c3f013663e3
+      parameters:
+      - name: businessId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppYelpAutoresponderSchema'
+  /app/yelp/businesses/{businessRef}/profile:
+    put:
+      tags:
+      - App Yelp
+      summary: Update the editable AI business profile
+      operationId: a84c16ea96c1b0cc81b900e360d5c4e0
+      parameters:
+      - name: businessRef
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppYelpBusinessSchema'
+  /app/yelp/businesses:
+    get:
+      tags:
+      - App Yelp
+      summary: List Yelp businesses synced for the current user
+      operationId: d18ce74a465956e45c007b8981ee6629
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AppYelpBusinessSchema'
+  /app/yelp/businesses/{businessRef}/signal-settings:
+    get:
+      tags:
+      - App Yelp
+      summary: List signal eligibility settings for a Yelp business
+      operationId: 4d8b164d24c20e418c08fbbdd235f5d5
+      parameters:
+      - name: businessRef
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AppYelpBusinessSignalSettingSchema'
+  /app/yelp/businesses/{businessRef}/signal-settings/{signal}:
+    put:
+      tags:
+      - App Yelp
+      summary: Update one signal eligibility setting for a Yelp business
+      operationId: eaa5519d341275e6aad70f99e4bc1095
+      parameters:
+      - name: businessRef
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: signal
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppYelpBusinessSignalSettingSchema'
+  /app/yelp/businesses/{businessRef}:
+    get:
+      tags:
+      - App Yelp
+      summary: View a synced Yelp business
+      operationId: 2b56d5bce97b82d148ba1be79d3b2410
+      parameters:
+      - name: businessRef
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppYelpBusinessSchema'
+  /app/yelp/connection:
+    get:
+      tags:
+      - App Yelp
+      summary: View the current user's Yelp Partner connection
+      operationId: 31452efe96c7bfeecf72d13ab99ebacb
+      responses:
+        '200':
+          description: OK
+    put:
+      tags:
+      - App Yelp
+      summary: Create or update the current user's Yelp Partner connection
+      operationId: fea28f05944c841001d6611b02043301
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppYelpConnectionSchema'
+    delete:
+      tags:
+      - App Yelp
+      summary: Delete the current user's Yelp Partner connection
+      operationId: 722d186d7cd38b8f28cdbf2a7d07e34a
+      responses:
+        '204':
+          description: No Content
+  /app/yelp/connection/test:
+    post:
+      tags:
+      - App Yelp
+      summary: Validate the stored Yelp partner credentials against the Partner API
+      operationId: 14a434b2ed966dc7289ee6b0864f3337
+      responses:
+        '200':
+          description: OK
+  /app/yelp/leads:
+    get:
+      tags:
+      - App Yelp
+      summary: List synced Yelp leads for the current user
+      operationId: bfebb54edfd97bd47c0aef794c9307d3
+      parameters:
+      - name: businessId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AppYelpLeadSchema'
+  /app/yelp/leads/{leadId}/reply-draft:
+    post:
+      tags:
+      - App Yelp
+      summary: Generate a guarded AI reply draft for a synced Yelp lead
+      operationId: 7172e519476825ed8f04e76993d08d14
+      parameters:
+      - name: leadId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppYelpLeadSchema'
+  /app/yelp/programs:
+    get:
+      tags:
+      - App Yelp
+      summary: List Yelp advertising programs synced for the current user
+      operationId: 1a7c641667c9959a035781d6bf708ba7
+      parameters:
+      - name: businessId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AppYelpProgramSchema'
+  /app/yelp/reporting:
+    get:
+      tags:
+      - App Yelp
+      summary: View aggregated synced Yelp reporting metrics
+      operationId: c69aa2a2d91077e38abba5dde0fd5e89
+      parameters:
+      - name: businessId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: from
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+      - name: to
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppYelpReportingSchema'
+  /app/yelp/sync-runs:
+    get:
+      tags:
+      - App Yelp
+      summary: List Yelp sync/import runs for the current user
+      operationId: fe2e1cadf35748e63a49477cbef7f6fd
+      parameters:
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: type
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: source
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AppYelpSyncRunSchema'
+  /app/yelp/reporting/poll:
+    post:
+      tags:
+      - App Yelp
+      summary: Poll outstanding Yelp report requests and import ready ones
+      operationId: 4dafd96fc7ba7be5e11747fae649862b
+      responses:
+        '200':
+          description: OK
+  /app/yelp/reporting/request:
+    post:
+      tags:
+      - App Yelp
+      summary: Request a Yelp daily metrics report (async)
+      operationId: 645e20a5c5ceefb632bcff1faf1d72b5
+      responses:
+        '200':
+          description: OK
+  /app/yelp/sync:
+    post:
+      tags:
+      - App Yelp
+      summary: Pull live businesses + programs from the Yelp Partner API
+      operationId: 3ebada6ee2d7944c984d3868d728448a
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppYelpSyncRunSchema'
+components:
+  schemas:
+    AppYelpReportingLeadBreakdownSliceSchema:
+      properties:
+        label:
+          type: string
+        value:
+          type: integer
+      type: object
+    AppYelpBusinessSignalSettingSchema:
+      required:
+      - signal
+      - enabled
+      - updatedAt
+      properties:
+        signal:
+          type: string
+        enabled:
+          type: boolean
+        updatedAt:
+          type:
+          - string
+          - 'null'
+      type: object
+    AppYelpAutoresponderSchema:
+      required:
+      - id
+      - businessId
+      - businessName
+      - status
+      - connectionStatus
+      - sendEnabled
+      - tone
+      - firstMessageBody
+      - sequenceMessages
+      - sequenceSize
+      - stopwords
+      - notifyNewLead
+      - notifyDraftReady
+      - notificationEmail
+      - offHoursEnabled
+      - timezone
+      - businessHours
+      - conversationsCount
+      - message
+      - activatedAt
+      - deactivatedAt
+      - lastCheckedAt
+      properties:
+        id:
+          type: integer
+        businessId:
+          type: string
+        businessName:
+          type:
+          - string
+          - 'null'
+        status:
+          type: string
+        connectionStatus:
+          type: string
+        sendEnabled:
+          type: boolean
+        tone:
+          type: string
+        firstMessageBody:
+          type:
+          - string
+          - 'null'
+        sequenceMessages:
+          type: array
+          items:
+            type: string
+        sequenceSize:
+          type: integer
+        stopwords:
+          type: array
+          items:
+            type: string
+        notifyNewLead:
+          type: boolean
+        notifyDraftReady:
+          type: boolean
+        notificationEmail:
+          type:
+          - string
+          - 'null'
+        offHoursEnabled:
+          type: boolean
+        timezone:
+          type:
+          - string
+          - 'null'
+        businessHours:
+          type: object
+        conversationsCount:
+          type: integer
+        message:
+          type:
+          - string
+          - 'null'
+        activatedAt:
+          type:
+          - string
+          - 'null'
+        deactivatedAt:
+          type:
+          - string
+          - 'null'
+        lastCheckedAt:
+          type:
+          - string
+          - 'null'
+      type: object
+    AppYelpProgramSchema:
+      required:
+      - id
+      - businessId
+      - businessName
+      - type
+      - status
+      - pauseStatus
+      - startDate
+      - endDate
+      - budgetCents
+      - spendMtdCents
+      - billedClicks
+      - billedImpressions
+      - avgCpcCents
+      - feePeriod
+      - autoPilot
+      - features
+      - rejectionReason
+      - lastSyncedAt
+      properties:
+        id:
+          type: string
+        businessId:
+          type:
+          - string
+          - 'null'
+        businessName:
+          type:
+          - string
+          - 'null'
+        type:
+          type: string
+        status:
+          type: string
+        pauseStatus:
+          type:
+          - string
+          - 'null'
+        startDate:
+          type:
+          - string
+          - 'null'
+        endDate:
+          type:
+          - string
+          - 'null'
+        budgetCents:
+          type: integer
+        spendMtdCents:
+          type: integer
+        billedClicks:
+          type: integer
+        billedImpressions:
+          type: integer
+        avgCpcCents:
+          type: integer
+        feePeriod:
+          type:
+          - string
+          - 'null'
+        autoPilot:
+          type: boolean
+        features:
+          type: array
+          items:
+            type: string
+        rejectionReason:
+          type:
+          - string
+          - 'null'
+        lastSyncedAt:
+          type:
+          - string
+          - 'null'
+      type: object
+    AppYelpAdsJobSchema:
+      required:
+      - id
+      - recommendationId
+      - recommendationTitle
+      - businessId
+      - businessName
+      - programRef
+      - action
+      - status
+      - requestedDirection
+      - requestedDeltaPct
+      - currentBudgetCents
+      - targetBudgetCents
+      - guardrailsPassed
+      - partnerWriteEnabled
+      - blockReason
+      - message
+      - submittedAt
+      - checkedAt
+      - completedAt
+      - createdAt
+      properties:
+        id:
+          type: integer
+        recommendationId:
+          type:
+          - integer
+          - 'null'
+        recommendationTitle:
+          type:
+          - string
+          - 'null'
+        businessId:
+          type:
+          - string
+          - 'null'
+        businessName:
+          type:
+          - string
+          - 'null'
+        programRef:
+          type:
+          - string
+          - 'null'
+        action:
+          type: string
+        status:
+          type: string
+        requestedDirection:
+          type:
+          - string
+          - 'null'
+        requestedDeltaPct:
+          type:
+          - integer
+          - 'null'
+        currentBudgetCents:
+          type:
+          - integer
+          - 'null'
+        targetBudgetCents:
+          type:
+          - integer
+          - 'null'
+        guardrailsPassed:
+          type:
+          - boolean
+          - 'null'
+        partnerWriteEnabled:
+          type:
+          - boolean
+          - 'null'
+        blockReason:
+          type:
+          - string
+          - 'null'
+        message:
+          type:
+          - string
+          - 'null'
+        submittedAt:
+          type:
+          - string
+          - 'null'
+        checkedAt:
+          type:
+          - string
+          - 'null'
+        completedAt:
+          type:
+          - string
+          - 'null'
+        createdAt:
+          type:
+          - string
+          - 'null'
+      type: object
+    AppYelpReportingKpiSchema:
+      properties:
+        totalSpendCents:
+          type: integer
+        totalLeads:
+          type: integer
+        costPerLeadCents:
+          type: integer
+        ctr:
+          type: number
+          format: float
+        avgCpcCents:
+          type: integer
+        billableClicks:
+          type: integer
+        billableImpressions:
+          type: integer
+        calls:
+          type: integer
+        raqMessages:
+          type: integer
+        websiteClicks:
+          type: integer
+        pageViews:
+          type: integer
+      type: object
+    AppYelpLeadSchema:
+      required:
+      - id
+      - businessId
+      - businessName
+      - conversationId
+      - consumer
+      - type
+      - excerpt
+      - status
+      - responseMinutes
+      - createdAt
+      - lastEventAt
+      - conversationMessages
+      - timelineEvents
+      - replyDraftId
+      - replyDraftStatus
+      - replyDraftBody
+      - replyDraftMessage
+      - replyDraftGeneratedAt
+      properties:
+        id:
+          type: string
+        businessId:
+          type:
+          - string
+          - 'null'
+        businessName:
+          type:
+          - string
+          - 'null'
+        conversationId:
+          type:
+          - string
+          - 'null'
+        consumer:
+          type:
+          - string
+          - 'null'
+        type:
+          type: string
+        excerpt:
+          type:
+          - string
+          - 'null'
+        status:
+          type: string
+        responseMinutes:
+          type:
+          - integer
+          - 'null'
+        createdAt:
+          type:
+          - string
+          - 'null'
+        lastEventAt:
+          type:
+          - string
+          - 'null'
+        conversationMessages:
+          type: array
+          items:
+            type: object
+        timelineEvents:
+          type: array
+          items:
+            type: object
+        replyDraftId:
+          type:
+          - integer
+          - 'null'
+        replyDraftStatus:
+          type:
+          - string
+          - 'null'
+        replyDraftBody:
+          type:
+          - string
+          - 'null'
+        replyDraftMessage:
+          type:
+          - string
+          - 'null'
+        replyDraftGeneratedAt:
+          type:
+          - string
+          - 'null'
+      type: object
+    AppYelpAutoresponderRunSchema:
+      required:
+      - id
+      - autoresponderId
+      - leadId
+      - businessId
+      - businessName
+      - consumer
+      - leadStatus
+      - status
+      - skipReason
+      - message
+      - sendEnabled
+      - replyDraftId
+      - replyDraftStatus
+      - replyDraftBody
+      - replyDraftMessage
+      - eligibleAt
+      - delayMinutes
+      - waitingSeconds
+      - queuedAt
+      - approvedAt
+      - rejectedAt
+      - sentAt
+      properties:
+        id:
+          type: integer
+        autoresponderId:
+          type:
+          - integer
+          - 'null'
+        leadId:
+          type: string
+        businessId:
+          type:
+          - string
+          - 'null'
+        businessName:
+          type:
+          - string
+          - 'null'
+        consumer:
+          type:
+          - string
+          - 'null'
+        leadStatus:
+          type:
+          - string
+          - 'null'
+        status:
+          type: string
+        skipReason:
+          type:
+          - string
+          - 'null'
+        message:
+          type:
+          - string
+          - 'null'
+        sendEnabled:
+          type: boolean
+        replyDraftId:
+          type:
+          - integer
+          - 'null'
+        replyDraftStatus:
+          type:
+          - string
+          - 'null'
+        replyDraftBody:
+          type:
+          - string
+          - 'null'
+        replyDraftMessage:
+          type:
+          - string
+          - 'null'
+        eligibleAt:
+          type:
+          - string
+          - 'null'
+        delayMinutes:
+          type:
+          - integer
+          - 'null'
+        waitingSeconds:
+          type:
+          - integer
+          - 'null'
+        queuedAt:
+          type:
+          - string
+          - 'null'
+        approvedAt:
+          type:
+          - string
+          - 'null'
+        rejectedAt:
+          type:
+          - string
+          - 'null'
+        sentAt:
+          type:
+          - string
+          - 'null'
+      type: object
+    AppYelpReportingSchema:
+      required:
+      - kpis
+      - leadBreakdown
+      - daily
+      properties:
+        kpis:
+          $ref: '#/components/schemas/AppYelpReportingKpiSchema'
+        leadBreakdown:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppYelpReportingLeadBreakdownSliceSchema'
+        daily:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppYelpReportingDailyPointSchema'
+      type: object
+    AppYelpAutoresponderMessageSchema:
+      required:
+      - id
+      - autoresponderId
+      - businessId
+      - flow
+      - position
+      - delaySeconds
+      - body
+      - enabled
+      - onlyIfNoReply
+      - reviewRequired
+      - businessHoursOnly
+      - createdAt
+      - updatedAt
+      properties:
+        id:
+          type: integer
+        autoresponderId:
+          type:
+          - integer
+          - 'null'
+        businessId:
+          type: string
+        flow:
+          type: string
+        position:
+          type: integer
+        delaySeconds:
+          type: integer
+        body:
+          type: string
+        enabled:
+          type: boolean
+        onlyIfNoReply:
+          type: boolean
+        reviewRequired:
+          type: boolean
+        businessHoursOnly:
+          type: boolean
+        createdAt:
+          type:
+          - string
+          - 'null'
+        updatedAt:
+          type:
+          - string
+          - 'null'
+      type: object
+    AppYelpSyncRunSchema:
+      required:
+      - id
+      - type
+      - source
+      - status
+      - startedAt
+      - finishedAt
+      - importedCount
+      - failedCount
+      - errorMessage
+      - createdAt
+      properties:
+        id:
+          type: integer
+        type:
+          type: string
+        source:
+          type: string
+        status:
+          type: string
+        startedAt:
+          type:
+          - string
+          - 'null'
+        finishedAt:
+          type:
+          - string
+          - 'null'
+        importedCount:
+          type: integer
+        failedCount:
+          type: integer
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        createdAt:
+          type:
+          - string
+          - 'null'
+      type: object
+    AppYelpReportingDailyPointSchema:
+      properties:
+        date:
+          type: string
+        spendCents:
+          type: integer
+        leads:
+          type: integer
+        billableClicks:
+          type: integer
+        billableImpressions:
+          type: integer
+        calls:
+          type: integer
+        raqMessages:
+          type: integer
+        websiteClicks:
+          type: integer
+        pageViews:
+          type: integer
+      type: object
+    AppYelpBusinessSchema:
+      required:
+      - id
+      - yelpBusinessId
+      - partnerBusinessId
+      - name
+      - city
+      - state
+      - rating
+      - reviewCount
+      - status
+      - activePrograms
+      - spendMtdCents
+      - leadsMtd
+      - lastSyncedAt
+      - serviceTags
+      - categories
+      - addressLines
+      - phone
+      - yelpUrl
+      - imageUrl
+      - vertical
+      - verticalLabel
+      - verticalSource
+      - aiProfileSummary
+      - aiServiceFocus
+      - aiDemandTriggers
+      - aiRecommendedSignals
+      - aiCustomerIntentNotes
+      - aiProfileSource
+      - aiProfileGeneratedAt
+      properties:
+        id:
+          type: string
+        yelpBusinessId:
+          type:
+          - string
+          - 'null'
+        partnerBusinessId:
+          type:
+          - string
+          - 'null'
+        name:
+          type: string
+        city:
+          type:
+          - string
+          - 'null'
+        state:
+          type:
+          - string
+          - 'null'
+        rating:
+          type:
+          - number
+          - 'null'
+          format: float
+        reviewCount:
+          type: integer
+        status:
+          type: string
+        activePrograms:
+          type: integer
+        spendMtdCents:
+          type: integer
+        leadsMtd:
+          type: integer
+        lastSyncedAt:
+          type:
+          - string
+          - 'null'
+        serviceTags:
+          type: array
+          items:
+            type: string
+        categories:
+          type: array
+          items:
+            type: string
+        addressLines:
+          type: array
+          items:
+            type: string
+        phone:
+          type:
+          - string
+          - 'null'
+        yelpUrl:
+          type:
+          - string
+          - 'null'
+        imageUrl:
+          type:
+          - string
+          - 'null'
+        vertical:
+          type: string
+        verticalLabel:
+          type: string
+        verticalSource:
+          type:
+          - string
+          - 'null'
+        aiProfileSummary:
+          type:
+          - string
+          - 'null'
+        aiServiceFocus:
+          type: array
+          items:
+            type: string
+        aiDemandTriggers:
+          type: array
+          items:
+            type: string
+        aiRecommendedSignals:
+          type: array
+          items:
+            type: string
+        aiCustomerIntentNotes:
+          type:
+          - string
+          - 'null'
+        aiProfileSource:
+          type:
+          - string
+          - 'null'
+        aiProfileGeneratedAt:
+          type:
+          - string
+          - 'null'
+      type: object
+    AppYelpConnectionSchema:
+      required:
+      - id
+      - label
+      - connected
+      - hasReportingApiKey
+      - pauseResumeAutoPilot
+      - healthStatus
+      - healthMessage
+      - lastCheckedAt
+      - createdAt
+      - updatedAt
+      properties:
+        id:
+          type: integer
+        label:
+          type:
+          - string
+          - 'null'
+        connected:
+          type: boolean
+        hasReportingApiKey:
+          type: boolean
+        pauseResumeAutoPilot:
+          type: boolean
+        healthStatus:
+          type:
+          - string
+          - 'null'
+        healthMessage:
+          type:
+          - string
+          - 'null'
+        lastCheckedAt:
+          type:
+          - string
+          - 'null'
+        createdAt:
+          type:
+          - string
+          - 'null'
+        updatedAt:
+          type:
+          - string
+          - 'null'
+      type: object
+  securitySchemes:
+    token:
+      type: apiKey
+      description: Bearer token authorization
+      name: authorization
+      in: header
