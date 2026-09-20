@@ -1,0 +1,168 @@
+slug: optimyzee
+provider: Optimyzee
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 16
+edges:
+- tag: App/Campaign/GoogleAds
+  spec_file: optimyzee-app-campaign-googleads-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.9
+  evidence: POST /app/campaign/googleAds appCampaignGoogleAdsCreate; GET /app/campaign/googleAds/{campaignId}/metrics
+    ... AppCampaignGoogleAdsMetricsReportSchema
+  reason: Operations create Google Ads campaigns and retrieve their performance metrics — paid-media campaign
+    management, i.e. Digital Marketing Management.
+- tag: App/Create/GoogleAds/SearchCreation
+  spec_file: optimyzee-app-create-googleads-searchcreation-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.88
+  evidence: POST /app/create/g/searchCreation/{draftId}/publish appCreateGoogleAdsSearchCreationPublish;
+    AppCreateGoogleAdsSearchCreationDraftKeywordSchema
+  reason: Drafts and publishes Google Ads search campaigns with keywords — paid-search campaign construction,
+    i.e. digital marketing.
+- tag: App/Analyze/GoogleAds/Health
+  spec_file: optimyzee-app-analyze-googleads-health-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.85
+  evidence: POST /app/analyze/g/health appAnalyzeGoogleAdsHealthAnalyze; schemas AppAnalyzeGoogleAdsHealthAccountSchema,
+    AppAnalyzeGoogleAdsHealthCampaignSchema, AppAnalyzeGoogleAdsHealthMetricsSchema
+  reason: Analyses the health of a Google Ads account/campaign with metrics and flags — paid media (digital
+    marketing) management, a sub-capability of Marketing Management.
+- tag: App/Analyze/GoogleAds/Optimization
+  spec_file: optimyzee-app-analyze-googleads-optimization-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.85
+  evidence: POST /app/analyze/g/optimization/search-terms; POST /app/analyze/g/optimization/p-max; .../search-theme-suggestions;
+    .../promotion-draft
+  reason: Operations optimise Google Ads search-term and Performance Max campaigns, generating asset and
+    promotion drafts — paid search/digital marketing optimisation.
+- tag: App/Campaign
+  spec_file: optimyzee-app-campaign-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.85
+  evidence: POST /app/campaign/{campaignId}/activate; POST /app/campaign/{campaignId}/pause; POST /app/campaign/{campaignId}/optimization
+  reason: Lifecycle control of advertising campaigns (activate, pause, optimise, delete) on a Google Ads
+    management platform — digital/paid marketing campaign management.
+- tag: App/Create/GoogleAds/KeywordPlanner
+  spec_file: optimyzee-app-create-googleads-keywordplanner-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.85
+  evidence: POST /app/create/g/keywordPlanner appCreateGoogleAdsKeywordPlannerQueue; AppCreateGoogleAdsKeywordPlannerKeywordSchema
+  reason: Generates and maintains Google Ads keyword plans — SEO/paid-search planning within digital marketing,
+    not a generic technical surface.
+- tag: App/Create/GoogleAds/RsaBuilder
+  spec_file: optimyzee-app-create-googleads-rsabuilder-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.85
+  evidence: POST /app/create/g/rsaBuilder appCreateGoogleAdsRsaBuilderQueue; AppCreateGoogleAdsRsaBuilderSchema
+  reason: Builds responsive search ad copy for Google Ads — paid-media ad asset creation, part of Digital
+    Marketing Management.
+- tag: App/Create/GoogleAds/SearchCreationAi
+  spec_file: optimyzee-app-create-googleads-searchcreationai-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.85
+  evidence: POST /app/create/g/searchCreationAi/{draftId}/rsa-builder appCreateGoogleAdsSearchCreationAiBuildRsaAds;
+    .../stag-builder appCreateGoogleAdsSearchCreationAiBuildStagStructure
+  reason: AI-driven generation of search campaign structure, keyword plans and RSA ads — paid-search campaign
+    creation under Digital Marketing Management.
+- tag: App/Create/GoogleAds/SitelinkBuilder
+  spec_file: optimyzee-app-create-googleads-sitelinkbuilder-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.82
+  evidence: POST /app/create/g/sitelinkBuilder appCreateGoogleAdsSitelinkBuilderQueue; AppCreateGoogleAdsSitelinkBuilderSitelinkSchema
+  reason: Builds Google Ads sitelink assets — an ad extension asset for paid search, part of digital marketing
+    execution.
+- tag: App/Billing/Subscription
+  spec_file: optimyzee-app-billing-subscription-api-openapi.yml
+  capability_id: BC-4240
+  capability_id_l1: BC-4240
+  capability_name: Subscription Lifecycle Management
+  confidence: 0.8
+  evidence: POST /app/billing/subscription/cancel; POST /app/billing/subscription appBillingSubscriptionSubscribe;
+    POST /app/billing/subscription/charge; AppBillingSubscriptionCheckoutSchema
+  reason: Subscribe, charge, skip and cancel the customer's SaaS subscription — subscription lifecycle
+    (with billing/checkout elements); L2 ambiguous between provisioning, cancellation and payment collection.
+- tag: Operations/Billing/Subscription
+  spec_file: optimyzee-operations-billing-subscription-api-openapi.yml
+  capability_id: BC-4240
+  capability_id_l1: BC-4240
+  capability_name: Subscription Lifecycle Management
+  confidence: 0.75
+  evidence: POST /operations/billing/subscription  operationsBillingSubscriptionCreate ... DELETE /operations/billing/subscription/{subscriptionId}  operationsBillingSubscriptionDelete
+  reason: Full CRUD over subscription records for a SaaS product — creation, in-life update and cancellation
+    of subscriptions. Maps to subscription lifecycle at L1; the operations do not distinguish provisioning
+    vs modification vs cancellation clearly enough for an L2, and billing/rating detail is absent.
+- tag: Operations/Campaign
+  spec_file: optimyzee-operations-campaign-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.75
+  evidence: GET /operations/campaign, PUT /operations/campaign/{campaignId}  operationsCampaignUpdate;
+    vendor 'structures and optimizes Google Ads search campaigns'
+  reason: Read and update of paid-search campaign entities on an ad-management platform is digital/paid-media
+    marketing management. Slight ambiguity between digital marketing and demand generation, hence 0.75.
+- tag: App Yelp
+  spec_file: optimyzee-app-yelp-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.72
+  evidence: POST /app/yelp/ads-jobs/manual  Enqueue a manual guarded Yelp ads job (pause/resume/edit budget)
+  reason: Operations manage paid Yelp advertising (budgets, pause/resume) plus lead autoresponders and
+    ad reporting KPIs — paid media/social management within Digital Marketing Management. Some overlap
+    with lead-generation (BC-400.40) via the lead autoresponders.
+- tag: App/Analyze/GoogleAds/Audit
+  spec_file: optimyzee-app-analyze-googleads-audit-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.72
+  evidence: POST /app/analyze/g/audit  appAnalyzeGoogleAdsAuditQueue; AppAnalyzeGoogleAdsAuditResultSchema
+  reason: Queues and retrieves audits of Google Ads accounts — paid-media analysis, i.e. Digital Marketing
+    Management. 'Audit' here is a paid-search account review, not internal audit.
+- tag: App/Analyze/GoogleAds/Reporting
+  spec_file: optimyzee-app-analyze-googleads-reporting-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.7
+  evidence: POST /app/analyze/g/reporting/querier; AppAnalyzeGoogleAdsReportingRowSchema
+  reason: Reporting/query surface over Google Ads data; it is marketing performance reporting within paid-media
+    management, though thin (could also read as generic analytics).
+- tag: App/Campaign/Activity
+  spec_file: optimyzee-app-campaign-activity-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.7
+  evidence: POST /app/campaign/activity/apply/{taskId}; AppCampaignActivityTaskSchema; GET /app/campaign/activity/{campaignId}
+  reason: Apply or dismiss recommended optimisation tasks against an ad campaign and view its activity
+    log — campaign execution within digital marketing management.
