@@ -1,12 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Optimyzee Application App/Lookup/Google Ads/Campaign API
+  title: App/Lookup/Google Ads/Campaign API
   version: 4.1.0
-  x-original-title: API
   description: App/Lookup/GoogleAds/Campaign
-servers:
-- url: https://api.optimyzee.com
-  description: Production (host serving this document at /docs)
 tags:
 - name: App/Lookup/GoogleAds/Campaign
   description: App/Lookup/GoogleAds/Campaign
@@ -80,19 +76,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorSchema'
+      summary: App lookup google ads campaign query
+      x-summary-source: derived
 components:
   schemas:
-    ErrorSchema:
-      required:
-      - errors
-      properties:
-        error:
-          type: string
-        message:
-          type:
-          - string
-          - 'null'
-      type: object
     AppLookupGoogleAdsCampaignSchema:
       required:
       - id
@@ -105,6 +92,17 @@ components:
           type: string
         status:
           type: integer
+      type: object
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
       type: object
     ErrorBagSchema:
       required:

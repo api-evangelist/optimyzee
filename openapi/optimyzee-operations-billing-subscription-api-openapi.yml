@@ -1,12 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Optimyzee Application Operations/Billing/Subscription API
+  title: Operations/Billing/Subscription API
   version: 4.1.0
-  x-original-title: API
   description: Operations/Billing/Subscription
-servers:
-- url: https://api.optimyzee.com
-  description: Production (host serving this document at /docs)
 tags:
 - name: Operations/Billing/Subscription
   description: Operations/Billing/Subscription
@@ -79,6 +75,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorSchema'
+      summary: Operations billing subscription query
+      x-summary-source: derived
     post:
       tags:
       - Operations/Billing/Subscription
@@ -153,6 +151,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorSchema'
+      summary: Operations billing subscription create
+      x-summary-source: derived
   /operations/billing/subscription/{subscriptionId}:
     get:
       tags:
@@ -188,6 +188,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorSchema'
+      summary: Operations billing subscription view
+      x-summary-source: derived
     put:
       tags:
       - Operations/Billing/Subscription
@@ -264,6 +266,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorSchema'
+      summary: Operations billing subscription update
+      x-summary-source: derived
     delete:
       tags:
       - Operations/Billing/Subscription
@@ -289,8 +293,39 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorSchema'
+      summary: Operations billing subscription delete
+      x-summary-source: derived
 components:
   schemas:
+    IdSchema:
+      required:
+      - id
+      properties:
+        id:
+          type: integer
+      type: object
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
+    ErrorBagSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      type: object
     OperationsBillingSubscriptionSchema:
       required:
       - id
@@ -336,35 +371,6 @@ components:
           type: boolean
         legacy:
           type: boolean
-      type: object
-    IdSchema:
-      required:
-      - id
-      properties:
-        id:
-          type: integer
-      type: object
-    ErrorSchema:
-      required:
-      - errors
-      properties:
-        error:
-          type: string
-        message:
-          type:
-          - string
-          - 'null'
-      type: object
-    ErrorBagSchema:
-      required:
-      - errors
-      properties:
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
       type: object
   securitySchemes:
     token:

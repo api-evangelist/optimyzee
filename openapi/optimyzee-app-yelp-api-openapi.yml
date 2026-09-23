@@ -1,12 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Optimyzee Application App Yelp API
+  title: App Yelp API
   version: 4.1.0
-  x-original-title: API
   description: App Yelp
-servers:
-- url: https://api.optimyzee.com
-  description: Production (host serving this document at /docs)
 tags:
 - name: App Yelp
   description: App Yelp
@@ -592,399 +588,6 @@ components:
         value:
           type: integer
       type: object
-    AppYelpBusinessSignalSettingSchema:
-      required:
-      - signal
-      - enabled
-      - updatedAt
-      properties:
-        signal:
-          type: string
-        enabled:
-          type: boolean
-        updatedAt:
-          type:
-          - string
-          - 'null'
-      type: object
-    AppYelpAutoresponderSchema:
-      required:
-      - id
-      - businessId
-      - businessName
-      - status
-      - connectionStatus
-      - sendEnabled
-      - tone
-      - firstMessageBody
-      - sequenceMessages
-      - sequenceSize
-      - stopwords
-      - notifyNewLead
-      - notifyDraftReady
-      - notificationEmail
-      - offHoursEnabled
-      - timezone
-      - businessHours
-      - conversationsCount
-      - message
-      - activatedAt
-      - deactivatedAt
-      - lastCheckedAt
-      properties:
-        id:
-          type: integer
-        businessId:
-          type: string
-        businessName:
-          type:
-          - string
-          - 'null'
-        status:
-          type: string
-        connectionStatus:
-          type: string
-        sendEnabled:
-          type: boolean
-        tone:
-          type: string
-        firstMessageBody:
-          type:
-          - string
-          - 'null'
-        sequenceMessages:
-          type: array
-          items:
-            type: string
-        sequenceSize:
-          type: integer
-        stopwords:
-          type: array
-          items:
-            type: string
-        notifyNewLead:
-          type: boolean
-        notifyDraftReady:
-          type: boolean
-        notificationEmail:
-          type:
-          - string
-          - 'null'
-        offHoursEnabled:
-          type: boolean
-        timezone:
-          type:
-          - string
-          - 'null'
-        businessHours:
-          type: object
-        conversationsCount:
-          type: integer
-        message:
-          type:
-          - string
-          - 'null'
-        activatedAt:
-          type:
-          - string
-          - 'null'
-        deactivatedAt:
-          type:
-          - string
-          - 'null'
-        lastCheckedAt:
-          type:
-          - string
-          - 'null'
-      type: object
-    AppYelpProgramSchema:
-      required:
-      - id
-      - businessId
-      - businessName
-      - type
-      - status
-      - pauseStatus
-      - startDate
-      - endDate
-      - budgetCents
-      - spendMtdCents
-      - billedClicks
-      - billedImpressions
-      - avgCpcCents
-      - feePeriod
-      - autoPilot
-      - features
-      - rejectionReason
-      - lastSyncedAt
-      properties:
-        id:
-          type: string
-        businessId:
-          type:
-          - string
-          - 'null'
-        businessName:
-          type:
-          - string
-          - 'null'
-        type:
-          type: string
-        status:
-          type: string
-        pauseStatus:
-          type:
-          - string
-          - 'null'
-        startDate:
-          type:
-          - string
-          - 'null'
-        endDate:
-          type:
-          - string
-          - 'null'
-        budgetCents:
-          type: integer
-        spendMtdCents:
-          type: integer
-        billedClicks:
-          type: integer
-        billedImpressions:
-          type: integer
-        avgCpcCents:
-          type: integer
-        feePeriod:
-          type:
-          - string
-          - 'null'
-        autoPilot:
-          type: boolean
-        features:
-          type: array
-          items:
-            type: string
-        rejectionReason:
-          type:
-          - string
-          - 'null'
-        lastSyncedAt:
-          type:
-          - string
-          - 'null'
-      type: object
-    AppYelpAdsJobSchema:
-      required:
-      - id
-      - recommendationId
-      - recommendationTitle
-      - businessId
-      - businessName
-      - programRef
-      - action
-      - status
-      - requestedDirection
-      - requestedDeltaPct
-      - currentBudgetCents
-      - targetBudgetCents
-      - guardrailsPassed
-      - partnerWriteEnabled
-      - blockReason
-      - message
-      - submittedAt
-      - checkedAt
-      - completedAt
-      - createdAt
-      properties:
-        id:
-          type: integer
-        recommendationId:
-          type:
-          - integer
-          - 'null'
-        recommendationTitle:
-          type:
-          - string
-          - 'null'
-        businessId:
-          type:
-          - string
-          - 'null'
-        businessName:
-          type:
-          - string
-          - 'null'
-        programRef:
-          type:
-          - string
-          - 'null'
-        action:
-          type: string
-        status:
-          type: string
-        requestedDirection:
-          type:
-          - string
-          - 'null'
-        requestedDeltaPct:
-          type:
-          - integer
-          - 'null'
-        currentBudgetCents:
-          type:
-          - integer
-          - 'null'
-        targetBudgetCents:
-          type:
-          - integer
-          - 'null'
-        guardrailsPassed:
-          type:
-          - boolean
-          - 'null'
-        partnerWriteEnabled:
-          type:
-          - boolean
-          - 'null'
-        blockReason:
-          type:
-          - string
-          - 'null'
-        message:
-          type:
-          - string
-          - 'null'
-        submittedAt:
-          type:
-          - string
-          - 'null'
-        checkedAt:
-          type:
-          - string
-          - 'null'
-        completedAt:
-          type:
-          - string
-          - 'null'
-        createdAt:
-          type:
-          - string
-          - 'null'
-      type: object
-    AppYelpReportingKpiSchema:
-      properties:
-        totalSpendCents:
-          type: integer
-        totalLeads:
-          type: integer
-        costPerLeadCents:
-          type: integer
-        ctr:
-          type: number
-          format: float
-        avgCpcCents:
-          type: integer
-        billableClicks:
-          type: integer
-        billableImpressions:
-          type: integer
-        calls:
-          type: integer
-        raqMessages:
-          type: integer
-        websiteClicks:
-          type: integer
-        pageViews:
-          type: integer
-      type: object
-    AppYelpLeadSchema:
-      required:
-      - id
-      - businessId
-      - businessName
-      - conversationId
-      - consumer
-      - type
-      - excerpt
-      - status
-      - responseMinutes
-      - createdAt
-      - lastEventAt
-      - conversationMessages
-      - timelineEvents
-      - replyDraftId
-      - replyDraftStatus
-      - replyDraftBody
-      - replyDraftMessage
-      - replyDraftGeneratedAt
-      properties:
-        id:
-          type: string
-        businessId:
-          type:
-          - string
-          - 'null'
-        businessName:
-          type:
-          - string
-          - 'null'
-        conversationId:
-          type:
-          - string
-          - 'null'
-        consumer:
-          type:
-          - string
-          - 'null'
-        type:
-          type: string
-        excerpt:
-          type:
-          - string
-          - 'null'
-        status:
-          type: string
-        responseMinutes:
-          type:
-          - integer
-          - 'null'
-        createdAt:
-          type:
-          - string
-          - 'null'
-        lastEventAt:
-          type:
-          - string
-          - 'null'
-        conversationMessages:
-          type: array
-          items:
-            type: object
-        timelineEvents:
-          type: array
-          items:
-            type: object
-        replyDraftId:
-          type:
-          - integer
-          - 'null'
-        replyDraftStatus:
-          type:
-          - string
-          - 'null'
-        replyDraftBody:
-          type:
-          - string
-          - 'null'
-        replyDraftMessage:
-          type:
-          - string
-          - 'null'
-        replyDraftGeneratedAt:
-          type:
-          - string
-          - 'null'
-      type: object
     AppYelpAutoresponderRunSchema:
       required:
       - id
@@ -1091,23 +694,6 @@ components:
           - string
           - 'null'
       type: object
-    AppYelpReportingSchema:
-      required:
-      - kpis
-      - leadBreakdown
-      - daily
-      properties:
-        kpis:
-          $ref: '#/components/schemas/AppYelpReportingKpiSchema'
-        leadBreakdown:
-          type: array
-          items:
-            $ref: '#/components/schemas/AppYelpReportingLeadBreakdownSliceSchema'
-        daily:
-          type: array
-          items:
-            $ref: '#/components/schemas/AppYelpReportingDailyPointSchema'
-      type: object
     AppYelpAutoresponderMessageSchema:
       required:
       - id
@@ -1148,6 +734,52 @@ components:
           type: boolean
         businessHoursOnly:
           type: boolean
+        createdAt:
+          type:
+          - string
+          - 'null'
+        updatedAt:
+          type:
+          - string
+          - 'null'
+      type: object
+    AppYelpConnectionSchema:
+      required:
+      - id
+      - label
+      - connected
+      - hasReportingApiKey
+      - pauseResumeAutoPilot
+      - healthStatus
+      - healthMessage
+      - lastCheckedAt
+      - createdAt
+      - updatedAt
+      properties:
+        id:
+          type: integer
+        label:
+          type:
+          - string
+          - 'null'
+        connected:
+          type: boolean
+        hasReportingApiKey:
+          type: boolean
+        pauseResumeAutoPilot:
+          type: boolean
+        healthStatus:
+          type:
+          - string
+          - 'null'
+        healthMessage:
+          type:
+          - string
+          - 'null'
+        lastCheckedAt:
+          type:
+          - string
+          - 'null'
         createdAt:
           type:
           - string
@@ -1199,26 +831,259 @@ components:
           - string
           - 'null'
       type: object
-    AppYelpReportingDailyPointSchema:
+    AppYelpAutoresponderSchema:
+      required:
+      - id
+      - businessId
+      - businessName
+      - status
+      - connectionStatus
+      - sendEnabled
+      - tone
+      - firstMessageBody
+      - sequenceMessages
+      - sequenceSize
+      - stopwords
+      - notifyNewLead
+      - notifyDraftReady
+      - notificationEmail
+      - offHoursEnabled
+      - timezone
+      - businessHours
+      - conversationsCount
+      - message
+      - activatedAt
+      - deactivatedAt
+      - lastCheckedAt
       properties:
-        date:
+        id:
+          type: integer
+        businessId:
           type: string
-        spendCents:
+        businessName:
+          type:
+          - string
+          - 'null'
+        status:
+          type: string
+        connectionStatus:
+          type: string
+        sendEnabled:
+          type: boolean
+        tone:
+          type: string
+        firstMessageBody:
+          type:
+          - string
+          - 'null'
+        sequenceMessages:
+          type: array
+          items:
+            type: string
+        sequenceSize:
           type: integer
-        leads:
+        stopwords:
+          type: array
+          items:
+            type: string
+        notifyNewLead:
+          type: boolean
+        notifyDraftReady:
+          type: boolean
+        notificationEmail:
+          type:
+          - string
+          - 'null'
+        offHoursEnabled:
+          type: boolean
+        timezone:
+          type:
+          - string
+          - 'null'
+        businessHours:
+          type: object
+        conversationsCount:
           type: integer
-        billableClicks:
+        message:
+          type:
+          - string
+          - 'null'
+        activatedAt:
+          type:
+          - string
+          - 'null'
+        deactivatedAt:
+          type:
+          - string
+          - 'null'
+        lastCheckedAt:
+          type:
+          - string
+          - 'null'
+      type: object
+    AppYelpLeadSchema:
+      required:
+      - id
+      - businessId
+      - businessName
+      - conversationId
+      - consumer
+      - type
+      - excerpt
+      - status
+      - responseMinutes
+      - createdAt
+      - lastEventAt
+      - conversationMessages
+      - timelineEvents
+      - replyDraftId
+      - replyDraftStatus
+      - replyDraftBody
+      - replyDraftMessage
+      - replyDraftGeneratedAt
+      properties:
+        id:
+          type: string
+        businessId:
+          type:
+          - string
+          - 'null'
+        businessName:
+          type:
+          - string
+          - 'null'
+        conversationId:
+          type:
+          - string
+          - 'null'
+        consumer:
+          type:
+          - string
+          - 'null'
+        type:
+          type: string
+        excerpt:
+          type:
+          - string
+          - 'null'
+        status:
+          type: string
+        responseMinutes:
+          type:
+          - integer
+          - 'null'
+        createdAt:
+          type:
+          - string
+          - 'null'
+        lastEventAt:
+          type:
+          - string
+          - 'null'
+        conversationMessages:
+          type: array
+          items:
+            type: object
+        timelineEvents:
+          type: array
+          items:
+            type: object
+        replyDraftId:
+          type:
+          - integer
+          - 'null'
+        replyDraftStatus:
+          type:
+          - string
+          - 'null'
+        replyDraftBody:
+          type:
+          - string
+          - 'null'
+        replyDraftMessage:
+          type:
+          - string
+          - 'null'
+        replyDraftGeneratedAt:
+          type:
+          - string
+          - 'null'
+      type: object
+    AppYelpProgramSchema:
+      required:
+      - id
+      - businessId
+      - businessName
+      - type
+      - status
+      - pauseStatus
+      - startDate
+      - endDate
+      - budgetCents
+      - spendMtdCents
+      - billedClicks
+      - billedImpressions
+      - avgCpcCents
+      - feePeriod
+      - autoPilot
+      - features
+      - rejectionReason
+      - lastSyncedAt
+      properties:
+        id:
+          type: string
+        businessId:
+          type:
+          - string
+          - 'null'
+        businessName:
+          type:
+          - string
+          - 'null'
+        type:
+          type: string
+        status:
+          type: string
+        pauseStatus:
+          type:
+          - string
+          - 'null'
+        startDate:
+          type:
+          - string
+          - 'null'
+        endDate:
+          type:
+          - string
+          - 'null'
+        budgetCents:
           type: integer
-        billableImpressions:
+        spendMtdCents:
           type: integer
-        calls:
+        billedClicks:
           type: integer
-        raqMessages:
+        billedImpressions:
           type: integer
-        websiteClicks:
+        avgCpcCents:
           type: integer
-        pageViews:
-          type: integer
+        feePeriod:
+          type:
+          - string
+          - 'null'
+        autoPilot:
+          type: boolean
+        features:
+          type: array
+          items:
+            type: string
+        rejectionReason:
+          type:
+          - string
+          - 'null'
+        lastSyncedAt:
+          type:
+          - string
+          - 'null'
       type: object
     AppYelpBusinessSchema:
       required:
@@ -1352,40 +1217,128 @@ components:
           - string
           - 'null'
       type: object
-    AppYelpConnectionSchema:
+    AppYelpBusinessSignalSettingSchema:
+      required:
+      - signal
+      - enabled
+      - updatedAt
+      properties:
+        signal:
+          type: string
+        enabled:
+          type: boolean
+        updatedAt:
+          type:
+          - string
+          - 'null'
+      type: object
+    AppYelpReportingSchema:
+      required:
+      - kpis
+      - leadBreakdown
+      - daily
+      properties:
+        kpis:
+          $ref: '#/components/schemas/AppYelpReportingKpiSchema'
+        leadBreakdown:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppYelpReportingLeadBreakdownSliceSchema'
+        daily:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppYelpReportingDailyPointSchema'
+      type: object
+    AppYelpAdsJobSchema:
       required:
       - id
-      - label
-      - connected
-      - hasReportingApiKey
-      - pauseResumeAutoPilot
-      - healthStatus
-      - healthMessage
-      - lastCheckedAt
+      - recommendationId
+      - recommendationTitle
+      - businessId
+      - businessName
+      - programRef
+      - action
+      - status
+      - requestedDirection
+      - requestedDeltaPct
+      - currentBudgetCents
+      - targetBudgetCents
+      - guardrailsPassed
+      - partnerWriteEnabled
+      - blockReason
+      - message
+      - submittedAt
+      - checkedAt
+      - completedAt
       - createdAt
-      - updatedAt
       properties:
         id:
           type: integer
-        label:
+        recommendationId:
+          type:
+          - integer
+          - 'null'
+        recommendationTitle:
           type:
           - string
           - 'null'
-        connected:
-          type: boolean
-        hasReportingApiKey:
-          type: boolean
-        pauseResumeAutoPilot:
-          type: boolean
-        healthStatus:
+        businessId:
           type:
           - string
           - 'null'
-        healthMessage:
+        businessName:
           type:
           - string
           - 'null'
-        lastCheckedAt:
+        programRef:
+          type:
+          - string
+          - 'null'
+        action:
+          type: string
+        status:
+          type: string
+        requestedDirection:
+          type:
+          - string
+          - 'null'
+        requestedDeltaPct:
+          type:
+          - integer
+          - 'null'
+        currentBudgetCents:
+          type:
+          - integer
+          - 'null'
+        targetBudgetCents:
+          type:
+          - integer
+          - 'null'
+        guardrailsPassed:
+          type:
+          - boolean
+          - 'null'
+        partnerWriteEnabled:
+          type:
+          - boolean
+          - 'null'
+        blockReason:
+          type:
+          - string
+          - 'null'
+        message:
+          type:
+          - string
+          - 'null'
+        submittedAt:
+          type:
+          - string
+          - 'null'
+        checkedAt:
+          type:
+          - string
+          - 'null'
+        completedAt:
           type:
           - string
           - 'null'
@@ -1393,10 +1346,53 @@ components:
           type:
           - string
           - 'null'
-        updatedAt:
-          type:
-          - string
-          - 'null'
+      type: object
+    AppYelpReportingKpiSchema:
+      properties:
+        totalSpendCents:
+          type: integer
+        totalLeads:
+          type: integer
+        costPerLeadCents:
+          type: integer
+        ctr:
+          type: number
+          format: float
+        avgCpcCents:
+          type: integer
+        billableClicks:
+          type: integer
+        billableImpressions:
+          type: integer
+        calls:
+          type: integer
+        raqMessages:
+          type: integer
+        websiteClicks:
+          type: integer
+        pageViews:
+          type: integer
+      type: object
+    AppYelpReportingDailyPointSchema:
+      properties:
+        date:
+          type: string
+        spendCents:
+          type: integer
+        leads:
+          type: integer
+        billableClicks:
+          type: integer
+        billableImpressions:
+          type: integer
+        calls:
+          type: integer
+        raqMessages:
+          type: integer
+        websiteClicks:
+          type: integer
+        pageViews:
+          type: integer
       type: object
   securitySchemes:
     token:

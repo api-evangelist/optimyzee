@@ -1,12 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Optimyzee Application Operations/Campaign API
+  title: Operations/Campaign API
   version: 4.1.0
-  x-original-title: API
   description: Operations/Campaign
-servers:
-- url: https://api.optimyzee.com
-  description: Production (host serving this document at /docs)
 tags:
 - name: Operations/Campaign
   description: Operations/Campaign
@@ -107,6 +103,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: Operations campaign query
+      x-summary-source: derived
   /operations/campaign/{campaignId}:
     get:
       tags:
@@ -144,6 +142,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: Operations campaign view
+      x-summary-source: derived
     put:
       tags:
       - Operations/Campaign
@@ -201,6 +201,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorSchema'
+      summary: Operations campaign update
+      x-summary-source: derived
 components:
   schemas:
     OperationsCampaignSchema:

@@ -1,12 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Optimyzee Application App/Linking/Meta API
+  title: App/Linking/Meta API
   version: 4.1.0
-  x-original-title: API
   description: App/Linking/Meta
-servers:
-- url: https://api.optimyzee.com
-  description: Production (host serving this document at /docs)
 tags:
 - name: App/Linking/Meta
   description: App/Linking/Meta
@@ -50,6 +46,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App linking meta accounts
+      x-summary-source: derived
   /app/linking/meta/{linkingId}:
     get:
       tags:
@@ -87,6 +85,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App linking meta view
+      x-summary-source: derived
     delete:
       tags:
       - App/Linking/Meta
@@ -114,6 +114,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App linking meta delete
+      x-summary-source: derived
   /app/linking/meta/{linkingId}/ping:
     get:
       tags:
@@ -142,6 +144,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App linking meta ping
+      x-summary-source: derived
   /app/linking/meta:
     get:
       tags:
@@ -191,6 +195,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App linking meta query
+      x-summary-source: derived
   /app/linking/meta/{linkingId}/select:
     post:
       tags:
@@ -245,6 +251,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App linking meta select account
+      x-summary-source: derived
   /app/linking/meta/uri:
     get:
       tags:
@@ -270,8 +278,46 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App linking meta uri
+      x-summary-source: derived
 components:
   schemas:
+    AppLinkingMetaAccountSchema:
+      required:
+      - id
+      - externalId
+      - accountId
+      - name
+      - currency
+      - timezoneName
+      - accountStatus
+      - selected
+      properties:
+        id:
+          type: integer
+        externalId:
+          type: string
+        accountId:
+          type: string
+        name:
+          type:
+          - string
+          - 'null'
+        currency:
+          type:
+          - string
+          - 'null'
+        timezoneName:
+          type:
+          - string
+          - 'null'
+        accountStatus:
+          type:
+          - integer
+          - 'null'
+        selected:
+          type: boolean
+      type: object
     ErrorSchema:
       required:
       - errors
@@ -314,42 +360,6 @@ components:
         selectedAccount:
           oneOf:
           - $ref: '#/components/schemas/AppLinkingMetaAccountSchema'
-      type: object
-    AppLinkingMetaAccountSchema:
-      required:
-      - id
-      - externalId
-      - accountId
-      - name
-      - currency
-      - timezoneName
-      - accountStatus
-      - selected
-      properties:
-        id:
-          type: integer
-        externalId:
-          type: string
-        accountId:
-          type: string
-        name:
-          type:
-          - string
-          - 'null'
-        currency:
-          type:
-          - string
-          - 'null'
-        timezoneName:
-          type:
-          - string
-          - 'null'
-        accountStatus:
-          type:
-          - integer
-          - 'null'
-        selected:
-          type: boolean
       type: object
     ErrorBagSchema:
       required:

@@ -1,12 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Optimyzee Application App/Lookup/Google Ads/Merchant Center API
+  title: App/Lookup/Google Ads/Merchant Center API
   version: 4.1.0
-  x-original-title: API
   description: App/Lookup/GoogleAds/MerchantCenter
-servers:
-- url: https://api.optimyzee.com
-  description: Production (host serving this document at /docs)
 tags:
 - name: App/Lookup/GoogleAds/MerchantCenter
   description: App/Lookup/GoogleAds/MerchantCenter
@@ -47,6 +43,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorSchema'
+      summary: App lookup google ads merchant center query
+      x-summary-source: derived
 components:
   schemas:
     ErrorSchema:

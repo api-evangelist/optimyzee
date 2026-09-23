@@ -1,12 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Optimyzee Application Operations/Auth/Gateway API
+  title: Operations/Auth/Gateway API
   version: 4.1.0
-  x-original-title: API
   description: Operations/Auth/Gateway
-servers:
-- url: https://api.optimyzee.com
-  description: Production (host serving this document at /docs)
 tags:
 - name: Operations/Auth/Gateway
   description: Operations/Auth/Gateway
@@ -62,6 +58,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorSchema'
+      summary: Operations auth gateway
+      x-summary-source: derived
   /operations/auth/gateway/refresh:
     post:
       tags:
@@ -93,6 +91,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: Operations auth gateway refresh
+      x-summary-source: derived
   /operations/auth/gateway/revoke:
     post:
       tags:
@@ -115,18 +115,10 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: Operations auth gateway revoke
+      x-summary-source: derived
 components:
   schemas:
-    OperationsAuthGatewayTokenSchema:
-      required:
-      - adminId
-      - accessToken
-      properties:
-        adminId:
-          type: integer
-        accessToken:
-          type: string
-      type: object
     ErrorSchema:
       required:
       - errors
@@ -148,6 +140,16 @@ components:
             type: array
             items:
               type: string
+      type: object
+    OperationsAuthGatewayTokenSchema:
+      required:
+      - adminId
+      - accessToken
+      properties:
+        adminId:
+          type: integer
+        accessToken:
+          type: string
       type: object
   securitySchemes:
     token:

@@ -1,12 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Optimyzee Application App/Create/Google Ads/Search Creation AI API
+  title: App/Create/Google Ads/Search Creation AI API
   version: 4.1.0
-  x-original-title: API
   description: App/Create/GoogleAds/SearchCreationAi
-servers:
-- url: https://api.optimyzee.com
-  description: Production (host serving this document at /docs)
 tags:
 - name: App/Create/GoogleAds/SearchCreationAi
   description: App/Create/GoogleAds/SearchCreationAi
@@ -74,6 +70,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App create google ads search creation ai build keyword planner
+      x-summary-source: derived
   /app/create/g/searchCreationAi/{draftId}/rsa-builder:
     post:
       tags:
@@ -94,6 +92,8 @@ paths:
                 $ref: '#/components/schemas/IdSchema'
       security:
       - token: []
+      summary: App create google ads search creation ai build rsa ads
+      x-summary-source: derived
   /app/create/g/searchCreationAi/{draftId}/stag-builder:
     post:
       tags:
@@ -164,6 +164,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App create google ads search creation ai build stag structure
+      x-summary-source: derived
   /app/create/g/searchCreationAi:
     post:
       tags:
@@ -235,6 +237,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App create google ads search creation ai create
+      x-summary-source: derived
   /app/create/g/searchCreationAi/{draftId}/status:
     get:
       tags:
@@ -267,6 +271,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App create google ads search creation ai status
+      x-summary-source: derived
   /app/create/g/searchCreationAi/{draftId}:
     get:
       tags:
@@ -299,6 +305,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App create google ads search creation ai view
+      x-summary-source: derived
 components:
   schemas:
     ErrorSchema:

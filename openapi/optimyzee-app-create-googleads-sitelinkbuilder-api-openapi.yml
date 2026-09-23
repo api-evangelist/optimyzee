@@ -1,12 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Optimyzee Application App/Create/Google Ads/Sitelink Builder API
+  title: App/Create/Google Ads/Sitelink Builder API
   version: 4.1.0
-  x-original-title: API
   description: App/Create/GoogleAds/SitelinkBuilder
-servers:
-- url: https://api.optimyzee.com
-  description: Production (host serving this document at /docs)
 tags:
 - name: App/Create/GoogleAds/SitelinkBuilder
   description: App/Create/GoogleAds/SitelinkBuilder
@@ -44,6 +40,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App create google ads sitelink builder export
+      x-summary-source: derived
   /app/create/g/sitelinkBuilder:
     post:
       tags:
@@ -87,6 +85,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App create google ads sitelink builder queue
+      x-summary-source: derived
   /app/create/g/sitelinkBuilder/{builderId}/reprocess:
     post:
       tags:
@@ -132,6 +132,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App create google ads sitelink builder reprocess
+      x-summary-source: derived
   /app/create/g/sitelinkBuilder/{builderId}:
     get:
       tags:
@@ -169,6 +171,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App create google ads sitelink builder view
+      x-summary-source: derived
     put:
       tags:
       - App/Create/GoogleAds/SitelinkBuilder
@@ -225,14 +229,31 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App create google ads sitelink builder update
+      x-summary-source: derived
 components:
   schemas:
-    IdSchema:
+    AppCreateGoogleAdsSitelinkBuilderSchema:
       required:
       - id
+      - url
+      - status
+      - sitelinks
       properties:
         id:
           type: integer
+        url:
+          type: string
+        status:
+          type: string
+          enum:
+          - QUEUED
+          - PROCESSING
+          - SUCCESSFUL
+        sitelinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppCreateGoogleAdsSitelinkBuilderSitelinkSchema'
       type: object
     ErrorSchema:
       required:
@@ -244,17 +265,6 @@ components:
           type:
           - string
           - 'null'
-      type: object
-    ErrorBagSchema:
-      required:
-      - errors
-      properties:
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
       type: object
     AppCreateGoogleAdsSitelinkBuilderSitelinkSchema:
       required:
@@ -279,27 +289,23 @@ components:
           - string
           - 'null'
       type: object
-    AppCreateGoogleAdsSitelinkBuilderSchema:
+    IdSchema:
       required:
       - id
-      - url
-      - status
-      - sitelinks
       properties:
         id:
           type: integer
-        url:
-          type: string
-        status:
-          type: string
-          enum:
-          - QUEUED
-          - PROCESSING
-          - SUCCESSFUL
-        sitelinks:
-          type: array
-          items:
-            $ref: '#/components/schemas/AppCreateGoogleAdsSitelinkBuilderSitelinkSchema'
+      type: object
+    ErrorBagSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
       type: object
   securitySchemes:
     token:

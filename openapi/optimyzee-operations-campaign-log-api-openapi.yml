@@ -1,12 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Optimyzee Application Operations/Campaign/Log API
+  title: Operations/Campaign/Log API
   version: 4.1.0
-  x-original-title: API
   description: Operations/Campaign/Log
-servers:
-- url: https://api.optimyzee.com
-  description: Production (host serving this document at /docs)
 tags:
 - name: Operations/Campaign/Log
   description: Operations/Campaign/Log
@@ -80,6 +76,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: Operations campaign log query
+      x-summary-source: derived
     post:
       tags:
       - Operations/Campaign/Log
@@ -127,6 +125,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorSchema'
+      summary: Operations campaign log create
+      x-summary-source: derived
   /operations/campaign/log/{logId}:
     get:
       tags:
@@ -164,6 +164,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: Operations campaign log view
+      x-summary-source: derived
     put:
       tags:
       - Operations/Campaign/Log
@@ -213,6 +215,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorSchema'
+      summary: Operations campaign log update
+      x-summary-source: derived
     delete:
       tags:
       - Operations/Campaign/Log
@@ -238,6 +242,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorSchema'
+      summary: Operations campaign log delete
+      x-summary-source: derived
 components:
   schemas:
     IdSchema:
@@ -258,6 +264,17 @@ components:
           - string
           - 'null'
       type: object
+    ErrorBagSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      type: object
     OperationsCampaignLogSchema:
       required:
       - id
@@ -274,17 +291,6 @@ components:
         createdAt:
           type: string
           format: date-time
-      type: object
-    ErrorBagSchema:
-      required:
-      - errors
-      properties:
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
       type: object
   securitySchemes:
     token:

@@ -1,12 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Optimyzee Application App/Auth/Gateway API
+  title: App/Auth/Gateway API
   version: 4.1.0
-  x-original-title: API
   description: App/Auth/Gateway
-servers:
-- url: https://api.optimyzee.com
-  description: Production (host serving this document at /docs)
 tags:
 - name: App/Auth/Gateway
   description: App/Auth/Gateway
@@ -66,6 +62,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorSchema'
+      summary: App auth gateway email
+      x-summary-source: derived
   /app/auth/gateway/emailSignup:
     post:
       tags:
@@ -113,6 +111,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorSchema'
+      summary: App auth gateway email signup
+      x-summary-source: derived
   /app/auth/gateway/facebook:
     post:
       tags:
@@ -157,6 +157,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorSchema'
+      summary: App auth gateway facebook
+      x-summary-source: derived
   /app/auth/gateway/facebookSignup:
     post:
       tags:
@@ -201,6 +203,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorSchema'
+      summary: App auth gateway facebook signup
+      x-summary-source: derived
   /app/auth/gateway/google:
     post:
       tags:
@@ -245,6 +249,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorSchema'
+      summary: App auth gateway google
+      x-summary-source: derived
   /app/auth/gateway/googleSignup:
     post:
       tags:
@@ -289,6 +295,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorSchema'
+      summary: App auth gateway google signup
+      x-summary-source: derived
   /app/auth/gateway/refresh:
     post:
       tags:
@@ -331,6 +339,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App auth gateway refresh
+      x-summary-source: derived
   /app/auth/gateway/revoke:
     post:
       tags:
@@ -364,18 +374,10 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App auth gateway revoke
+      x-summary-source: derived
 components:
   schemas:
-    AppAuthGatewayTokenSchema:
-      required:
-      - userId
-      - accessToken
-      properties:
-        userId:
-          type: integer
-        accessToken:
-          type: string
-      type: object
     ErrorSchema:
       required:
       - errors
@@ -397,6 +399,16 @@ components:
             type: array
             items:
               type: string
+      type: object
+    AppAuthGatewayTokenSchema:
+      required:
+      - userId
+      - accessToken
+      properties:
+        userId:
+          type: integer
+        accessToken:
+          type: string
       type: object
   securitySchemes:
     token:

@@ -1,12 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Optimyzee Application App/Lookup/Google Ads/Language Constant API
+  title: App/Lookup/Google Ads/Language Constant API
   version: 4.1.0
-  x-original-title: API
   description: App/Lookup/GoogleAds/LanguageConstant
-servers:
-- url: https://api.optimyzee.com
-  description: Production (host serving this document at /docs)
 tags:
 - name: App/Lookup/GoogleAds/LanguageConstant
   description: App/Lookup/GoogleAds/LanguageConstant
@@ -36,8 +32,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorSchema'
+      summary: App lookup google ads language constant query
+      x-summary-source: derived
 components:
   schemas:
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
     AppLookupGoogleAdsLanguageConstantSchema:
       required:
       - id
@@ -50,17 +59,6 @@ components:
           type: string
         name:
           type: string
-      type: object
-    ErrorSchema:
-      required:
-      - errors
-      properties:
-        error:
-          type: string
-        message:
-          type:
-          - string
-          - 'null'
       type: object
   securitySchemes:
     token:

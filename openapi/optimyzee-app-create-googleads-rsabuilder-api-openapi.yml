@@ -1,12 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Optimyzee Application App/Create/Google Ads/Rsa Builder API
+  title: App/Create/Google Ads/Rsa Builder API
   version: 4.1.0
-  x-original-title: API
   description: App/Create/GoogleAds/RsaBuilder
-servers:
-- url: https://api.optimyzee.com
-  description: Production (host serving this document at /docs)
 tags:
 - name: App/Create/GoogleAds/RsaBuilder
   description: App/Create/GoogleAds/RsaBuilder
@@ -44,6 +40,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App create google ads rsa builder export
+      x-summary-source: derived
   /app/create/g/rsaBuilder:
     post:
       tags:
@@ -91,6 +89,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App create google ads rsa builder queue
+      x-summary-source: derived
   /app/create/g/rsaBuilder/{builderId}/reprocess:
     post:
       tags:
@@ -140,6 +140,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App create google ads rsa builder reprocess
+      x-summary-source: derived
   /app/create/g/rsaBuilder/{builderId}:
     get:
       tags:
@@ -177,6 +179,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App create google ads rsa builder view
+      x-summary-source: derived
     put:
       tags:
       - App/Create/GoogleAds/RsaBuilder
@@ -222,6 +226,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App create google ads rsa builder update
+      x-summary-source: derived
 components:
   schemas:
     IdSchema:
@@ -230,17 +236,6 @@ components:
       properties:
         id:
           type: integer
-      type: object
-    ErrorSchema:
-      required:
-      - errors
-      properties:
-        error:
-          type: string
-        message:
-          type:
-          - string
-          - 'null'
       type: object
     AppCreateGoogleAdsRsaBuilderSchema:
       required:
@@ -273,6 +268,17 @@ components:
           type: array
           items:
             type: string
+      type: object
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
       type: object
     ErrorBagSchema:
       required:

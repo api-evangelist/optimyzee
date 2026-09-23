@@ -1,12 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Optimyzee Application App/Campaign API
+  title: App/Campaign API
   version: 4.1.0
-  x-original-title: API
   description: App/Campaign
-servers:
-- url: https://api.optimyzee.com
-  description: Production (host serving this document at /docs)
 tags:
 - name: App/Campaign
   description: App/Campaign
@@ -39,6 +35,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App campaign activate
+      x-summary-source: derived
   /app/campaign/{campaignId}:
     get:
       tags:
@@ -76,6 +74,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App campaign view
+      x-summary-source: derived
     delete:
       tags:
       - App/Campaign
@@ -103,6 +103,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App campaign delete
+      x-summary-source: derived
   /app/campaign/{campaignId}/optimization:
     post:
       tags:
@@ -142,6 +144,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App campaign optimization
+      x-summary-source: derived
   /app/campaign/{campaignId}/pause:
     post:
       tags:
@@ -170,6 +174,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App campaign pause
+      x-summary-source: derived
   /app/campaign:
     get:
       tags:
@@ -233,6 +239,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App campaign query
+      x-summary-source: derived
 components:
   schemas:
     ErrorSchema:
@@ -245,6 +253,17 @@ components:
           type:
           - string
           - 'null'
+      type: object
+    ErrorBagSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
       type: object
     AppCampaignSchema:
       required:
@@ -271,17 +290,6 @@ components:
           - PAUSED
         analyzing:
           type: boolean
-      type: object
-    ErrorBagSchema:
-      required:
-      - errors
-      properties:
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
       type: object
   securitySchemes:
     token:

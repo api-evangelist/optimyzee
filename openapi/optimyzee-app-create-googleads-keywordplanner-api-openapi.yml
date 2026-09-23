@@ -1,12 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Optimyzee Application App/Create/Google Ads/Keyword Planner API
+  title: App/Create/Google Ads/Keyword Planner API
   version: 4.1.0
-  x-original-title: API
   description: App/Create/GoogleAds/KeywordPlanner
-servers:
-- url: https://api.optimyzee.com
-  description: Production (host serving this document at /docs)
 tags:
 - name: App/Create/GoogleAds/KeywordPlanner
   description: App/Create/GoogleAds/KeywordPlanner
@@ -44,6 +40,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App create google ads keyword planner export
+      x-summary-source: derived
   /app/create/g/keywordPlanner:
     post:
       tags:
@@ -101,6 +99,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App create google ads keyword planner queue
+      x-summary-source: derived
   /app/create/g/keywordPlanner/{plannerId}/reprocess:
     post:
       tags:
@@ -160,6 +160,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App create google ads keyword planner reprocess
+      x-summary-source: derived
   /app/create/g/keywordPlanner/{plannerId}:
     get:
       tags:
@@ -197,6 +199,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App create google ads keyword planner view
+      x-summary-source: derived
     put:
       tags:
       - App/Create/GoogleAds/KeywordPlanner
@@ -237,6 +241,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App create google ads keyword planner update
+      x-summary-source: derived
 components:
   schemas:
     AppCreateGoogleAdsKeywordPlannerSchema:
@@ -282,13 +288,6 @@ components:
           items:
             $ref: '#/components/schemas/AppCreateGoogleAdsKeywordPlannerKeywordSchema'
       type: object
-    IdSchema:
-      required:
-      - id
-      properties:
-        id:
-          type: integer
-      type: object
     ErrorSchema:
       required:
       - errors
@@ -300,16 +299,12 @@ components:
           - string
           - 'null'
       type: object
-    ErrorBagSchema:
+    IdSchema:
       required:
-      - errors
+      - id
       properties:
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
+        id:
+          type: integer
       type: object
     AppCreateGoogleAdsKeywordPlannerKeywordSchema:
       required:
@@ -348,6 +343,17 @@ components:
           - 'null'
         selected:
           type: boolean
+      type: object
+    ErrorBagSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
       type: object
   securitySchemes:
     token:

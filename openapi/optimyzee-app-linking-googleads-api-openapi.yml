@@ -1,12 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Optimyzee Application App/Linking/Google Ads API
+  title: App/Linking/Google Ads API
   version: 4.1.0
-  x-original-title: API
   description: App/Linking/GoogleAds
-servers:
-- url: https://api.optimyzee.com
-  description: Production (host serving this document at /docs)
 tags:
 - name: App/Linking/GoogleAds
   description: App/Linking/GoogleAds
@@ -48,6 +44,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App linking google ads view
+      x-summary-source: derived
     delete:
       tags:
       - App/Linking/GoogleAds
@@ -75,6 +73,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App linking google ads delete
+      x-summary-source: derived
   /app/linking/g/hierarchy:
     get:
       tags:
@@ -102,6 +102,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App linking google ads hierarchy
+      x-summary-source: derived
   /app/linking/g:
     get:
       tags:
@@ -172,6 +174,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App linking google ads query
+      x-summary-source: derived
     post:
       tags:
       - App/Linking/GoogleAds
@@ -213,6 +217,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App linking google ads issue
+      x-summary-source: derived
   /app/linking/g/{linkingId}/ping:
     get:
       tags:
@@ -247,6 +253,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App linking google ads ping
+      x-summary-source: derived
   /app/linking/g/uri:
     get:
       tags:
@@ -278,6 +286,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App linking google ads uri
+      x-summary-source: derived
 components:
   schemas:
     AppLinkingGoogleAdsHierarchySchema:
@@ -319,14 +329,16 @@ components:
           items:
             $ref: '#/components/schemas/AppLinkingGoogleAdsHierarchySchema'
       type: object
-    ErrorListSchema:
+    ErrorBagSchema:
       required:
       - errors
       properties:
         errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorSchema'
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
       type: object
     ErrorSchema:
       required:
@@ -338,6 +350,15 @@ components:
           type:
           - string
           - 'null'
+      type: object
+    ErrorListSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorSchema'
       type: object
     AppLinkingGoogleAdsSchema:
       required:
@@ -372,17 +393,6 @@ components:
           - 'null'
         isManager:
           type: boolean
-      type: object
-    ErrorBagSchema:
-      required:
-      - errors
-      properties:
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
       type: object
   securitySchemes:
     token:

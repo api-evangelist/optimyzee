@@ -1,12 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Optimyzee Application App/Support API
+  title: App/Support API
   version: 4.1.0
-  x-original-title: API
   description: App/Support
-servers:
-- url: https://api.optimyzee.com
-  description: Production (host serving this document at /docs)
 tags:
 - name: App/Support
   description: App/Support
@@ -44,6 +40,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App support beta
+      x-summary-source: derived
   /app/support/bug:
     post:
       tags:
@@ -77,6 +75,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App support bug
+      x-summary-source: derived
   /app/support/contact:
     post:
       tags:
@@ -114,6 +114,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorSchema'
+      summary: App support contact
+      x-summary-source: derived
   /app/support/sales:
     post:
       tags:
@@ -153,6 +155,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App support sales
+      x-summary-source: derived
   /app/support:
     post:
       tags:
@@ -186,6 +190,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App support
+      x-summary-source: derived
 components:
   schemas:
     ErrorSchema:

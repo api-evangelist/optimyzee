@@ -1,12 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Optimyzee Application App/Analyze/Google Ads/Optimization API
+  title: App/Analyze/Google Ads/Optimization API
   version: 4.1.0
-  x-original-title: API
   description: App/Analyze/GoogleAds/Optimization
-servers:
-- url: https://api.optimyzee.com
-  description: Production (host serving this document at /docs)
 tags:
 - name: App/Analyze/GoogleAds/Optimization
   description: App/Analyze/GoogleAds/Optimization
@@ -39,6 +35,8 @@ paths:
                 $ref: '#/components/schemas/IdSchema'
       security:
       - token: []
+      summary: App analyze google ads optimization analyze
+      x-summary-source: derived
   /app/analyze/g/optimization/search-terms/results/mark:
     post:
       tags:
@@ -79,6 +77,8 @@ paths:
           description: Successful
       security:
       - token: []
+      summary: App analyze google ads optimization mark result
+      x-summary-source: derived
   /app/analyze/g/optimization/p-max:
     post:
       tags:
@@ -107,6 +107,8 @@ paths:
                 $ref: '#/components/schemas/IdSchema'
       security:
       - token: []
+      summary: App analyze google ads optimization PMax analyze
+      x-summary-source: derived
   /app/analyze/g/optimization/pmax-center/{optimizationId}/asset-draft:
     post:
       tags:
@@ -140,6 +142,8 @@ paths:
                 type: object
       security:
       - token: []
+      summary: App analyze google ads optimization PMax center asset draft
+      x-summary-source: derived
   /app/analyze/g/optimization/pmax-center/deep-audit:
     post:
       tags:
@@ -214,6 +218,8 @@ paths:
                 type: object
       security:
       - token: []
+      summary: App analyze google ads optimization PMax center deep audit
+      x-summary-source: derived
   /app/analyze/g/optimization/pmax-center/{optimizationId}/promotion-draft:
     get:
       tags:
@@ -234,6 +240,8 @@ paths:
                 type: object
       security:
       - token: []
+      summary: App analyze google ads optimization PMax center promotion draft latest
+      x-summary-source: derived
     post:
       tags:
       - App/Analyze/GoogleAds/Optimization
@@ -262,6 +270,8 @@ paths:
                 type: object
       security:
       - token: []
+      summary: App analyze google ads optimization PMax center promotion draft
+      x-summary-source: derived
   /app/analyze/g/optimization/pmax-center/{optimizationId}/search-theme-suggestions:
     post:
       tags:
@@ -297,6 +307,8 @@ paths:
                 type: object
       security:
       - token: []
+      summary: App analyze google ads optimization PMax center search theme suggestions
+      x-summary-source: derived
   /app/analyze/g/optimization/pmax-center/{optimizationId}/start:
     post:
       tags:
@@ -333,6 +345,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App analyze google ads optimization PMax center start
+      x-summary-source: derived
   /app/analyze/g/optimization/pmax-center/{optimizationId}:
     get:
       tags:
@@ -407,6 +421,8 @@ paths:
                 type: object
       security:
       - token: []
+      summary: App analyze google ads optimization PMax center view
+      x-summary-source: derived
   /app/analyze/g/optimization/p-max/results/mark:
     post:
       tags:
@@ -447,6 +463,8 @@ paths:
           description: Successful
       security:
       - token: []
+      summary: App analyze google ads optimization PMax mark result
+      x-summary-source: derived
   /app/analyze/g/optimization/p-max/{id}:
     get:
       tags:
@@ -467,6 +485,8 @@ paths:
                 type: object
       security:
       - token: []
+      summary: App analyze google ads optimization PMax view
+      x-summary-source: derived
   /app/analyze/g/optimization/search-terms/{id}:
     get:
       tags:
@@ -487,6 +507,8 @@ paths:
                 type: object
       security:
       - token: []
+      summary: App analyze google ads optimization view
+      x-summary-source: derived
   /app/analyze/g/optimization/optimized-history:
     get:
       tags:
@@ -512,6 +534,8 @@ paths:
                 type: object
       security:
       - token: []
+      summary: App analyze google ads optimization history
+      x-summary-source: derived
   /app/analyze/g/optimization/recommendations:
     get:
       tags:
@@ -544,6 +568,8 @@ paths:
                 type: object
       security:
       - token: []
+      summary: App analyze google ads optimization recommendations
+      x-summary-source: derived
 components:
   schemas:
     ErrorSchema:

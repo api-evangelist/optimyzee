@@ -1,12 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Optimyzee Application App/Auth/Tfa API
+  title: App/Auth/Tfa API
   version: 4.1.0
-  x-original-title: API
   description: App/Auth/Tfa
-servers:
-- url: https://api.optimyzee.com
-  description: Production (host serving this document at /docs)
 tags:
 - name: App/Auth/Tfa
   description: App/Auth/Tfa
@@ -49,6 +45,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App auth tfa disable
+      x-summary-source: derived
   /app/auth/tfa/enable:
     post:
       tags:
@@ -82,6 +80,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App auth tfa enable
+      x-summary-source: derived
   /app/auth/tfa/issue:
     post:
       tags:
@@ -113,8 +113,21 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App auth tfa issue
+      x-summary-source: derived
 components:
   schemas:
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
     AppAuthTfaCredentialsSchema:
       required:
       - qr
@@ -129,17 +142,6 @@ components:
           type: array
           items:
             type: string
-      type: object
-    ErrorSchema:
-      required:
-      - errors
-      properties:
-        error:
-          type: string
-        message:
-          type:
-          - string
-          - 'null'
       type: object
   securitySchemes:
     token:

@@ -1,12 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Optimyzee Application App Signal API
+  title: App Signal API
   version: 4.1.0
-  x-original-title: API
   description: App Signal
-servers:
-- url: https://api.optimyzee.com
-  description: Production (host serving this document at /docs)
 tags:
 - name: App Signal
   description: App Signal

@@ -1,12 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Optimyzee Application App/Campaign/Activity API
+  title: App/Campaign/Activity API
   version: 4.1.0
-  x-original-title: API
   description: App/Campaign/Activity
-servers:
-- url: https://api.optimyzee.com
-  description: Production (host serving this document at /docs)
 tags:
 - name: App/Campaign/Activity
   description: App/Campaign/Activity
@@ -39,6 +35,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App campaign activity apply
+      x-summary-source: derived
   /app/campaign/activity/dismiss/{taskId}:
     post:
       tags:
@@ -78,6 +76,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App campaign activity dismiss
+      x-summary-source: derived
   /app/campaign/activity/{campaignId}:
     get:
       tags:
@@ -150,22 +150,10 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App campaign activity query
+      x-summary-source: derived
 components:
   schemas:
-    AppCampaignActivityLogSchema:
-      required:
-      - id
-      - message
-      - createdAt
-      properties:
-        id:
-          type: integer
-        message:
-          type: string
-        createdAt:
-          type: string
-          format: date-time
-      type: object
     AppCampaignActivityTaskSchema:
       required:
       - id
@@ -215,6 +203,20 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AppCampaignActivitySubtaskSchema'
+      type: object
+    AppCampaignActivityLogSchema:
+      required:
+      - id
+      - message
+      - createdAt
+      properties:
+        id:
+          type: integer
+        message:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
       type: object
     ErrorSchema:
       required:

@@ -1,12 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Optimyzee Application Operations/Admin API
+  title: Operations/Admin API
   version: 4.1.0
-  x-original-title: API
   description: Operations/Admin
-servers:
-- url: https://api.optimyzee.com
-  description: Production (host serving this document at /docs)
 tags:
 - name: Operations/Admin
   description: Operations/Admin
@@ -89,6 +85,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorSchema'
+      summary: Operations admin query
+      x-summary-source: derived
     post:
       tags:
       - Operations/Admin
@@ -142,6 +140,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorSchema'
+      summary: Operations admin create
+      x-summary-source: derived
   /operations/admin/{adminId}:
     get:
       tags:
@@ -177,6 +177,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorSchema'
+      summary: Operations admin view
+      x-summary-source: derived
     put:
       tags:
       - Operations/Admin
@@ -229,6 +231,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorSchema'
+      summary: Operations admin update
+      x-summary-source: derived
     delete:
       tags:
       - Operations/Admin
@@ -254,6 +258,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorSchema'
+      summary: Operations admin delete
+      x-summary-source: derived
   /operations/admin/{adminId}/reset:
     post:
       tags:
@@ -280,8 +286,28 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorSchema'
+      summary: Operations admin reset
+      x-summary-source: derived
 components:
   schemas:
+    IdSchema:
+      required:
+      - id
+      properties:
+        id:
+          type: integer
+      type: object
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
     OperationsAdminSchema:
       required:
       - id
@@ -304,24 +330,6 @@ components:
             - MANAGE_BILLING_SUBSCRIPTIONS
             - MANAGE_CAMPAIGNS
             - MANAGE_ADMINS
-      type: object
-    IdSchema:
-      required:
-      - id
-      properties:
-        id:
-          type: integer
-      type: object
-    ErrorSchema:
-      required:
-      - errors
-      properties:
-        error:
-          type: string
-        message:
-          type:
-          - string
-          - 'null'
       type: object
     ErrorBagSchema:
       required:

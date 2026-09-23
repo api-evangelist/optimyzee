@@ -1,12 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Optimyzee Application Operations/Campaign/Task API
+  title: Operations/Campaign/Task API
   version: 4.1.0
-  x-original-title: API
   description: Operations/Campaign/Task
-servers:
-- url: https://api.optimyzee.com
-  description: Production (host serving this document at /docs)
 tags:
 - name: Operations/Campaign/Task
   description: Operations/Campaign/Task
@@ -96,6 +92,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: Operations campaign task query
+      x-summary-source: derived
     post:
       tags:
       - Operations/Campaign/Task
@@ -171,6 +169,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorSchema'
+      summary: Operations campaign task create
+      x-summary-source: derived
   /operations/campaign/task/{taskId}:
     get:
       tags:
@@ -208,6 +208,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: Operations campaign task view
+      x-summary-source: derived
     put:
       tags:
       - Operations/Campaign/Task
@@ -285,6 +287,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorSchema'
+      summary: Operations campaign task update
+      x-summary-source: derived
     delete:
       tags:
       - Operations/Campaign/Task
@@ -310,6 +314,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorSchema'
+      summary: Operations campaign task delete
+      x-summary-source: derived
 components:
   schemas:
     IdSchema:

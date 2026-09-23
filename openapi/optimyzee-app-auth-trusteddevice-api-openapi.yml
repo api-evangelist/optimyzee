@@ -1,12 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Optimyzee Application App/Auth/Trusted Device API
+  title: App/Auth/Trusted Device API
   version: 4.1.0
-  x-original-title: API
   description: App/Auth/TrustedDevice
-servers:
-- url: https://api.optimyzee.com
-  description: Production (host serving this document at /docs)
 tags:
 - name: App/Auth/TrustedDevice
   description: App/Auth/TrustedDevice
@@ -64,6 +60,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App auth trusted device query
+      x-summary-source: derived
     post:
       tags:
       - App/Auth/TrustedDevice
@@ -90,6 +88,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App auth trusted device create
+      x-summary-source: derived
   /app/auth/trustedDevice/current:
     post:
       tags:
@@ -128,6 +128,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App auth trusted device current
+      x-summary-source: derived
   /app/auth/trustedDevice/{trustedDeviceId}:
     get:
       tags:
@@ -165,6 +167,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App auth trusted device view
+      x-summary-source: derived
     delete:
       tags:
       - App/Auth/TrustedDevice
@@ -192,6 +196,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App auth trusted device delete
+      x-summary-source: derived
 components:
   schemas:
     ErrorSchema:

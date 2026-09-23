@@ -1,12 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Optimyzee Application App/Lookup/Google Ads/Geo Target Constant API
+  title: App/Lookup/Google Ads/Geo Target Constant API
   version: 4.1.0
-  x-original-title: API
   description: App/Lookup/GoogleAds/GeoTargetConstant
-servers:
-- url: https://api.optimyzee.com
-  description: Production (host serving this document at /docs)
 tags:
 - name: App/Lookup/GoogleAds/GeoTargetConstant
   description: App/Lookup/GoogleAds/GeoTargetConstant
@@ -59,6 +55,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorSchema'
+      summary: App lookup google ads geo target constant query
+      x-summary-source: derived
 components:
   schemas:
     ErrorSchema:
@@ -71,6 +69,17 @@ components:
           type:
           - string
           - 'null'
+      type: object
+    ErrorBagSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
       type: object
     AppLookupGoogleAdsGeoTargetConstantSchema:
       required:
@@ -93,17 +102,6 @@ components:
           type: string
         targetType:
           type: string
-      type: object
-    ErrorBagSchema:
-      required:
-      - errors
-      properties:
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
       type: object
   securitySchemes:
     token:

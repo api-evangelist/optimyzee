@@ -1,12 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Optimyzee Application App/Create/Google Ads/Search Creation API
+  title: App/Create/Google Ads/Search Creation API
   version: 4.1.0
-  x-original-title: API
   description: App/Create/GoogleAds/SearchCreation
-servers:
-- url: https://api.optimyzee.com
-  description: Production (host serving this document at /docs)
 tags:
 - name: App/Create/GoogleAds/SearchCreation
   description: App/Create/GoogleAds/SearchCreation
@@ -76,6 +72,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App create google ads search creation create
+      x-summary-source: derived
   /app/create/g/searchCreation/{draftId}/publish:
     post:
       tags:
@@ -104,6 +102,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App create google ads search creation publish
+      x-summary-source: derived
   /app/create/g/searchCreation/{draftId}/rebuild:
     post:
       tags:
@@ -160,6 +160,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App create google ads search creation rebuild
+      x-summary-source: derived
   /app/create/g/searchCreation/{draftId}/status:
     get:
       tags:
@@ -197,6 +199,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App create google ads search creation status
+      x-summary-source: derived
   /app/create/g/searchCreation/{draftId}:
     get:
       tags:
@@ -234,6 +238,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App create google ads search creation view
+      x-summary-source: derived
     patch:
       tags:
       - App/Create/GoogleAds/SearchCreation
@@ -311,8 +317,48 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App create google ads search creation update
+      x-summary-source: derived
 components:
   schemas:
+    AppCreateGoogleAdsSearchCreationDraftKeywordSchema:
+      required:
+      - id
+      - text
+      - lowTopOfPageBid
+      - highTopOfPageBid
+      - competition
+      - avgMonthlySearches
+      - score
+      - selected
+      properties:
+        id:
+          type: integer
+        text:
+          type: string
+        lowTopOfPageBid:
+          type:
+          - integer
+          - 'null'
+        highTopOfPageBid:
+          type:
+          - integer
+          - 'null'
+        competition:
+          type:
+          - integer
+          - 'null'
+        avgMonthlySearches:
+          type:
+          - integer
+          - 'null'
+        score:
+          type:
+          - integer
+          - 'null'
+        selected:
+          type: boolean
+      type: object
     AppCreateGoogleAdsSearchCreationStatusSchema:
       required:
       - status
@@ -338,13 +384,6 @@ components:
           type:
           - string
           - 'null'
-      type: object
-    IdSchema:
-      required:
-      - id
-      properties:
-        id:
-          type: integer
       type: object
     AppCreateGoogleAdsSearchCreationDraftSchema:
       required:
@@ -434,43 +473,12 @@ components:
           - integer
           - 'null'
       type: object
-    AppCreateGoogleAdsSearchCreationDraftKeywordSchema:
+    IdSchema:
       required:
       - id
-      - text
-      - lowTopOfPageBid
-      - highTopOfPageBid
-      - competition
-      - avgMonthlySearches
-      - score
-      - selected
       properties:
         id:
           type: integer
-        text:
-          type: string
-        lowTopOfPageBid:
-          type:
-          - integer
-          - 'null'
-        highTopOfPageBid:
-          type:
-          - integer
-          - 'null'
-        competition:
-          type:
-          - integer
-          - 'null'
-        avgMonthlySearches:
-          type:
-          - integer
-          - 'null'
-        score:
-          type:
-          - integer
-          - 'null'
-        selected:
-          type: boolean
       type: object
   securitySchemes:
     token:

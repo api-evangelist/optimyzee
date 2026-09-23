@@ -1,12 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Optimyzee Application App/Analyze/Google Ads/Audit API
+  title: App/Analyze/Google Ads/Audit API
   version: 4.1.0
-  x-original-title: API
   description: App/Analyze/GoogleAds/Audit
-servers:
-- url: https://api.optimyzee.com
-  description: Production (host serving this document at /docs)
 tags:
 - name: App/Analyze/GoogleAds/Audit
   description: App/Analyze/GoogleAds/Audit
@@ -60,6 +56,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App analyze google ads audit queue
+      x-summary-source: derived
   /app/analyze/g/audit/{auditId}:
     get:
       tags:
@@ -97,8 +95,28 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App analyze google ads audit view
+      x-summary-source: derived
 components:
   schemas:
+    IdSchema:
+      required:
+      - id
+      properties:
+        id:
+          type: integer
+      type: object
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
     AppAnalyzeGoogleAdsAuditResultSchema:
       required:
       - id
@@ -144,24 +162,6 @@ components:
           items:
             type: object
             additionalProperties: {}
-      type: object
-    IdSchema:
-      required:
-      - id
-      properties:
-        id:
-          type: integer
-      type: object
-    ErrorSchema:
-      required:
-      - errors
-      properties:
-        error:
-          type: string
-        message:
-          type:
-          - string
-          - 'null'
       type: object
     AppAnalyzeGoogleAdsAuditSchema:
       required:

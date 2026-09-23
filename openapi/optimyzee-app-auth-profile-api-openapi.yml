@@ -1,12 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Optimyzee Application App/Auth/Profile API
+  title: App/Auth/Profile API
   version: 4.1.0
-  x-original-title: API
   description: App/Auth/Profile
-servers:
-- url: https://api.optimyzee.com
-  description: Production (host serving this document at /docs)
 tags:
 - name: App/Auth/Profile
   description: App/Auth/Profile
@@ -36,6 +32,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App auth profile
+      x-summary-source: derived
     put:
       tags:
       - App/Auth/Profile
@@ -81,6 +79,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App auth profile update
+      x-summary-source: derived
 components:
   schemas:
     ErrorSchema:
@@ -93,6 +93,17 @@ components:
           type:
           - string
           - 'null'
+      type: object
+    ErrorBagSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
       type: object
     AppAuthProfileSchema:
       required:
@@ -175,17 +186,6 @@ components:
           - 'null'
         subscriptionSkipped:
           type: boolean
-      type: object
-    ErrorBagSchema:
-      required:
-      - errors
-      properties:
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
       type: object
   securitySchemes:
     token:

@@ -1,12 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Optimyzee Application Operations/Auth/Profile API
+  title: Operations/Auth/Profile API
   version: 4.1.0
-  x-original-title: API
   description: Operations/Auth/Profile
-servers:
-- url: https://api.optimyzee.com
-  description: Production (host serving this document at /docs)
 tags:
 - name: Operations/Auth/Profile
   description: Operations/Auth/Profile
@@ -36,6 +32,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: Operations auth profile
+      x-summary-source: derived
 components:
   schemas:
     ErrorSchema:

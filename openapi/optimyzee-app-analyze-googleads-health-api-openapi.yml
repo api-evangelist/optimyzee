@@ -1,12 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Optimyzee Application App/Analyze/Google Ads/Health API
+  title: App/Analyze/Google Ads/Health API
   version: 4.1.0
-  x-original-title: API
   description: App/Analyze/GoogleAds/Health
-servers:
-- url: https://api.optimyzee.com
-  description: Production (host serving this document at /docs)
 tags:
 - name: App/Analyze/GoogleAds/Health
   description: App/Analyze/GoogleAds/Health
@@ -60,111 +56,10 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App analyze google ads health analyze
+      x-summary-source: derived
 components:
   schemas:
-    AppAnalyzeGoogleAdsHealthReportSchema:
-      required:
-      - linkingId
-      - linkingCustomerId
-      - linkingName
-      - periodDays
-      - account
-      - campaigns
-      properties:
-        linkingId:
-          type: integer
-        linkingCustomerId:
-          type: integer
-        linkingName:
-          type: string
-        periodDays:
-          type: integer
-        account:
-          $ref: '#/components/schemas/AppAnalyzeGoogleAdsHealthAccountSchema'
-        campaigns:
-          type: array
-          items:
-            $ref: '#/components/schemas/AppAnalyzeGoogleAdsHealthCampaignSchema'
-      type: object
-    ErrorSchema:
-      required:
-      - errors
-      properties:
-        error:
-          type: string
-        message:
-          type:
-          - string
-          - 'null'
-      type: object
-    AppAnalyzeGoogleAdsHealthAccountSchema:
-      required:
-      - campaignCount
-      - hasConversionValue
-      - totals
-      properties:
-        campaignCount:
-          type: integer
-        hasConversionValue:
-          type: boolean
-        totals:
-          $ref: '#/components/schemas/AppAnalyzeGoogleAdsHealthMetricsSchema'
-      type: object
-    AppAnalyzeGoogleAdsHealthDeltasSchema:
-      description: 'Signed fractional change vs the previous period (0.25 = +25%).
-
-        Any field may be null when the previous period had no comparable base.'
-      required:
-      - cost
-      - conversions
-      - conversionValue
-      - cpa
-      - roas
-      - convRate
-      - ctr
-      - cpc
-      properties:
-        cost:
-          type:
-          - number
-          - 'null'
-          format: float
-        conversions:
-          type:
-          - number
-          - 'null'
-          format: float
-        conversionValue:
-          type:
-          - number
-          - 'null'
-          format: float
-        cpa:
-          type:
-          - number
-          - 'null'
-          format: float
-        roas:
-          type:
-          - number
-          - 'null'
-          format: float
-        convRate:
-          type:
-          - number
-          - 'null'
-          format: float
-        ctr:
-          type:
-          - number
-          - 'null'
-          format: float
-        cpc:
-          type:
-          - number
-          - 'null'
-          format: float
-      type: object
     AppAnalyzeGoogleAdsHealthCampaignSchema:
       required:
       - campaignId
@@ -222,6 +117,24 @@ components:
           items:
             $ref: '#/components/schemas/AppAnalyzeGoogleAdsHealthFlagSchema'
       type: object
+    AppAnalyzeGoogleAdsHealthFlagSchema:
+      required:
+      - level
+      - area
+      - message
+      properties:
+        level:
+          type: string
+          enum:
+          - GREEN
+          - YELLOW
+          - RED
+          - INSUFFICIENT_DATA
+        area:
+          type: string
+        message:
+          type: string
+      type: object
     AppAnalyzeGoogleAdsHealthMetricsSchema:
       required:
       - cost
@@ -264,23 +177,108 @@ components:
           type: number
           format: float
       type: object
-    AppAnalyzeGoogleAdsHealthFlagSchema:
+    ErrorSchema:
       required:
-      - level
-      - area
-      - message
+      - errors
       properties:
-        level:
-          type: string
-          enum:
-          - GREEN
-          - YELLOW
-          - RED
-          - INSUFFICIENT_DATA
-        area:
+        error:
           type: string
         message:
+          type:
+          - string
+          - 'null'
+      type: object
+    AppAnalyzeGoogleAdsHealthDeltasSchema:
+      description: 'Signed fractional change vs the previous period (0.25 = +25%).
+
+        Any field may be null when the previous period had no comparable base.'
+      required:
+      - cost
+      - conversions
+      - conversionValue
+      - cpa
+      - roas
+      - convRate
+      - ctr
+      - cpc
+      properties:
+        cost:
+          type:
+          - number
+          - 'null'
+          format: float
+        conversions:
+          type:
+          - number
+          - 'null'
+          format: float
+        conversionValue:
+          type:
+          - number
+          - 'null'
+          format: float
+        cpa:
+          type:
+          - number
+          - 'null'
+          format: float
+        roas:
+          type:
+          - number
+          - 'null'
+          format: float
+        convRate:
+          type:
+          - number
+          - 'null'
+          format: float
+        ctr:
+          type:
+          - number
+          - 'null'
+          format: float
+        cpc:
+          type:
+          - number
+          - 'null'
+          format: float
+      type: object
+    AppAnalyzeGoogleAdsHealthAccountSchema:
+      required:
+      - campaignCount
+      - hasConversionValue
+      - totals
+      properties:
+        campaignCount:
+          type: integer
+        hasConversionValue:
+          type: boolean
+        totals:
+          $ref: '#/components/schemas/AppAnalyzeGoogleAdsHealthMetricsSchema'
+      type: object
+    AppAnalyzeGoogleAdsHealthReportSchema:
+      required:
+      - linkingId
+      - linkingCustomerId
+      - linkingName
+      - periodDays
+      - account
+      - campaigns
+      properties:
+        linkingId:
+          type: integer
+        linkingCustomerId:
+          type: integer
+        linkingName:
           type: string
+        periodDays:
+          type: integer
+        account:
+          $ref: '#/components/schemas/AppAnalyzeGoogleAdsHealthAccountSchema'
+        campaigns:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppAnalyzeGoogleAdsHealthCampaignSchema'
       type: object
   securitySchemes:
     token:

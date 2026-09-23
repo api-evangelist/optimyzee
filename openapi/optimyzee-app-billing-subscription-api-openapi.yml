@@ -1,12 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Optimyzee Application App/Billing/Subscription API
+  title: App/Billing/Subscription API
   version: 4.1.0
-  x-original-title: API
   description: App/Billing/Subscription
-servers:
-- url: https://api.optimyzee.com
-  description: Production (host serving this document at /docs)
 tags:
 - name: App/Billing/Subscription
   description: App/Billing/Subscription
@@ -27,6 +23,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App billing subscription cancel
+      x-summary-source: derived
   /app/billing/subscription/charge:
     post:
       tags:
@@ -43,6 +41,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App billing subscription charge
+      x-summary-source: derived
   /app/billing/subscription:
     get:
       tags:
@@ -62,6 +62,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/AppBillingSubscriptionSchema'
                 type: object
+      summary: App billing subscription query
+      x-summary-source: derived
     post:
       tags:
       - App/Billing/Subscription
@@ -115,6 +117,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App billing subscription subscribe
+      x-summary-source: derived
   /app/billing/subscription/session:
     post:
       tags:
@@ -163,6 +167,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App billing subscription session
+      x-summary-source: derived
   /app/billing/subscription/skip:
     post:
       tags:
@@ -202,14 +208,18 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App billing subscription skip
+      x-summary-source: derived
 components:
   schemas:
-    AppBillingSubscriptionSessionSchema:
+    AppBillingSubscriptionCheckoutSchema:
       required:
       - uri
       properties:
         uri:
-          type: string
+          type:
+          - string
+          - 'null'
       type: object
     ErrorSchema:
       required:
@@ -262,6 +272,13 @@ components:
         sales:
           type: boolean
       type: object
+    AppBillingSubscriptionSessionSchema:
+      required:
+      - uri
+      properties:
+        uri:
+          type: string
+      type: object
     ErrorBagSchema:
       required:
       - errors
@@ -272,15 +289,6 @@ components:
             type: array
             items:
               type: string
-      type: object
-    AppBillingSubscriptionCheckoutSchema:
-      required:
-      - uri
-      properties:
-        uri:
-          type:
-          - string
-          - 'null'
       type: object
   securitySchemes:
     token:

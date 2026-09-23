@@ -1,12 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Optimyzee Application App/Auth/Email API
+  title: App/Auth/Email API
   version: 4.1.0
-  x-original-title: API
   description: App/Auth/Email
-servers:
-- url: https://api.optimyzee.com
-  description: Production (host serving this document at /docs)
 tags:
 - name: App/Auth/Email
   description: App/Auth/Email
@@ -33,6 +29,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App auth email resend
+      x-summary-source: derived
   /app/auth/email:
     post:
       tags:
@@ -67,6 +65,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App auth email update
+      x-summary-source: derived
   /app/auth/email/verify:
     post:
       tags:
@@ -100,6 +100,8 @@ paths:
                 $ref: '#/components/schemas/ErrorSchema'
       security:
       - token: []
+      summary: App auth email verify
+      x-summary-source: derived
 components:
   schemas:
     ErrorSchema:
