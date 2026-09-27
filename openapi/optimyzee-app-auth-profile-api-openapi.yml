@@ -94,17 +94,6 @@ components:
           - string
           - 'null'
       type: object
-    ErrorBagSchema:
-      required:
-      - errors
-      properties:
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-      type: object
     AppAuthProfileSchema:
       required:
       - id
@@ -186,6 +175,17 @@ components:
           - 'null'
         subscriptionSkipped:
           type: boolean
+      type: object
+    ErrorBagSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
       type: object
   securitySchemes:
     token:

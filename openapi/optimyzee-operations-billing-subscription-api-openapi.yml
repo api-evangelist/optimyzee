@@ -297,35 +297,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    IdSchema:
-      required:
-      - id
-      properties:
-        id:
-          type: integer
-      type: object
-    ErrorSchema:
-      required:
-      - errors
-      properties:
-        error:
-          type: string
-        message:
-          type:
-          - string
-          - 'null'
-      type: object
-    ErrorBagSchema:
-      required:
-      - errors
-      properties:
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-      type: object
     OperationsBillingSubscriptionSchema:
       required:
       - id
@@ -371,6 +342,35 @@ components:
           type: boolean
         legacy:
           type: boolean
+      type: object
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
+    ErrorBagSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      type: object
+    IdSchema:
+      required:
+      - id
+      properties:
+        id:
+          type: integer
       type: object
   securitySchemes:
     token:

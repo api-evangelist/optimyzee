@@ -162,17 +162,31 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    AppCampaignGoogleAdsMetricsSchema:
+    AppCampaignGoogleAdsMetricsReportSchema:
       required:
-      - date
+      - unit
+      - currencyCode
+      - metrics
+      - summary
+      properties:
+        unit:
+          type: string
+        currencyCode:
+          type: string
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppCampaignGoogleAdsMetricsSchema'
+        summary:
+          $ref: '#/components/schemas/AppCampaignGoogleAdsMetricsSummarySchema'
+      type: object
+    AppCampaignGoogleAdsMetricsSummarySchema:
+      required:
       - costMicros
       - clicks
       - conversions
       - costPerConversion
       properties:
-        date:
-          type: string
-          format: date
         costMicros:
           type: integer
         clicks:
@@ -195,31 +209,6 @@ components:
           - string
           - 'null'
       type: object
-    IdSchema:
-      required:
-      - id
-      properties:
-        id:
-          type: integer
-      type: object
-    AppCampaignGoogleAdsMetricsSummarySchema:
-      required:
-      - costMicros
-      - clicks
-      - conversions
-      - costPerConversion
-      properties:
-        costMicros:
-          type: integer
-        clicks:
-          type: integer
-        conversions:
-          type: number
-          format: float
-        costPerConversion:
-          type: number
-          format: float
-      type: object
     ErrorBagSchema:
       required:
       - errors
@@ -231,23 +220,34 @@ components:
             items:
               type: string
       type: object
-    AppCampaignGoogleAdsMetricsReportSchema:
+    IdSchema:
       required:
-      - unit
-      - currencyCode
-      - metrics
-      - summary
+      - id
       properties:
-        unit:
+        id:
+          type: integer
+      type: object
+    AppCampaignGoogleAdsMetricsSchema:
+      required:
+      - date
+      - costMicros
+      - clicks
+      - conversions
+      - costPerConversion
+      properties:
+        date:
           type: string
-        currencyCode:
-          type: string
-        metrics:
-          type: array
-          items:
-            $ref: '#/components/schemas/AppCampaignGoogleAdsMetricsSchema'
-        summary:
-          $ref: '#/components/schemas/AppCampaignGoogleAdsMetricsSummarySchema'
+          format: date
+        costMicros:
+          type: integer
+        clicks:
+          type: integer
+        conversions:
+          type: number
+          format: float
+        costPerConversion:
+          type: number
+          format: float
       type: object
   securitySchemes:
     token:

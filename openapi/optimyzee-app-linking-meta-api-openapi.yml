@@ -282,53 +282,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    AppLinkingMetaAccountSchema:
-      required:
-      - id
-      - externalId
-      - accountId
-      - name
-      - currency
-      - timezoneName
-      - accountStatus
-      - selected
-      properties:
-        id:
-          type: integer
-        externalId:
-          type: string
-        accountId:
-          type: string
-        name:
-          type:
-          - string
-          - 'null'
-        currency:
-          type:
-          - string
-          - 'null'
-        timezoneName:
-          type:
-          - string
-          - 'null'
-        accountStatus:
-          type:
-          - integer
-          - 'null'
-        selected:
-          type: boolean
-      type: object
-    ErrorSchema:
-      required:
-      - errors
-      properties:
-        error:
-          type: string
-        message:
-          type:
-          - string
-          - 'null'
-      type: object
     AppLinkingMetaSchema:
       required:
       - id
@@ -371,6 +324,53 @@ components:
             type: array
             items:
               type: string
+      type: object
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
+    AppLinkingMetaAccountSchema:
+      required:
+      - id
+      - externalId
+      - accountId
+      - name
+      - currency
+      - timezoneName
+      - accountStatus
+      - selected
+      properties:
+        id:
+          type: integer
+        externalId:
+          type: string
+        accountId:
+          type: string
+        name:
+          type:
+          - string
+          - 'null'
+        currency:
+          type:
+          - string
+          - 'null'
+        timezoneName:
+          type:
+          - string
+          - 'null'
+        accountStatus:
+          type:
+          - integer
+          - 'null'
+        selected:
+          type: boolean
       type: object
   securitySchemes:
     token:

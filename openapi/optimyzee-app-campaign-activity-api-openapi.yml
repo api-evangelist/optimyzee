@@ -204,20 +204,6 @@ components:
           items:
             $ref: '#/components/schemas/AppCampaignActivitySubtaskSchema'
       type: object
-    AppCampaignActivityLogSchema:
-      required:
-      - id
-      - message
-      - createdAt
-      properties:
-        id:
-          type: integer
-        message:
-          type: string
-        createdAt:
-          type: string
-          format: date-time
-      type: object
     ErrorSchema:
       required:
       - errors
@@ -271,6 +257,20 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AppCampaignActivityLogSchema'
+      type: object
+    AppCampaignActivityLogSchema:
+      required:
+      - id
+      - message
+      - createdAt
+      properties:
+        id:
+          type: integer
+        message:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
       type: object
     ErrorBagSchema:
       required:

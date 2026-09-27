@@ -99,70 +99,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    IdSchema:
-      required:
-      - id
-      properties:
-        id:
-          type: integer
-      type: object
-    ErrorSchema:
-      required:
-      - errors
-      properties:
-        error:
-          type: string
-        message:
-          type:
-          - string
-          - 'null'
-      type: object
-    AppAnalyzeGoogleAdsAuditResultSchema:
-      required:
-      - id
-      - status
-      - title
-      - description
-      - scoreValue
-      - scoreMaxValue
-      - category
-      - details
-      properties:
-        id:
-          type: integer
-        status:
-          type: string
-          enum:
-          - PASSED
-          - FAILED
-          - WARNING
-          - ERROR
-        title:
-          type: string
-        description:
-          type:
-          - string
-          - 'null'
-        scoreValue:
-          type: integer
-        scoreMaxValue:
-          type: integer
-        category:
-          type:
-          - string
-          - 'null'
-        summary:
-          type:
-          - string
-          - 'null'
-        details:
-          type:
-          - array
-          - 'null'
-          items:
-            type: object
-            additionalProperties: {}
-      type: object
     AppAnalyzeGoogleAdsAuditSchema:
       required:
       - id
@@ -211,6 +147,70 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AppAnalyzeGoogleAdsAuditResultSchema'
+      type: object
+    AppAnalyzeGoogleAdsAuditResultSchema:
+      required:
+      - id
+      - status
+      - title
+      - description
+      - scoreValue
+      - scoreMaxValue
+      - category
+      - details
+      properties:
+        id:
+          type: integer
+        status:
+          type: string
+          enum:
+          - PASSED
+          - FAILED
+          - WARNING
+          - ERROR
+        title:
+          type: string
+        description:
+          type:
+          - string
+          - 'null'
+        scoreValue:
+          type: integer
+        scoreMaxValue:
+          type: integer
+        category:
+          type:
+          - string
+          - 'null'
+        summary:
+          type:
+          - string
+          - 'null'
+        details:
+          type:
+          - array
+          - 'null'
+          items:
+            type: object
+            additionalProperties: {}
+      type: object
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
+    IdSchema:
+      required:
+      - id
+      properties:
+        id:
+          type: integer
       type: object
   securitySchemes:
     token:

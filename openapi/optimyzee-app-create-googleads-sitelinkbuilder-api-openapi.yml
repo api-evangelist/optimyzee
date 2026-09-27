@@ -255,17 +255,6 @@ components:
           items:
             $ref: '#/components/schemas/AppCreateGoogleAdsSitelinkBuilderSitelinkSchema'
       type: object
-    ErrorSchema:
-      required:
-      - errors
-      properties:
-        error:
-          type: string
-        message:
-          type:
-          - string
-          - 'null'
-      type: object
     AppCreateGoogleAdsSitelinkBuilderSitelinkSchema:
       required:
       - id
@@ -289,12 +278,16 @@ components:
           - string
           - 'null'
       type: object
-    IdSchema:
+    ErrorSchema:
       required:
-      - id
+      - errors
       properties:
-        id:
-          type: integer
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
       type: object
     ErrorBagSchema:
       required:
@@ -306,6 +299,13 @@ components:
             type: array
             items:
               type: string
+      type: object
+    IdSchema:
+      required:
+      - id
+      properties:
+        id:
+          type: integer
       type: object
   securitySchemes:
     token:

@@ -246,13 +246,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    IdSchema:
-      required:
-      - id
-      properties:
-        id:
-          type: integer
-      type: object
     ErrorSchema:
       required:
       - errors
@@ -274,6 +267,13 @@ components:
             type: array
             items:
               type: string
+      type: object
+    IdSchema:
+      required:
+      - id
+      properties:
+        id:
+          type: integer
       type: object
     OperationsCampaignLogSchema:
       required:

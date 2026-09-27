@@ -385,6 +385,13 @@ components:
           - string
           - 'null'
       type: object
+    IdSchema:
+      required:
+      - id
+      properties:
+        id:
+          type: integer
+      type: object
     AppCreateGoogleAdsSearchCreationDraftSchema:
       required:
       - id
@@ -472,13 +479,6 @@ components:
           type:
           - integer
           - 'null'
-      type: object
-    IdSchema:
-      required:
-      - id
-      properties:
-        id:
-          type: integer
       type: object
   securitySchemes:
     token:

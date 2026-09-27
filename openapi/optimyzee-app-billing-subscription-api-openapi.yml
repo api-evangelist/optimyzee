@@ -212,15 +212,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    AppBillingSubscriptionCheckoutSchema:
-      required:
-      - uri
-      properties:
-        uri:
-          type:
-          - string
-          - 'null'
-      type: object
     ErrorSchema:
       required:
       - errors
@@ -271,6 +262,15 @@ components:
           - 'null'
         sales:
           type: boolean
+      type: object
+    AppBillingSubscriptionCheckoutSchema:
+      required:
+      - uri
+      properties:
+        uri:
+          type:
+          - string
+          - 'null'
       type: object
     AppBillingSubscriptionSessionSchema:
       required:
