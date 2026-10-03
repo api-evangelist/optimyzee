@@ -378,16 +378,15 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ErrorSchema:
+    AppAuthGatewayTokenSchema:
       required:
-      - errors
+      - userId
+      - accessToken
       properties:
-        error:
+        userId:
+          type: integer
+        accessToken:
           type: string
-        message:
-          type:
-          - string
-          - 'null'
       type: object
     ErrorBagSchema:
       required:
@@ -400,15 +399,16 @@ components:
             items:
               type: string
       type: object
-    AppAuthGatewayTokenSchema:
+    ErrorSchema:
       required:
-      - userId
-      - accessToken
+      - errors
       properties:
-        userId:
-          type: integer
-        accessToken:
+        error:
           type: string
+        message:
+          type:
+          - string
+          - 'null'
       type: object
   securitySchemes:
     token:

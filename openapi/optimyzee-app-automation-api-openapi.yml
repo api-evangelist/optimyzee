@@ -81,71 +81,6 @@ paths:
                 $ref: '#/components/schemas/AppAutomationSchema'
 components:
   schemas:
-    AppAutomationSchema:
-      required:
-      - id
-      - businessId
-      - title
-      - summary
-      - signal
-      - trigger
-      - direction
-      - deltaPct
-      - target
-      - scope
-      - channels
-      - guardrails
-      - confidence
-      - status
-      - createdAt
-      properties:
-        id:
-          type: integer
-        businessId:
-          type:
-          - string
-          - 'null'
-        title:
-          type: string
-        summary:
-          type:
-          - string
-          - 'null'
-        signal:
-          type: string
-        trigger:
-          type:
-          - string
-          - 'null'
-        direction:
-          type: string
-        deltaPct:
-          type: integer
-        target:
-          type:
-          - string
-          - 'null'
-        scope:
-          type:
-          - string
-          - 'null'
-        channels:
-          type: array
-          items:
-            type: string
-        guardrails:
-          type:
-          - string
-          - 'null'
-        confidence:
-          type: string
-        status:
-          type: string
-        createdAt:
-          type:
-          - string
-          - 'null'
-      type: object
     AppAutomationConfigFieldSchema:
       required:
       - label
@@ -211,6 +146,71 @@ components:
             $ref: '#/components/schemas/AppAutomationConfigFieldSchema'
         confidence:
           type: string
+      type: object
+    AppAutomationSchema:
+      required:
+      - id
+      - businessId
+      - title
+      - summary
+      - signal
+      - trigger
+      - direction
+      - deltaPct
+      - target
+      - scope
+      - channels
+      - guardrails
+      - confidence
+      - status
+      - createdAt
+      properties:
+        id:
+          type: integer
+        businessId:
+          type:
+          - string
+          - 'null'
+        title:
+          type: string
+        summary:
+          type:
+          - string
+          - 'null'
+        signal:
+          type: string
+        trigger:
+          type:
+          - string
+          - 'null'
+        direction:
+          type: string
+        deltaPct:
+          type: integer
+        target:
+          type:
+          - string
+          - 'null'
+        scope:
+          type:
+          - string
+          - 'null'
+        channels:
+          type: array
+          items:
+            type: string
+        guardrails:
+          type:
+          - string
+          - 'null'
+        confidence:
+          type: string
+        status:
+          type: string
+        createdAt:
+          type:
+          - string
+          - 'null'
       type: object
   securitySchemes:
     token:

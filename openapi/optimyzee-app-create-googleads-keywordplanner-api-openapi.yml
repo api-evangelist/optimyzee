@@ -245,55 +245,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ErrorSchema:
-      required:
-      - errors
-      properties:
-        error:
-          type: string
-        message:
-          type:
-          - string
-          - 'null'
-      type: object
-    AppCreateGoogleAdsKeywordPlannerKeywordSchema:
-      required:
-      - id
-      - text
-      - lowTopOfPageBid
-      - highTopOfPageBid
-      - competition
-      - avgMonthlySearches
-      - score
-      - selected
-      properties:
-        id:
-          type: integer
-        text:
-          type: string
-        lowTopOfPageBid:
-          type:
-          - integer
-          - 'null'
-        highTopOfPageBid:
-          type:
-          - integer
-          - 'null'
-        competition:
-          type:
-          - integer
-          - 'null'
-        avgMonthlySearches:
-          type:
-          - integer
-          - 'null'
-        score:
-          type:
-          - integer
-          - 'null'
-        selected:
-          type: boolean
-      type: object
     AppCreateGoogleAdsKeywordPlannerSchema:
       required:
       - id
@@ -337,6 +288,51 @@ components:
           items:
             $ref: '#/components/schemas/AppCreateGoogleAdsKeywordPlannerKeywordSchema'
       type: object
+    AppCreateGoogleAdsKeywordPlannerKeywordSchema:
+      required:
+      - id
+      - text
+      - lowTopOfPageBid
+      - highTopOfPageBid
+      - competition
+      - avgMonthlySearches
+      - score
+      - selected
+      properties:
+        id:
+          type: integer
+        text:
+          type: string
+        lowTopOfPageBid:
+          type:
+          - integer
+          - 'null'
+        highTopOfPageBid:
+          type:
+          - integer
+          - 'null'
+        competition:
+          type:
+          - integer
+          - 'null'
+        avgMonthlySearches:
+          type:
+          - integer
+          - 'null'
+        score:
+          type:
+          - integer
+          - 'null'
+        selected:
+          type: boolean
+      type: object
+    IdSchema:
+      required:
+      - id
+      properties:
+        id:
+          type: integer
+      type: object
     ErrorBagSchema:
       required:
       - errors
@@ -348,12 +344,16 @@ components:
             items:
               type: string
       type: object
-    IdSchema:
+    ErrorSchema:
       required:
-      - id
+      - errors
       properties:
-        id:
-          type: integer
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
       type: object
   securitySchemes:
     token:

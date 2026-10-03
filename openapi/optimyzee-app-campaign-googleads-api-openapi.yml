@@ -162,24 +162,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    AppCampaignGoogleAdsMetricsReportSchema:
-      required:
-      - unit
-      - currencyCode
-      - metrics
-      - summary
-      properties:
-        unit:
-          type: string
-        currencyCode:
-          type: string
-        metrics:
-          type: array
-          items:
-            $ref: '#/components/schemas/AppCampaignGoogleAdsMetricsSchema'
-        summary:
-          $ref: '#/components/schemas/AppCampaignGoogleAdsMetricsSummarySchema'
-      type: object
     AppCampaignGoogleAdsMetricsSummarySchema:
       required:
       - costMicros
@@ -198,34 +180,23 @@ components:
           type: number
           format: float
       type: object
-    ErrorSchema:
+    AppCampaignGoogleAdsMetricsReportSchema:
       required:
-      - errors
+      - unit
+      - currencyCode
+      - metrics
+      - summary
       properties:
-        error:
+        unit:
           type: string
-        message:
-          type:
-          - string
-          - 'null'
-      type: object
-    ErrorBagSchema:
-      required:
-      - errors
-      properties:
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-      type: object
-    IdSchema:
-      required:
-      - id
-      properties:
-        id:
-          type: integer
+        currencyCode:
+          type: string
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppCampaignGoogleAdsMetricsSchema'
+        summary:
+          $ref: '#/components/schemas/AppCampaignGoogleAdsMetricsSummarySchema'
       type: object
     AppCampaignGoogleAdsMetricsSchema:
       required:
@@ -248,6 +219,35 @@ components:
         costPerConversion:
           type: number
           format: float
+      type: object
+    IdSchema:
+      required:
+      - id
+      properties:
+        id:
+          type: integer
+      type: object
+    ErrorBagSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      type: object
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
       type: object
   securitySchemes:
     token:

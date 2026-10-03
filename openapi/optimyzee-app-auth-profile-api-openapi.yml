@@ -83,16 +83,16 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ErrorSchema:
+    ErrorBagSchema:
       required:
       - errors
       properties:
-        error:
-          type: string
-        message:
-          type:
-          - string
-          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
       type: object
     AppAuthProfileSchema:
       required:
@@ -176,16 +176,16 @@ components:
         subscriptionSkipped:
           type: boolean
       type: object
-    ErrorBagSchema:
+    ErrorSchema:
       required:
       - errors
       properties:
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
       type: object
   securitySchemes:
     token:

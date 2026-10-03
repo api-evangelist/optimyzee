@@ -290,71 +290,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    AppLinkingGoogleAdsSchema:
-      required:
-      - id
-      - name
-      - customerId
-      - readableCustomerId
-      - loginCustomerId
-      - currencyCode
-      - descriptiveName
-      - isManager
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        customerId:
-          type: integer
-        readableCustomerId:
-          type: string
-        loginCustomerId:
-          type:
-          - integer
-          - 'null'
-        currencyCode:
-          type:
-          - string
-          - 'null'
-        descriptiveName:
-          type:
-          - string
-          - 'null'
-        isManager:
-          type: boolean
-      type: object
-    ErrorListSchema:
-      required:
-      - errors
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorSchema'
-      type: object
-    ErrorSchema:
-      required:
-      - errors
-      properties:
-        error:
-          type: string
-        message:
-          type:
-          - string
-          - 'null'
-      type: object
-    ErrorBagSchema:
-      required:
-      - errors
-      properties:
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-      type: object
     AppLinkingGoogleAdsHierarchySchema:
       required:
       - id
@@ -393,6 +328,71 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AppLinkingGoogleAdsHierarchySchema'
+      type: object
+    ErrorListSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorSchema'
+      type: object
+    ErrorBagSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      type: object
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
+    AppLinkingGoogleAdsSchema:
+      required:
+      - id
+      - name
+      - customerId
+      - readableCustomerId
+      - loginCustomerId
+      - currencyCode
+      - descriptiveName
+      - isManager
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        customerId:
+          type: integer
+        readableCustomerId:
+          type: string
+        loginCustomerId:
+          type:
+          - integer
+          - 'null'
+        currencyCode:
+          type:
+          - string
+          - 'null'
+        descriptiveName:
+          type:
+          - string
+          - 'null'
+        isManager:
+          type: boolean
       type: object
   securitySchemes:
     token:

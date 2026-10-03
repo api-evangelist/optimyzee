@@ -177,6 +177,38 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    OperationsUserTokenSchema:
+      required:
+      - userId
+      - accessToken
+      properties:
+        userId:
+          type: integer
+        accessToken:
+          type: string
+      type: object
+    ErrorBagSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      type: object
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
     OperationsUserSchema:
       required:
       - id
@@ -237,38 +269,6 @@ components:
           - 'null'
         subscriptionSkipped:
           type: boolean
-      type: object
-    OperationsUserTokenSchema:
-      required:
-      - userId
-      - accessToken
-      properties:
-        userId:
-          type: integer
-        accessToken:
-          type: string
-      type: object
-    ErrorSchema:
-      required:
-      - errors
-      properties:
-        error:
-          type: string
-        message:
-          type:
-          - string
-          - 'null'
-      type: object
-    ErrorBagSchema:
-      required:
-      - errors
-      properties:
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
       type: object
   securitySchemes:
     token:

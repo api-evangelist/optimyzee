@@ -246,16 +246,12 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ErrorSchema:
+    IdSchema:
       required:
-      - errors
+      - id
       properties:
-        error:
-          type: string
-        message:
-          type:
-          - string
-          - 'null'
+        id:
+          type: integer
       type: object
     ErrorBagSchema:
       required:
@@ -267,13 +263,6 @@ components:
             type: array
             items:
               type: string
-      type: object
-    IdSchema:
-      required:
-      - id
-      properties:
-        id:
-          type: integer
       type: object
     OperationsCampaignLogSchema:
       required:
@@ -291,6 +280,17 @@ components:
         createdAt:
           type: string
           format: date-time
+      type: object
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
       type: object
   securitySchemes:
     token:

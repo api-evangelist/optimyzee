@@ -313,16 +313,12 @@ components:
             - MANAGE_CAMPAIGNS
             - MANAGE_ADMINS
       type: object
-    ErrorSchema:
+    IdSchema:
       required:
-      - errors
+      - id
       properties:
-        error:
-          type: string
-        message:
-          type:
-          - string
-          - 'null'
+        id:
+          type: integer
       type: object
     ErrorBagSchema:
       required:
@@ -335,12 +331,16 @@ components:
             items:
               type: string
       type: object
-    IdSchema:
+    ErrorSchema:
       required:
-      - id
+      - errors
       properties:
-        id:
-          type: integer
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
       type: object
   securitySchemes:
     token:
