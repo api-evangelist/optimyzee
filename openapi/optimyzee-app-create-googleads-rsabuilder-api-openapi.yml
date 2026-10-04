@@ -230,6 +230,13 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    IdSchema:
+      required:
+      - id
+      properties:
+        id:
+          type: integer
+      type: object
     AppCreateGoogleAdsRsaBuilderSchema:
       required:
       - id
@@ -262,12 +269,16 @@ components:
           items:
             type: string
       type: object
-    IdSchema:
+    ErrorSchema:
       required:
-      - id
+      - errors
       properties:
-        id:
-          type: integer
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
       type: object
     ErrorBagSchema:
       required:
@@ -279,17 +290,6 @@ components:
             type: array
             items:
               type: string
-      type: object
-    ErrorSchema:
-      required:
-      - errors
-      properties:
-        error:
-          type: string
-        message:
-          type:
-          - string
-          - 'null'
       type: object
   securitySchemes:
     token:

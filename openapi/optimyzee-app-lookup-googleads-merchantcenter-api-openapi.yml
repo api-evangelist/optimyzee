@@ -47,17 +47,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ErrorBagSchema:
-      required:
-      - errors
-      properties:
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-      type: object
     ErrorSchema:
       required:
       - errors
@@ -68,6 +57,17 @@ components:
           type:
           - string
           - 'null'
+      type: object
+    ErrorBagSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
       type: object
   securitySchemes:
     token:

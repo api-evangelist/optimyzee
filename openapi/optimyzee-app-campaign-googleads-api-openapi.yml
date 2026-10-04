@@ -162,6 +162,57 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
+    ErrorBagSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      type: object
+    IdSchema:
+      required:
+      - id
+      properties:
+        id:
+          type: integer
+      type: object
+    AppCampaignGoogleAdsMetricsSchema:
+      required:
+      - date
+      - costMicros
+      - clicks
+      - conversions
+      - costPerConversion
+      properties:
+        date:
+          type: string
+          format: date
+        costMicros:
+          type: integer
+        clicks:
+          type: integer
+        conversions:
+          type: number
+          format: float
+        costPerConversion:
+          type: number
+          format: float
+      type: object
     AppCampaignGoogleAdsMetricsSummarySchema:
       required:
       - costMicros
@@ -197,57 +248,6 @@ components:
             $ref: '#/components/schemas/AppCampaignGoogleAdsMetricsSchema'
         summary:
           $ref: '#/components/schemas/AppCampaignGoogleAdsMetricsSummarySchema'
-      type: object
-    AppCampaignGoogleAdsMetricsSchema:
-      required:
-      - date
-      - costMicros
-      - clicks
-      - conversions
-      - costPerConversion
-      properties:
-        date:
-          type: string
-          format: date
-        costMicros:
-          type: integer
-        clicks:
-          type: integer
-        conversions:
-          type: number
-          format: float
-        costPerConversion:
-          type: number
-          format: float
-      type: object
-    IdSchema:
-      required:
-      - id
-      properties:
-        id:
-          type: integer
-      type: object
-    ErrorBagSchema:
-      required:
-      - errors
-      properties:
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-      type: object
-    ErrorSchema:
-      required:
-      - errors
-      properties:
-        error:
-          type: string
-        message:
-          type:
-          - string
-          - 'null'
       type: object
   securitySchemes:
     token:

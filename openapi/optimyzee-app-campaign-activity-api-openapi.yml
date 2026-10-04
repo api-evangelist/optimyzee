@@ -154,48 +154,16 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    AppCampaignActivitySubtaskSchema:
+    ErrorSchema:
       required:
-      - id
-      - title
-      - description
-      - status
-      - startedAt
-      - finishedAt
-      - logs
+      - errors
       properties:
-        id:
-          type: integer
-        title:
+        error:
           type: string
-        description:
+        message:
           type:
           - string
           - 'null'
-        status:
-          type: string
-          enum:
-          - DRAFT
-          - RECOMMENDATION
-          - BLOCKED
-          - PENDING
-          - PROCESSING
-          - DONE
-          - GOAL
-        startedAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        finishedAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        logs:
-          type: array
-          items:
-            $ref: '#/components/schemas/AppCampaignActivityLogSchema'
       type: object
     AppCampaignActivityTaskSchema:
       required:
@@ -247,6 +215,17 @@ components:
           items:
             $ref: '#/components/schemas/AppCampaignActivitySubtaskSchema'
       type: object
+    ErrorBagSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      type: object
     AppCampaignActivityLogSchema:
       required:
       - id
@@ -261,27 +240,48 @@ components:
           type: string
           format: date-time
       type: object
-    ErrorBagSchema:
+    AppCampaignActivitySubtaskSchema:
       required:
-      - errors
+      - id
+      - title
+      - description
+      - status
+      - startedAt
+      - finishedAt
+      - logs
       properties:
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-      type: object
-    ErrorSchema:
-      required:
-      - errors
-      properties:
-        error:
+        id:
+          type: integer
+        title:
           type: string
-        message:
+        description:
           type:
           - string
           - 'null'
+        status:
+          type: string
+          enum:
+          - DRAFT
+          - RECOMMENDATION
+          - BLOCKED
+          - PENDING
+          - PROCESSING
+          - DONE
+          - GOAL
+        startedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        finishedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        logs:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppCampaignActivityLogSchema'
       type: object
   securitySchemes:
     token:

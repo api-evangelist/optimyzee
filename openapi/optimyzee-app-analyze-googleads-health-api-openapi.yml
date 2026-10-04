@@ -60,18 +60,40 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    AppAnalyzeGoogleAdsHealthAccountSchema:
+    AppAnalyzeGoogleAdsHealthReportSchema:
       required:
-      - campaignCount
-      - hasConversionValue
-      - totals
+      - linkingId
+      - linkingCustomerId
+      - linkingName
+      - periodDays
+      - account
+      - campaigns
       properties:
-        campaignCount:
+        linkingId:
           type: integer
-        hasConversionValue:
-          type: boolean
-        totals:
-          $ref: '#/components/schemas/AppAnalyzeGoogleAdsHealthMetricsSchema'
+        linkingCustomerId:
+          type: integer
+        linkingName:
+          type: string
+        periodDays:
+          type: integer
+        account:
+          $ref: '#/components/schemas/AppAnalyzeGoogleAdsHealthAccountSchema'
+        campaigns:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppAnalyzeGoogleAdsHealthCampaignSchema'
+      type: object
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
       type: object
     AppAnalyzeGoogleAdsHealthFlagSchema:
       required:
@@ -148,83 +170,6 @@ components:
           items:
             $ref: '#/components/schemas/AppAnalyzeGoogleAdsHealthFlagSchema'
       type: object
-    AppAnalyzeGoogleAdsHealthReportSchema:
-      required:
-      - linkingId
-      - linkingCustomerId
-      - linkingName
-      - periodDays
-      - account
-      - campaigns
-      properties:
-        linkingId:
-          type: integer
-        linkingCustomerId:
-          type: integer
-        linkingName:
-          type: string
-        periodDays:
-          type: integer
-        account:
-          $ref: '#/components/schemas/AppAnalyzeGoogleAdsHealthAccountSchema'
-        campaigns:
-          type: array
-          items:
-            $ref: '#/components/schemas/AppAnalyzeGoogleAdsHealthCampaignSchema'
-      type: object
-    AppAnalyzeGoogleAdsHealthMetricsSchema:
-      required:
-      - cost
-      - clicks
-      - impressions
-      - conversions
-      - conversionValue
-      - cpa
-      - roas
-      - ctr
-      - cpc
-      - convRate
-      properties:
-        cost:
-          type: number
-          format: float
-        clicks:
-          type: integer
-        impressions:
-          type: integer
-        conversions:
-          type: number
-          format: float
-        conversionValue:
-          type: number
-          format: float
-        cpa:
-          type: number
-          format: float
-        roas:
-          type: number
-          format: float
-        ctr:
-          type: number
-          format: float
-        cpc:
-          type: number
-          format: float
-        convRate:
-          type: number
-          format: float
-      type: object
-    ErrorSchema:
-      required:
-      - errors
-      properties:
-        error:
-          type: string
-        message:
-          type:
-          - string
-          - 'null'
-      type: object
     AppAnalyzeGoogleAdsHealthDeltasSchema:
       description: 'Signed fractional change vs the previous period (0.25 = +25%).
 
@@ -278,6 +223,61 @@ components:
           type:
           - number
           - 'null'
+          format: float
+      type: object
+    AppAnalyzeGoogleAdsHealthAccountSchema:
+      required:
+      - campaignCount
+      - hasConversionValue
+      - totals
+      properties:
+        campaignCount:
+          type: integer
+        hasConversionValue:
+          type: boolean
+        totals:
+          $ref: '#/components/schemas/AppAnalyzeGoogleAdsHealthMetricsSchema'
+      type: object
+    AppAnalyzeGoogleAdsHealthMetricsSchema:
+      required:
+      - cost
+      - clicks
+      - impressions
+      - conversions
+      - conversionValue
+      - cpa
+      - roas
+      - ctr
+      - cpc
+      - convRate
+      properties:
+        cost:
+          type: number
+          format: float
+        clicks:
+          type: integer
+        impressions:
+          type: integer
+        conversions:
+          type: number
+          format: float
+        conversionValue:
+          type: number
+          format: float
+        cpa:
+          type: number
+          format: float
+        roas:
+          type: number
+          format: float
+        ctr:
+          type: number
+          format: float
+        cpc:
+          type: number
+          format: float
+        convRate:
+          type: number
           format: float
       type: object
   securitySchemes:

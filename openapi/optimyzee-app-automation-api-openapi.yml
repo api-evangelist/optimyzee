@@ -81,19 +81,6 @@ paths:
                 $ref: '#/components/schemas/AppAutomationSchema'
 components:
   schemas:
-    AppAutomationConfigFieldSchema:
-      required:
-      - label
-      - value
-      - filledByAi
-      properties:
-        label:
-          type: string
-        value:
-          type: string
-        filledByAi:
-          type: boolean
-      type: object
     AppAutomationSpecSchema:
       required:
       - id
@@ -211,6 +198,19 @@ components:
           type:
           - string
           - 'null'
+      type: object
+    AppAutomationConfigFieldSchema:
+      required:
+      - label
+      - value
+      - filledByAi
+      properties:
+        label:
+          type: string
+        value:
+          type: string
+        filledByAi:
+          type: boolean
       type: object
   securitySchemes:
     token:

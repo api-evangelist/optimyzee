@@ -212,6 +212,17 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
     AppBillingSubscriptionSchema:
       required:
       - id
@@ -252,15 +263,6 @@ components:
         sales:
           type: boolean
       type: object
-    AppBillingSubscriptionCheckoutSchema:
-      required:
-      - uri
-      properties:
-        uri:
-          type:
-          - string
-          - 'null'
-      type: object
     ErrorBagSchema:
       required:
       - errors
@@ -272,23 +274,21 @@ components:
             items:
               type: string
       type: object
+    AppBillingSubscriptionCheckoutSchema:
+      required:
+      - uri
+      properties:
+        uri:
+          type:
+          - string
+          - 'null'
+      type: object
     AppBillingSubscriptionSessionSchema:
       required:
       - uri
       properties:
         uri:
           type: string
-      type: object
-    ErrorSchema:
-      required:
-      - errors
-      properties:
-        error:
-          type: string
-        message:
-          type:
-          - string
-          - 'null'
       type: object
   securitySchemes:
     token:

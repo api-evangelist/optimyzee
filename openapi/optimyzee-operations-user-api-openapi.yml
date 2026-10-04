@@ -187,17 +187,6 @@ components:
         accessToken:
           type: string
       type: object
-    ErrorBagSchema:
-      required:
-      - errors
-      properties:
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-      type: object
     ErrorSchema:
       required:
       - errors
@@ -269,6 +258,17 @@ components:
           - 'null'
         subscriptionSkipped:
           type: boolean
+      type: object
+    ErrorBagSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
       type: object
   securitySchemes:
     token:

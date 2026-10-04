@@ -318,23 +318,23 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
     IdSchema:
       required:
       - id
       properties:
         id:
           type: integer
-      type: object
-    ErrorBagSchema:
-      required:
-      - errors
-      properties:
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
       type: object
     OperationsCampaignTaskSchema:
       required:
@@ -388,16 +388,16 @@ components:
         childrenCount:
           type: integer
       type: object
-    ErrorSchema:
+    ErrorBagSchema:
       required:
       - errors
       properties:
-        error:
-          type: string
-        message:
-          type:
-          - string
-          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
       type: object
   securitySchemes:
     token:
