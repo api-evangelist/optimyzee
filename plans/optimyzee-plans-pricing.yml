@@ -69,3 +69,29 @@ notes:
 - >-
   The plan surface is also visible in the contract - /app/billing/subscription (create, cancel, charge,
   session, skip) and /app/campaign/free-limit-check back the tier and quota logic.
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - hybrid
+  units: []
+  plans:
+  - name: Free
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods: []
+  - name: Startup
+    access: other
+    model: hybrid
+    model_how: derived
+    units: []
+    periods: []
+  - name: Business
+    access: other
+    model: hybrid
+    model_how: derived
+    units: []
+    periods: []
