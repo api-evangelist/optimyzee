@@ -572,6 +572,13 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    IdSchema:
+      required:
+      - id
+      properties:
+        id:
+          type: integer
+      type: object
     ErrorSchema:
       required:
       - errors
@@ -582,13 +589,6 @@ components:
           type:
           - string
           - 'null'
-      type: object
-    IdSchema:
-      required:
-      - id
-      properties:
-        id:
-          type: integer
       type: object
   securitySchemes:
     token:

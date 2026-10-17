@@ -81,58 +81,18 @@ paths:
                 $ref: '#/components/schemas/AppAutomationSchema'
 components:
   schemas:
-    AppAutomationSpecSchema:
+    AppAutomationConfigFieldSchema:
       required:
-      - id
-      - intentText
-      - title
-      - summary
-      - signal
-      - signalLabel
-      - trigger
-      - direction
-      - deltaPct
-      - target
-      - scope
-      - channels
-      - guardrails
-      - requiredConfig
-      - confidence
+      - label
+      - value
+      - filledByAi
       properties:
-        id:
+        label:
           type: string
-        intentText:
+        value:
           type: string
-        title:
-          type: string
-        summary:
-          type: string
-        signal:
-          type: string
-        signalLabel:
-          type: string
-        trigger:
-          type: string
-        direction:
-          type: string
-        deltaPct:
-          type: integer
-        target:
-          type: string
-        scope:
-          type: string
-        channels:
-          type: array
-          items:
-            type: string
-        guardrails:
-          type: string
-        requiredConfig:
-          type: array
-          items:
-            $ref: '#/components/schemas/AppAutomationConfigFieldSchema'
-        confidence:
-          type: string
+        filledByAi:
+          type: boolean
       type: object
     AppAutomationSchema:
       required:
@@ -199,18 +159,58 @@ components:
           - string
           - 'null'
       type: object
-    AppAutomationConfigFieldSchema:
+    AppAutomationSpecSchema:
       required:
-      - label
-      - value
-      - filledByAi
+      - id
+      - intentText
+      - title
+      - summary
+      - signal
+      - signalLabel
+      - trigger
+      - direction
+      - deltaPct
+      - target
+      - scope
+      - channels
+      - guardrails
+      - requiredConfig
+      - confidence
       properties:
-        label:
+        id:
           type: string
-        value:
+        intentText:
           type: string
-        filledByAi:
-          type: boolean
+        title:
+          type: string
+        summary:
+          type: string
+        signal:
+          type: string
+        signalLabel:
+          type: string
+        trigger:
+          type: string
+        direction:
+          type: string
+        deltaPct:
+          type: integer
+        target:
+          type: string
+        scope:
+          type: string
+        channels:
+          type: array
+          items:
+            type: string
+        guardrails:
+          type: string
+        requiredConfig:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppAutomationConfigFieldSchema'
+        confidence:
+          type: string
       type: object
   securitySchemes:
     token:

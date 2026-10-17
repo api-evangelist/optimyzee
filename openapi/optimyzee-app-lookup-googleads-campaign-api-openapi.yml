@@ -80,17 +80,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ErrorSchema:
-      required:
-      - errors
-      properties:
-        error:
-          type: string
-        message:
-          type:
-          - string
-          - 'null'
-      type: object
     AppLookupGoogleAdsCampaignSchema:
       required:
       - id
@@ -103,6 +92,17 @@ components:
           type: string
         status:
           type: integer
+      type: object
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
       type: object
     ErrorBagSchema:
       required:

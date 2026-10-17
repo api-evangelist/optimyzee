@@ -162,16 +162,48 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ErrorSchema:
+    AppCampaignGoogleAdsMetricsSummarySchema:
       required:
-      - errors
+      - costMicros
+      - clicks
+      - conversions
+      - costPerConversion
       properties:
-        error:
+        costMicros:
+          type: integer
+        clicks:
+          type: integer
+        conversions:
+          type: number
+          format: float
+        costPerConversion:
+          type: number
+          format: float
+      type: object
+    IdSchema:
+      required:
+      - id
+      properties:
+        id:
+          type: integer
+      type: object
+    AppCampaignGoogleAdsMetricsReportSchema:
+      required:
+      - unit
+      - currencyCode
+      - metrics
+      - summary
+      properties:
+        unit:
           type: string
-        message:
-          type:
-          - string
-          - 'null'
+        currencyCode:
+          type: string
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppCampaignGoogleAdsMetricsSchema'
+        summary:
+          $ref: '#/components/schemas/AppCampaignGoogleAdsMetricsSummarySchema'
       type: object
     ErrorBagSchema:
       required:
@@ -184,12 +216,16 @@ components:
             items:
               type: string
       type: object
-    IdSchema:
+    ErrorSchema:
       required:
-      - id
+      - errors
       properties:
-        id:
-          type: integer
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
       type: object
     AppCampaignGoogleAdsMetricsSchema:
       required:
@@ -212,42 +248,6 @@ components:
         costPerConversion:
           type: number
           format: float
-      type: object
-    AppCampaignGoogleAdsMetricsSummarySchema:
-      required:
-      - costMicros
-      - clicks
-      - conversions
-      - costPerConversion
-      properties:
-        costMicros:
-          type: integer
-        clicks:
-          type: integer
-        conversions:
-          type: number
-          format: float
-        costPerConversion:
-          type: number
-          format: float
-      type: object
-    AppCampaignGoogleAdsMetricsReportSchema:
-      required:
-      - unit
-      - currencyCode
-      - metrics
-      - summary
-      properties:
-        unit:
-          type: string
-        currencyCode:
-          type: string
-        metrics:
-          type: array
-          items:
-            $ref: '#/components/schemas/AppCampaignGoogleAdsMetricsSchema'
-        summary:
-          $ref: '#/components/schemas/AppCampaignGoogleAdsMetricsSummarySchema'
       type: object
   securitySchemes:
     token:

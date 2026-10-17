@@ -246,6 +246,13 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    IdSchema:
+      required:
+      - id
+      properties:
+        id:
+          type: integer
+      type: object
     OperationsCampaignLogSchema:
       required:
       - id
@@ -273,13 +280,6 @@ components:
           type:
           - string
           - 'null'
-      type: object
-    IdSchema:
-      required:
-      - id
-      properties:
-        id:
-          type: integer
       type: object
     ErrorBagSchema:
       required:

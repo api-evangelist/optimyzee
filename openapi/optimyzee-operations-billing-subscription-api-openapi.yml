@@ -343,6 +343,13 @@ components:
         legacy:
           type: boolean
       type: object
+    IdSchema:
+      required:
+      - id
+      properties:
+        id:
+          type: integer
+      type: object
     ErrorSchema:
       required:
       - errors
@@ -353,13 +360,6 @@ components:
           type:
           - string
           - 'null'
-      type: object
-    IdSchema:
-      required:
-      - id
-      properties:
-        id:
-          type: integer
       type: object
     ErrorBagSchema:
       required:

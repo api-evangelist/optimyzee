@@ -233,6 +233,24 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    IdSchema:
+      required:
+      - id
+      properties:
+        id:
+          type: integer
+      type: object
+    ErrorBagSchema:
+      required:
+      - errors
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      type: object
     ErrorSchema:
       required:
       - errors
@@ -265,24 +283,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AppCreateGoogleAdsSitelinkBuilderSitelinkSchema'
-      type: object
-    ErrorBagSchema:
-      required:
-      - errors
-      properties:
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-      type: object
-    IdSchema:
-      required:
-      - id
-      properties:
-        id:
-          type: integer
       type: object
     AppCreateGoogleAdsSitelinkBuilderSitelinkSchema:
       required:

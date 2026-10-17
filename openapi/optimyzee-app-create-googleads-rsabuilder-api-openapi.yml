@@ -237,6 +237,17 @@ components:
         id:
           type: integer
       type: object
+    ErrorSchema:
+      required:
+      - errors
+      properties:
+        error:
+          type: string
+        message:
+          type:
+          - string
+          - 'null'
+      type: object
     AppCreateGoogleAdsRsaBuilderSchema:
       required:
       - id
@@ -268,17 +279,6 @@ components:
           type: array
           items:
             type: string
-      type: object
-    ErrorSchema:
-      required:
-      - errors
-      properties:
-        error:
-          type: string
-        message:
-          type:
-          - string
-          - 'null'
       type: object
     ErrorBagSchema:
       required:
